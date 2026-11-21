@@ -313,3 +313,19 @@ html[data-theme=light] .fbtn{color:#5b5a86}
 .th .fbtn:hover{color:var(--acc)}
 html[data-theme=light] .th .fbtn{color:#9aa0c4}
 html[data-theme=light] .th .fbtn.on{color:var(--acc)}
+
+/* ===== Pop-up de instalação ===== */
+.inst{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,5,20,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:0 14px calc(18px + env(safe-area-inset-bottom));animation:instIn .25s ease-out}
+@keyframes instIn{from{opacity:0}to{opacity:1}}
+.inst-card{width:100%;max-width:440px;background:var(--card,#12143A);color:var(--tx,#fff);border:1px solid var(--line,rgba(255,255,255,.1));border-radius:26px;padding:22px 20px 18px;box-shadow:0 24px 60px rgba(0,0,0,.5);animation:instUp .3s ease-out}
+@keyframes instUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.inst-ic{width:56px;height:56px;border-radius:14px;display:block;margin-bottom:12px}
+.inst-card h3{font:800 21px Montserrat,system-ui,sans-serif;margin:0 0 6px;letter-spacing:-.01em}
+.inst-card p{margin:0 0 16px;color:var(--mu,#8B8FBF);font-size:15px;line-height:1.4}
+.inst-b{display:grid;gap:8px}
+.inst-b button{border:0;border-radius:14px;padding:14px;font:700 16px 'Inter Tight',system-ui,sans-serif;cursor:pointer}
+.inst-b .yes{background:var(--acc,#FF6B00);color:#fff}
+.inst-b .no{background:transparent;color:var(--mu,#8B8FBF)}
+.inst-s{margin:14px 0 18px;padding-left:20px;display:grid;gap:12px;font-size:15.5px;line-height:1.4}
+.inst-s li::marker{color:var(--acc,#FF6B00);font-weight:800}
+.inst-s .ic{width:18px;height:18px;vertical-align:-3px;margin:0 2px;color:var(--acc,#FF6B00)}

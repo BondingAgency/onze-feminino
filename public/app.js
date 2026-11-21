@@ -476,3 +476,45 @@ async function paintRings() {
     cr.style.setProperty('--ring', `hsl(${h.toFixed(0)} 72% ${Math.min(0.55, Math.max(0.42, l0)) * 100}%)`);
   }
 }
+
+// ===== Pop-up "Instalar a app no telemóvel?" =====
+(function installPrompt() {
+  const KEY = 'onze-install-ate';
+  const q = new URLSearchParams(location.search);
+  const forced = q.has('instalar');                         // ?instalar=1&p=ios|android para pré-visualizar
+  const ua = navigator.userAgent || '';
+  const ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const android = /Android/i.test(ua);
+  const plat = forced && q.get('p') ? q.get('p') : ios ? 'ios' : android ? 'android' : '';
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  const inApp = /FBAN|FBAV|Instagram|WhatsApp|Line\/|Messenger|TikTok/i.test(ua);
+  if (!forced && (!/^https?:/.test(location.protocol) || standalone || !plat)) return;
+  try { if (!forced && Date.now() < (+localStorage.getItem(KEY) || 0)) return; } catch {}
+  let deferred = null;
+  addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; });
+  const later = (days) => { try { localStorage.setItem(KEY, String(Date.now() + days * 864e5)); } catch {} };
+  const close = () => document.querySelector('.inst')?.remove();
+  const SHARE = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+  const DOTS = '<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
+  const DOTSH = '<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>';
+  const steps = () => {
+    const open = inApp ? `<li>Abre esta página no ${plat === 'ios' ? 'Safari' : 'Chrome'}: toca nos três pontinhos e em <b>Abrir no browser</b>.</li>` : `<li>Abre esta página no ${plat === 'ios' ? '<b>Safari</b>' : '<b>Chrome</b>'}.</li>`;
+    return plat === 'ios'
+      ? `${open}<li>Toca nos <b>três pontinhos</b> ${DOTSH} (ou no botão <b>Partilhar</b> ${SHARE}), em baixo no ecrã.</li><li>Escolhe <b>Partilhar</b> e, na lista, <b>Adicionar ao ecrã principal</b>.</li><li>Toca em <b>Adicionar</b>. O ícone fica no teu telemóvel como uma app.</li>`
+      : `${open}<li>Toca nos <b>três pontinhos</b> ${DOTS}, no canto de cima.</li><li>Escolhe <b>Instalar app</b> (ou <b>Adicionar ao ecrã principal</b>).</li><li>Confirma em <b>Instalar</b>. O ícone fica no teu telemóvel como uma app.</li>`;
+  };
+  const ask = () => {
+    if (document.querySelector('.inst')) return;
+    const el = document.createElement('div'); el.className = 'inst'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
+    el.innerHTML = `<div class="inst-card"><img class="inst-ic" src="marca/icone-192.png" alt=""><h3>Instalar a app no telemóvel?</h3><p>Fica no ecrã principal, abre mais depressa e sem a barra do browser.</p><div class="inst-b"><button class="yes">Sim, mostrar como</button><button class="no">Agora não</button></div></div>`;
+    document.body.appendChild(el);
+    el.querySelector('.no').onclick = () => { later(14); close(); };
+    el.addEventListener('click', (e) => { if (e.target === el) { later(14); close(); } });
+    el.querySelector('.yes').onclick = async () => {
+      if (deferred && plat === 'android') { deferred.prompt(); try { await deferred.userChoice; } catch {} later(90); close(); return; }
+      el.querySelector('.inst-card').innerHTML = `<h3>Como instalar</h3><ol class="inst-s">${steps()}</ol><div class="inst-b"><button class="yes ok">Percebi</button></div>`;
+      el.querySelector('.ok').onclick = () => { later(90); close(); };
+    };
+  };
+  setTimeout(ask, forced ? 300 : 6000);
+})();
