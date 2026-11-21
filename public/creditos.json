@@ -1,0 +1,71 @@
+[
+ {
+  "img": "ligas/liga-bpi.png",
+  "nome": "Liga BPI",
+  "fonte": "Wikimedia Commons, ficheiro Liga_BPI_logo.png (autor: Federação Portuguesa de Futebol)",
+  "url": "https://pt.wikipedia.org/wiki/Ficheiro:Liga_BPI_logo.png"
+ },
+ {
+  "img": "ligas/emblema-fpf-feminino.png",
+  "nome": "Campeonato Nacional Futebol Feminino (II, III e IV Divisão)",
+  "fonte": "Federação Portuguesa de Futebol (ficheiro fornecido pela Bebiana)"
+ },
+ {
+  "img": "clubes/braga.png",
+  "nome": "SC Braga",
+  "fonte": "Wikipédia (pt), ficheiro 150px-Sporting_Clube_Braga.png",
+  "url": "https://pt.wikipedia.org/wiki/Sporting_Clube_de_Braga"
+ },
+ {
+  "img": "clubes/fc-porto.png",
+  "nome": "FC Porto",
+  "fonte": "Wikipédia (pt), ficheiro F.C._Porto_logo.png",
+  "url": "https://pt.wikipedia.org/wiki/Futebol_Clube_do_Porto"
+ },
+ {
+  "img": "clubes/vitoria-sc.png",
+  "nome": "Vitória SC",
+  "fonte": "Wikipédia (pt), ficheiro VitoriaGuimaraes.png",
+  "url": "https://pt.wikipedia.org/wiki/Vit%C3%B3ria_Sport_Clube"
+ },
+ {
+  "img": "clubes/maritimo.png",
+  "nome": "Marítimo",
+  "fonte": "Wikipédia (pt), ficheiro Logo-CSM_menu.png",
+  "url": "https://pt.wikipedia.org/wiki/Club_Sport_Mar%C3%ADtimo"
+ },
+ {
+  "img": "clubes/ca-ouriense.png",
+  "nome": "CA Ouriense",
+  "fonte": "Wikipédia (pt), ficheiro Ouriense.jpg (uso restrito)",
+  "url": "https://pt.wikipedia.org/wiki/Ficheiro:Ouriense.jpg"
+ },
+ {
+  "img": "clubes/eff-setubal.png",
+  "nome": "E.F.F. Setúbal",
+  "fonte": "Fotografia publicada no Facebook pela Escola de Futebol Feminino de Setúbal",
+  "url": "https://www.facebook.com/photo/?fbid=505665418225227&set=a.505665394891896"
+ },
+ {
+  "img": "clubes/cf-benfica.png",
+  "nome": "CF Benfica",
+  "fonte": "Imagem fornecida pela Bebiana (origem por confirmar)"
+ },
+ {
+  "img": "clubes/benfica.png",
+  "nome": "Restantes clubes (Benfica, Sporting, Rio Ave, Racing Power, Torreense, Valadares Gaia, Gil Vicente, Juveforce, Real SC, Rio Tinto, Famalicão, Albergaria)",
+  "fonte": "Vieram no ficheiro da Bebiana. Origem por confirmar."
+ },
+ {
+  "img": "fotos/clube-albergaria.png",
+  "nome": "Foto do Clube de Albergaria",
+  "fonte": "Instagram @clubealbergariafutfeminino",
+  "url": "https://www.instagram.com/p/Df-hM8BBO9R/"
+ },
+ {
+  "img": "fotos/gil-vicente.png",
+  "nome": "Foto do Gil Vicente",
+  "fonte": "Instagram @gilvicente.fc",
+  "url": "https://www.instagram.com/p/DgAvm_4Nv_W/"
+ }
+]

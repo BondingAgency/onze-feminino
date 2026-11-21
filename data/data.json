@@ -1,0 +1,1371 @@
+{
+ "competitions": [
+  {
+   "id": "liga-bpi",
+   "name": "Liga BPI",
+   "tag": "1.º escalão",
+   "season": "2026/27",
+   "teams": [
+    {
+     "id": "rio-ave",
+     "name": "Rio Ave"
+    },
+    {
+     "id": "vitoria-sc",
+     "name": "Vitória SC"
+    },
+    {
+     "id": "torreense",
+     "name": "Torreense"
+    },
+    {
+     "id": "benfica",
+     "name": "Benfica"
+    },
+    {
+     "id": "sporting-cp",
+     "name": "Sporting CP"
+    },
+    {
+     "id": "valadares-gaia",
+     "name": "Valadares Gaia"
+    },
+    {
+     "id": "maritimo",
+     "name": "Marítimo"
+    },
+    {
+     "id": "fc-porto",
+     "name": "FC Porto"
+    },
+    {
+     "id": "braga",
+     "name": "Braga"
+    },
+    {
+     "id": "racing-power-fc",
+     "name": "Racing Power FC"
+    }
+   ],
+   "matches": [
+    {
+     "id": "bpi1",
+     "round": 7,
+     "date": "2026-11-20",
+     "time": "19:30",
+     "home": "rio-ave",
+     "away": "vitoria-sc",
+     "hg": 2,
+     "ag": 0
+    },
+    {
+     "id": "bpi2",
+     "round": 6,
+     "date": "2026-11-03",
+     "time": "19:45",
+     "home": "torreense",
+     "away": "benfica",
+     "hg": 0,
+     "ag": 1
+    },
+    {
+     "id": "bpi3",
+     "round": 6,
+     "date": "2026-11-01",
+     "time": "17:30",
+     "home": "sporting-cp",
+     "away": "valadares-gaia",
+     "hg": 2,
+     "ag": 1
+    },
+    {
+     "id": "bpi4",
+     "round": 6,
+     "date": "2026-11-01",
+     "time": "11:00",
+     "home": "maritimo",
+     "away": "fc-porto",
+     "hg": 1,
+     "ag": 2
+    },
+    {
+     "id": "bpi5",
+     "round": 6,
+     "date": "2026-10-31",
+     "time": "15:00",
+     "home": "rio-ave",
+     "away": "braga",
+     "hg": 0,
+     "ag": 1
+    },
+    {
+     "id": "bpi6",
+     "round": 6,
+     "date": "2026-10-31",
+     "time": "15:00",
+     "home": "vitoria-sc",
+     "away": "racing-power-fc",
+     "hg": 2,
+     "ag": 1
+    },
+    {
+     "id": "bpi7",
+     "round": 5,
+     "date": "2026-10-25",
+     "time": "15:00",
+     "home": "valadares-gaia",
+     "away": "maritimo",
+     "hg": 3,
+     "ag": 1
+    },
+    {
+     "id": "bpi8",
+     "round": 5,
+     "date": "2026-10-24",
+     "time": "18:00",
+     "home": "braga",
+     "away": "torreense",
+     "hg": 0,
+     "ag": 3
+    },
+    {
+     "id": "bpi9",
+     "round": 5,
+     "date": "2026-10-24",
+     "time": "16:00",
+     "home": "racing-power-fc",
+     "away": "rio-ave",
+     "hg": 0,
+     "ag": 0
+    },
+    {
+     "id": "bpi10",
+     "round": 5,
+     "date": "2026-10-24",
+     "time": "15:30",
+     "home": "benfica",
+     "away": "sporting-cp",
+     "hg": 4,
+     "ag": 1
+    },
+    {
+     "id": "bpi11",
+     "round": 5,
+     "date": "2026-10-24",
+     "time": "11:00",
+     "home": "fc-porto",
+     "away": "vitoria-sc",
+     "hg": 0,
+     "ag": 0
+    },
+    {
+     "id": "bpi12",
+     "round": 4,
+     "date": "2026-10-18",
+     "time": "17:00",
+     "home": "sporting-cp",
+     "away": "torreense",
+     "hg": 3,
+     "ag": 2
+    },
+    {
+     "id": "bpi13",
+     "round": 4,
+     "date": "2026-10-18",
+     "time": "11:00",
+     "home": "maritimo",
+     "away": "benfica",
+     "hg": 0,
+     "ag": 4
+    },
+    {
+     "id": "bpi14",
+     "round": 4,
+     "date": "2026-10-17",
+     "time": "15:00",
+     "home": "vitoria-sc",
+     "away": "valadares-gaia",
+     "hg": 0,
+     "ag": 2
+    },
+    {
+     "id": "bpi15",
+     "round": 4,
+     "date": "2026-10-17",
+     "time": "11:00",
+     "home": "racing-power-fc",
+     "away": "braga",
+     "hg": 0,
+     "ag": 2
+    },
+    {
+     "id": "bpi16",
+     "round": 4,
+     "date": "2026-10-17",
+     "time": "11:00",
+     "home": "rio-ave",
+     "away": "fc-porto",
+     "hg": 1,
+     "ag": 1
+    },
+    {
+     "id": "bpi17",
+     "round": 3,
+     "date": "2026-09-27",
+     "time": "17:00",
+     "home": "torreense",
+     "away": "maritimo",
+     "hg": 8,
+     "ag": 0
+    },
+    {
+     "id": "bpi18",
+     "round": 3,
+     "date": "2026-09-27",
+     "time": "14:45",
+     "home": "braga",
+     "away": "sporting-cp",
+     "hg": 0,
+     "ag": 0
+    },
+    {
+     "id": "bpi19",
+     "round": 3,
+     "date": "2026-09-27",
+     "time": "11:00",
+     "home": "fc-porto",
+     "away": "racing-power-fc",
+     "hg": 0,
+     "ag": 0
+    },
+    {
+     "id": "bpi20",
+     "round": 3,
+     "date": "2026-09-26",
+     "time": "11:00",
+     "home": "valadares-gaia",
+     "away": "rio-ave",
+     "hg": 1,
+     "ag": 0
+    },
+    {
+     "id": "bpi21",
+     "round": 2,
+     "date": "2026-09-21",
+     "time": "18:00",
+     "home": "fc-porto",
+     "away": "braga",
+     "hg": 1,
+     "ag": 1
+    },
+    {
+     "id": "bpi22",
+     "round": 2,
+     "date": "2026-09-20",
+     "time": "16:00",
+     "home": "racing-power-fc",
+     "away": "valadares-gaia",
+     "hg": 1,
+     "ag": 0
+    },
+    {
+     "id": "bpi23",
+     "round": 2,
+     "date": "2026-09-19",
+     "time": "11:00",
+     "home": "vitoria-sc",
+     "away": "torreense",
+     "hg": 0,
+     "ag": 3
+    },
+    {
+     "id": "bpi24",
+     "round": 2,
+     "date": "2026-09-18",
+     "time": "18:30",
+     "home": "rio-ave",
+     "away": "benfica",
+     "hg": 0,
+     "ag": 2
+    },
+    {
+     "id": "bpi25",
+     "round": 11,
+     "date": "2026-09-18",
+     "time": "18:30",
+     "home": "sporting-cp",
+     "away": "maritimo",
+     "hg": 5,
+     "ag": 0
+    },
+    {
+     "id": "bpi26",
+     "round": 1,
+     "date": "2026-09-13",
+     "time": "19:00",
+     "home": "torreense",
+     "away": "rio-ave",
+     "hg": 3,
+     "ag": 0
+    },
+    {
+     "id": "bpi27",
+     "round": 1,
+     "date": "2026-09-12",
+     "time": "20:30",
+     "home": "benfica",
+     "away": "racing-power-fc",
+     "hg": 3,
+     "ag": 0
+    },
+    {
+     "id": "bpi28",
+     "round": 1,
+     "date": "2026-09-12",
+     "time": "18:00",
+     "home": "sporting-cp",
+     "away": "vitoria-sc",
+     "hg": 2,
+     "ag": 0
+    },
+    {
+     "id": "bpi29",
+     "round": 1,
+     "date": "2026-09-12",
+     "time": "17:00",
+     "home": "braga",
+     "away": "maritimo",
+     "hg": 5,
+     "ag": 0
+    },
+    {
+     "id": "bpi30",
+     "round": 1,
+     "date": "2026-09-12",
+     "time": "17:00",
+     "home": "valadares-gaia",
+     "away": "fc-porto",
+     "hg": 1,
+     "ag": 3
+    },
+    {
+     "id": "bpi31",
+     "round": 7,
+     "date": "2026-11-22",
+     "time": "15:00",
+     "home": "racing-power-fc",
+     "away": "maritimo",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi32",
+     "round": 7,
+     "date": "2026-11-22",
+     "time": "15:00",
+     "home": "valadares-gaia",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi33",
+     "round": 7,
+     "date": "2026-11-22",
+     "time": "17:00",
+     "home": "fc-porto",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi34",
+     "round": 7,
+     "date": "2026-11-23",
+     "time": "19:00",
+     "home": "braga",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi35",
+     "round": 8,
+     "date": "2026-12-18",
+     "time": "19:00",
+     "home": "torreense",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi36",
+     "round": 8,
+     "date": "2026-12-19",
+     "time": "15:00",
+     "home": "maritimo",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi37",
+     "round": 8,
+     "date": "2026-12-19",
+     "time": "19:00",
+     "home": "braga",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi38",
+     "round": 8,
+     "date": "2026-12-20",
+     "time": "15:00",
+     "home": "sporting-cp",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi39",
+     "round": 8,
+     "date": "2026-12-20",
+     "time": "18:00",
+     "home": "benfica",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi40",
+     "round": 3,
+     "date": "2027-01-03",
+     "time": "",
+     "home": "benfica",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi41",
+     "round": 9,
+     "date": "2027-01-17",
+     "time": "",
+     "home": "fc-porto",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi42",
+     "round": 9,
+     "date": "2027-01-17",
+     "time": "",
+     "home": "racing-power-fc",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi43",
+     "round": 9,
+     "date": "2027-01-17",
+     "time": "",
+     "home": "rio-ave",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi44",
+     "round": 9,
+     "date": "2027-01-17",
+     "time": "",
+     "home": "valadares-gaia",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi45",
+     "round": 9,
+     "date": "2027-01-17",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "maritimo",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi46",
+     "round": 10,
+     "date": "2027-01-31",
+     "time": "",
+     "home": "fc-porto",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi47",
+     "round": 10,
+     "date": "2027-01-31",
+     "time": "",
+     "home": "maritimo",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi48",
+     "round": 10,
+     "date": "2027-01-31",
+     "time": "",
+     "home": "racing-power-fc",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi49",
+     "round": 10,
+     "date": "2027-01-31",
+     "time": "",
+     "home": "rio-ave",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi50",
+     "round": 10,
+     "date": "2027-01-31",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi51",
+     "round": 11,
+     "date": "2027-02-07",
+     "time": "",
+     "home": "benfica",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi52",
+     "round": 11,
+     "date": "2027-02-07",
+     "time": "",
+     "home": "braga",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi53",
+     "round": 2,
+     "date": "2027-02-07",
+     "time": "",
+     "home": "maritimo",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi54",
+     "round": 11,
+     "date": "2027-02-07",
+     "time": "",
+     "home": "torreense",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi55",
+     "round": 11,
+     "date": "2027-02-07",
+     "time": "",
+     "home": "valadares-gaia",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi56",
+     "round": 12,
+     "date": "2027-03-14",
+     "time": "",
+     "home": "maritimo",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi57",
+     "round": 12,
+     "date": "2027-03-14",
+     "time": "",
+     "home": "racing-power-fc",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi58",
+     "round": 12,
+     "date": "2027-03-14",
+     "time": "",
+     "home": "rio-ave",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi59",
+     "round": 12,
+     "date": "2027-03-14",
+     "time": "",
+     "home": "sporting-cp",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi60",
+     "round": 12,
+     "date": "2027-03-14",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi61",
+     "round": 13,
+     "date": "2027-03-27",
+     "time": "",
+     "home": "benfica",
+     "away": "maritimo",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi62",
+     "round": 13,
+     "date": "2027-03-27",
+     "time": "",
+     "home": "braga",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi63",
+     "round": 13,
+     "date": "2027-03-27",
+     "time": "",
+     "home": "fc-porto",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi64",
+     "round": 13,
+     "date": "2027-03-27",
+     "time": "",
+     "home": "torreense",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi65",
+     "round": 13,
+     "date": "2027-03-27",
+     "time": "",
+     "home": "valadares-gaia",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi66",
+     "round": 14,
+     "date": "2027-04-11",
+     "time": "",
+     "home": "maritimo",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi67",
+     "round": 14,
+     "date": "2027-04-11",
+     "time": "",
+     "home": "rio-ave",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi68",
+     "round": 14,
+     "date": "2027-04-11",
+     "time": "",
+     "home": "sporting-cp",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi69",
+     "round": 14,
+     "date": "2027-04-11",
+     "time": "",
+     "home": "torreense",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi70",
+     "round": 14,
+     "date": "2027-04-11",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi71",
+     "round": 15,
+     "date": "2027-05-02",
+     "time": "",
+     "home": "benfica",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi72",
+     "round": 15,
+     "date": "2027-05-02",
+     "time": "",
+     "home": "braga",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi73",
+     "round": 15,
+     "date": "2027-05-02",
+     "time": "",
+     "home": "fc-porto",
+     "away": "maritimo",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi74",
+     "round": 15,
+     "date": "2027-05-02",
+     "time": "",
+     "home": "racing-power-fc",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi75",
+     "round": 15,
+     "date": "2027-05-02",
+     "time": "",
+     "home": "valadares-gaia",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi76",
+     "round": 16,
+     "date": "2027-05-09",
+     "time": "",
+     "home": "benfica",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi77",
+     "round": 16,
+     "date": "2027-05-09",
+     "time": "",
+     "home": "maritimo",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi78",
+     "round": 16,
+     "date": "2027-05-09",
+     "time": "",
+     "home": "sporting-cp",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi79",
+     "round": 16,
+     "date": "2027-05-09",
+     "time": "",
+     "home": "torreense",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi80",
+     "round": 16,
+     "date": "2027-05-09",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi81",
+     "round": 17,
+     "date": "2027-05-16",
+     "time": "",
+     "home": "fc-porto",
+     "away": "torreense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi82",
+     "round": 17,
+     "date": "2027-05-16",
+     "time": "",
+     "home": "racing-power-fc",
+     "away": "sporting-cp",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi83",
+     "round": 17,
+     "date": "2027-05-16",
+     "time": "",
+     "home": "rio-ave",
+     "away": "maritimo",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi84",
+     "round": 17,
+     "date": "2027-05-16",
+     "time": "",
+     "home": "valadares-gaia",
+     "away": "benfica",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi85",
+     "round": 17,
+     "date": "2027-05-16",
+     "time": "",
+     "home": "vitoria-sc",
+     "away": "braga",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi86",
+     "round": 18,
+     "date": "2027-05-23",
+     "time": "",
+     "home": "benfica",
+     "away": "fc-porto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi87",
+     "round": 18,
+     "date": "2027-05-23",
+     "time": "",
+     "home": "braga",
+     "away": "valadares-gaia",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi88",
+     "round": 18,
+     "date": "2027-05-23",
+     "time": "",
+     "home": "maritimo",
+     "away": "vitoria-sc",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi89",
+     "round": 18,
+     "date": "2027-05-23",
+     "time": "",
+     "home": "sporting-cp",
+     "away": "rio-ave",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "bpi90",
+     "round": 18,
+     "date": "2027-05-23",
+     "time": "",
+     "home": "torreense",
+     "away": "racing-power-fc",
+     "hg": null,
+     "ag": null
+    }
+   ]
+  },
+  {
+   "id": "2-liga",
+   "name": "2.ª Liga Feminina",
+   "tag": "2.º escalão",
+   "season": "2026/27",
+   "phase": "1.ª Fase",
+   "teams": [
+    {
+     "id": "clube-albergaria",
+     "name": "Clube de Albergaria",
+     "short": "Albergaria"
+    },
+    {
+     "id": "fc-famalicao",
+     "name": "FC Famalicão",
+     "short": "Famalicão"
+    },
+    {
+     "id": "gil-vicente",
+     "name": "Gil Vicente FC",
+     "short": "Gil Vicente"
+    },
+    {
+     "id": "braga-b",
+     "name": "SC Braga B",
+     "short": "Braga B"
+    },
+    {
+     "id": "rio-tinto",
+     "name": "SC Rio Tinto",
+     "short": "Rio Tinto"
+    },
+    {
+     "id": "juveforce",
+     "name": "Juveforce – ADC Ponte Vagos",
+     "short": "Juveforce"
+    },
+    {
+     "id": "real-sc",
+     "name": "Real SC",
+     "short": "Real SC"
+    },
+    {
+     "id": "benfica-b",
+     "name": "SL Benfica B",
+     "short": "Benfica B"
+    },
+    {
+     "id": "sporting-cp-b",
+     "name": "Sporting CP B",
+     "short": "Sporting B"
+    },
+    {
+     "id": "cf-benfica",
+     "name": "CF Benfica",
+     "short": "CF Benfica"
+    },
+    {
+     "id": "ca-ouriense",
+     "name": "CA Ouriense",
+     "short": "Ouriense"
+    },
+    {
+     "id": "eff-setubal",
+     "name": "Esc. Fut. Fem. Setúbal",
+     "short": "EFF Setúbal"
+    }
+   ],
+   "series": [
+    {
+     "name": "Série Norte",
+     "table": [
+      {
+       "id": "clube-albergaria",
+       "j": 6,
+       "v": 5,
+       "e": 0,
+       "d": 1,
+       "gm": 16,
+       "gs": 4,
+       "pts": 15
+      },
+      {
+       "id": "fc-famalicao",
+       "j": 6,
+       "v": 4,
+       "e": 1,
+       "d": 1,
+       "gm": 19,
+       "gs": 6,
+       "pts": 13
+      },
+      {
+       "id": "gil-vicente",
+       "j": 6,
+       "v": 3,
+       "e": 2,
+       "d": 1,
+       "gm": 12,
+       "gs": 7,
+       "pts": 11
+      },
+      {
+       "id": "braga-b",
+       "j": 4,
+       "v": 1,
+       "e": 1,
+       "d": 2,
+       "gm": 6,
+       "gs": 6,
+       "pts": 4
+      },
+      {
+       "id": "rio-tinto",
+       "j": 4,
+       "v": 1,
+       "e": 0,
+       "d": 3,
+       "gm": 5,
+       "gs": 13,
+       "pts": 3
+      },
+      {
+       "id": "juveforce",
+       "j": 6,
+       "v": 0,
+       "e": 0,
+       "d": 6,
+       "gm": 4,
+       "gs": 26,
+       "pts": 0
+      }
+     ]
+    },
+    {
+     "name": "Série Sul",
+     "table": [
+      {
+       "id": "real-sc",
+       "j": 5,
+       "v": 5,
+       "e": 0,
+       "d": 0,
+       "gm": 18,
+       "gs": 4,
+       "pts": 15
+      },
+      {
+       "id": "benfica-b",
+       "j": 5,
+       "v": 4,
+       "e": 0,
+       "d": 1,
+       "gm": 13,
+       "gs": 3,
+       "pts": 12
+      },
+      {
+       "id": "sporting-cp-b",
+       "j": 5,
+       "v": 2,
+       "e": 0,
+       "d": 3,
+       "gm": 6,
+       "gs": 11,
+       "pts": 6
+      },
+      {
+       "id": "cf-benfica",
+       "j": 5,
+       "v": 1,
+       "e": 1,
+       "d": 3,
+       "gm": 8,
+       "gs": 12,
+       "pts": 4
+      },
+      {
+       "id": "ca-ouriense",
+       "j": 5,
+       "v": 1,
+       "e": 1,
+       "d": 3,
+       "gm": 7,
+       "gs": 12,
+       "pts": 4
+      },
+      {
+       "id": "eff-setubal",
+       "j": 5,
+       "v": 0,
+       "e": 2,
+       "d": 3,
+       "gm": 2,
+       "gs": 12,
+       "pts": 2
+      }
+     ]
+    }
+   ],
+   "matches": [
+    {
+     "id": "l2-4-1",
+     "round": 4,
+     "serie": "Série Norte",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "juveforce",
+     "away": "clube-albergaria",
+     "hg": 0,
+     "ag": 5
+    },
+    {
+     "id": "l2-4-2",
+     "round": 4,
+     "serie": "Série Norte",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "braga-b",
+     "away": "fc-famalicao",
+     "hg": 1,
+     "ag": 2
+    },
+    {
+     "id": "l2-4-3",
+     "round": 4,
+     "serie": "Série Norte",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "rio-tinto",
+     "away": "gil-vicente",
+     "hg": 0,
+     "ag": 1
+    },
+    {
+     "id": "l2-4-4",
+     "round": 4,
+     "serie": "Série Sul",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "ca-ouriense",
+     "away": "sporting-cp-b",
+     "hg": 3,
+     "ag": 0
+    },
+    {
+     "id": "l2-4-5",
+     "round": 4,
+     "serie": "Série Sul",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "cf-benfica",
+     "away": "real-sc",
+     "hg": 2,
+     "ag": 3
+    },
+    {
+     "id": "l2-4-6",
+     "round": 4,
+     "serie": "Série Sul",
+     "date": "2026-10-31",
+     "time": "",
+     "home": "benfica-b",
+     "away": "eff-setubal",
+     "hg": 2,
+     "ag": 0
+    },
+    {
+     "id": "l2-5-1",
+     "round": 5,
+     "serie": "Série Norte",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "clube-albergaria",
+     "away": "rio-tinto",
+     "hg": 5,
+     "ag": 1
+    },
+    {
+     "id": "l2-5-2",
+     "round": 5,
+     "serie": "Série Norte",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "fc-famalicao",
+     "away": "juveforce",
+     "hg": 8,
+     "ag": 0
+    },
+    {
+     "id": "l2-5-3",
+     "round": 5,
+     "serie": "Série Norte",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "gil-vicente",
+     "away": "braga-b",
+     "hg": 2,
+     "ag": 2
+    },
+    {
+     "id": "l2-5-4",
+     "round": 5,
+     "serie": "Série Sul",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "eff-setubal",
+     "away": "cf-benfica",
+     "hg": 1,
+     "ag": 1
+    },
+    {
+     "id": "l2-5-5",
+     "round": 5,
+     "serie": "Série Sul",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "real-sc",
+     "away": "ca-ouriense",
+     "hg": 4,
+     "ag": 1
+    },
+    {
+     "id": "l2-5-6",
+     "round": 5,
+     "serie": "Série Sul",
+     "date": "2026-11-08",
+     "time": "",
+     "home": "sporting-cp-b",
+     "away": "benfica-b",
+     "hg": 0,
+     "ag": 4
+    },
+    {
+     "id": "l2-6-1",
+     "round": 6,
+     "serie": "Série Norte",
+     "date": "2026-11-21",
+     "time": "15:00",
+     "home": "fc-famalicao",
+     "away": "clube-albergaria",
+     "hg": 2,
+     "ag": 1
+    },
+    {
+     "id": "l2-6-2",
+     "round": 6,
+     "serie": "Série Norte",
+     "date": "2026-11-21",
+     "time": "15:00",
+     "home": "gil-vicente",
+     "away": "juveforce",
+     "hg": 5,
+     "ag": 1
+    },
+    {
+     "id": "l2-6-3",
+     "round": 6,
+     "serie": "Série Norte",
+     "date": "2026-11-22",
+     "time": "15:00",
+     "home": "braga-b",
+     "away": "rio-tinto",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "l2-6-4",
+     "round": 6,
+     "serie": "Série Sul",
+     "date": "2026-11-21",
+     "time": "15:00",
+     "home": "cf-benfica",
+     "away": "benfica-b",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "l2-6-5",
+     "round": 6,
+     "serie": "Série Sul",
+     "date": "2026-11-21",
+     "time": "15:00",
+     "home": "eff-setubal",
+     "away": "ca-ouriense",
+     "hg": null,
+     "ag": null
+    },
+    {
+     "id": "l2-6-6",
+     "round": 6,
+     "serie": "Série Sul",
+     "date": "2026-11-21",
+     "time": "15:00",
+     "home": "real-sc",
+     "away": "sporting-cp-b",
+     "hg": null,
+     "ag": null
+    }
+   ]
+  },
+  {
+   "id": "3-liga",
+   "name": "3.ª Liga Feminina",
+   "tag": "3.º escalão",
+   "season": "2026/27",
+   "teams": [],
+   "matches": []
+  },
+  {
+   "id": "4-liga",
+   "name": "4.ª Liga Feminina",
+   "tag": "4.º escalão",
+   "season": "2026/27",
+   "teams": [],
+   "matches": []
+  }
+ ]
+}

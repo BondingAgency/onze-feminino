@@ -1,0 +1,18 @@
+# Identidade visual e materiais de marca: não publicar
+*.pdf
+Onze Feminino (ficheiro unico).html
+public/manual-de-marca.html
+public/logos-*.html
+public/identidade*.html
+public/opcoes-emblema.html
+public/fonts/
+public/logo-*.svg
+public/logo.svg
+public/icon.svg
+public/marca/*
+!public/marca/icone-laranja.svg
+!public/marca/icone-192.png
+!public/marca/icone-512.png
+!public/marca/icone-maskable-512.png
+!public/marca/apple-touch-icon.png
+!public/marca/favicon-32.png

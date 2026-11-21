@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Onze Feminino</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="ad">
+<header class="top"><div class="wrap"><span class="logo disp" style="display:flex;align-items:center;gap:10px"><img src="marca/letras-preto.svg" alt="Onze Feminino" height="32"> Admin</span><a class="btn" href="/">Ver app</a></div></header>
+<main class="wrap" id="root"></main>
+<script src="common.js"></script>
+<script>
+const root = document.getElementById('root');
+let DB, cur = 0, pass = sessionStorage.getItem('pw') || '';
+const toast = (t) => { const d = document.createElement('div'); d.className = 'msg'; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2200); };
+
+function login(err) {
+  root.innerHTML = `<div class="box" style="margin-top:24px"><h1 class="disp" style="font-size:26px">Entrar</h1><label>Palavra-passe</label><input type="password" id="pw" autofocus><p style="color:var(--ac);margin-top:8px">${err || ''}</p><button class="btn pri" id="go" style="margin-top:10px">Entrar</button></div>`;
+  const go = async () => {
+    pass = document.getElementById('pw').value;
+    const r = await fetch('/api/check', { method: 'POST', headers: { 'x-admin-password': pass } });
+    if (r.ok) { sessionStorage.setItem('pw', pass); init(); } else login('Palavra-passe errada, ou ADMIN_PASSWORD não definida no servidor.');
+  };
+  document.getElementById('go').onclick = go;
+  document.getElementById('pw').onkeydown = (e) => e.key === 'Enter' && go();
+}
+
+async function init() {
+  DB = await (await fetch('/api/data', { cache: 'no-store' })).json();
+  render();
+}
+
+function teamOpts(c, sel) { return c.teams.map((t) => `<option value="${t.id}" ${t.id === sel ? 'selected' : ''}>${esc(t.name)}</option>`).join(''); }
+
+function render() {
+  const c = DB.competitions[cur];
+  const ms = [...c.matches].sort((a, b) => a.round - b.round || (a.date + a.time).localeCompare(b.date + b.time));
+  root.innerHTML = `
+  <div class="box" style="margin-top:16px"><label>Competição</label><select id="cs">${DB.competitions.map((x, i) => `<option value="${i}" ${i === cur ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</select></div>
+  <div class="box"><h2 style="margin-top:0">Equipas (uma por linha)</h2><textarea id="teams">${esc(c.teams.map((t) => t.name).join('\n'))}</textarea><button class="btn" id="saveTeams" style="margin-top:8px">Guardar equipas</button></div>
+  <div class="box"><h2 style="margin-top:0">Colar jornada</h2>
+  <p class="sub" style="margin:0 0 8px">Uma linha por jogo: <code>Casa 2-1 Fora</code> (resultado) ou <code>Casa x Fora</code> (por jogar). Equipas novas são criadas.</p>
+  <div style="display:grid;grid-template-columns:80px 1fr 90px;gap:8px"><div><label>Jornada</label><input id="pr" type="number" min="1" value="1"></div><div><label>Data</label><input id="pd" type="date"></div><div><label>Hora</label><input id="pt" type="time"></div></div>
+  <label>Jogos</label><textarea id="paste"></textarea><button class="btn" id="doPaste" style="margin-top:8px">Adicionar jogos</button></div>
+  <div class="box"><h2 style="margin-top:0">Jogos (${ms.length})</h2><div class="scroll">
+  <div class="row rh"><span>Jorn.</span><span>Data</span><span>Hora</span><span>Casa</span><span>G</span><span>G</span><span>Fora</span><span></span></div>
+  ${ms.map((m) => `<div class="row" data-id="${m.id}"><input type="number" data-k="round" value="${m.round}"><input type="date" data-k="date" value="${m.date || ''}"><input type="time" data-k="time" value="${m.time || ''}"><select data-k="home">${teamOpts(c, m.home)}</select><input type="number" data-k="hg" value="${played(m) ? m.hg : ''}"><input type="number" data-k="ag" value="${played(m) ? m.ag : ''}"><select data-k="away">${teamOpts(c, m.away)}</select><button class="x" data-del="${m.id}">×</button></div>`).join('')}
+  </div></div>
+  <button class="btn pri" id="save" style="width:100%;padding:14px;margin-bottom:20px">Guardar tudo e publicar</button>`;
+  document.getElementById('cs').onchange = (e) => { cur = +e.target.value; render(); };
+  document.getElementById('saveTeams').onclick = saveTeams;
+  document.getElementById('doPaste').onclick = doPaste;
+  document.getElementById('save').onclick = save;
+  root.querySelectorAll('[data-del]').forEach((b) => (b.onclick = () => { readRows(); c.matches = c.matches.filter((m) => m.id !== b.dataset.del); render(); }));
+}
+
+function ensureTeam(c, name) {
+  name = name.trim();
+  const id = slug(name);
+  if (!c.teams.find((t) => t.id === id)) c.teams.push({ id, name });
+  return id;
+}
+function saveTeams() {
+  const c = DB.competitions[cur];
+  const names = document.getElementById('teams').value.split('\n').map((s) => s.trim()).filter(Boolean);
+  const keep = c.teams.filter((t) => names.includes(t.name));
+  c.teams = keep;
+  names.forEach((n) => ensureTeam(c, n));
+  render(); toast('Equipas atualizadas');
+}
+function doPaste() {
+  const c = DB.competitions[cur];
+  const r = +document.getElementById('pr').value, d = document.getElementById('pd').value, t = document.getElementById('pt').value;
+  let n = 0;
+  document.getElementById('paste').value.split('\n').forEach((line) => {
+    line = line.trim(); if (!line) return;
+    let m = line.match(/^(.+?)\s+(\d+)\s*[-–:]\s*(\d+)\s+(.+)$/), hg = null, ag = null, h, a;
+    if (m) { h = m[1]; hg = +m[2]; ag = +m[3]; a = m[4]; }
+    else { m = line.match(/^(.+?)\s+(?:x|vs|-|–)\s+(.+)$/i); if (!m) return; h = m[1]; a = m[2]; }
+    c.matches.push({ id: 'm' + Date.now() + n++, round: r, date: d, time: t, home: ensureTeam(c, h), away: ensureTeam(c, a), hg, ag });
+  });
+  render(); toast(n + ' jogos adicionados (falta guardar)');
+}
+function readRows() {
+  const c = DB.competitions[cur];
+  root.querySelectorAll('.row[data-id]').forEach((row) => {
+    const m = c.matches.find((x) => x.id === row.dataset.id); if (!m) return;
+    row.querySelectorAll('[data-k]').forEach((el) => {
+      const k = el.dataset.k;
+      m[k] = k === 'round' ? +el.value : (k === 'hg' || k === 'ag') ? (el.value === '' ? null : +el.value) : el.value;
+    });
+  });
+}
+async function save() {
+  readRows();
+  const r = await fetch('/api/data', { method: 'PUT', headers: { 'Content-Type': 'application/json', 'x-admin-password': pass }, body: JSON.stringify(DB) });
+  toast(r.ok ? 'Publicado' : 'Erro: ' + ((await r.json()).error || r.status));
+}
+pass ? fetch('/api/check', { method: 'POST', headers: { 'x-admin-password': pass } }).then((r) => (r.ok ? init() : login())) : login();
+</script>
+</body>
+</html>
