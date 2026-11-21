@@ -16,3 +16,5 @@ public/marca/*
 !public/marca/icone-maskable-512.png
 !public/marca/apple-touch-icon.png
 !public/marca/favicon-32.png
+# Gerado no build do Netlify
+public/data.json

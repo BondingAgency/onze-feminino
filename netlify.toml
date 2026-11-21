@@ -1,0 +1,20 @@
+# A app no Netlify é estática: os dados vêm de data/data.json copiado para a pasta publicada.
+[build]
+  publish = "public"
+  command = "cp data/data.json public/data.json && rm -f public/admin.html"
+
+# A app pede os dados a /api/data; no Netlify isso aponta para o ficheiro de dados.
+[[redirects]]
+  from = "/api/data"
+  to = "/data.json"
+  status = 200
+
+[[headers]]
+  for = "/data.json"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
