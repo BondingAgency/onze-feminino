@@ -369,7 +369,6 @@ function route() {
   if (a === 'ligas') ligas();
   else if (a === 'c' && c === 'equipa') equipa(b, d);
   else if (a === 'c' && c === 'jogo') jogo(b, d);
-  else if (a === 'estilos') estilos(b, c);
   else if (a === 'c') comp(b, c, d);
   else if (a === 'jogos') jogosAll(b, c);
   else if (a === 'noticias') noticias();
@@ -609,77 +608,42 @@ function vHeader(S) {
 }
 const longDate = (d) => { if (!d) return ''; const t = new Date(d + 'T12:00').toLocaleDateString('pt-PT', { weekday: 'long', day: 'numeric', month: 'long' }); return t.charAt(0).toUpperCase() + t.slice(1); };
 
-// ===== Zona do estado, dia e hora: 5 versões =====
-const STATUS_NAMES = ['Pastilhas', 'Linha única', 'Duas pastilhas', 'Divisor', 'Calendário'];
-function statusBlock(S, v, y) {   // y = topo da zona (têm ~130 px de altura)
-  const { cx, W, M, m } = S, OR = '#ffb066', SOFT = 'rgba(255,255,255,.86)', pen = m.pen ? `G.P. ${m.pen[0]}–${m.pen[1]}` : '';
-  const dt = m.date ? new Date(m.date + 'T12:00') : null, tm = m.time || '';
-  const wdL = dt ? dt.toLocaleDateString('pt-PT', { weekday: 'long' }) : '';
-  const wdS = wdL.slice(0, 3).toUpperCase();
-  const dayN = dt ? dt.getDate() : '', monS = dt ? dt.toLocaleDateString('pt-PT', { month: 'short' }).replace('.', '').toUpperCase() : '';
-  const f = (w, s) => sFont(w, s);
-  // escreve pedaços de texto com cores diferentes, centrados
-  const runs = (parts, cxm, yy, size) => {
-    let tot = 0; parts.forEach(([t, w]) => { cx.font = f(w, size); tot += cx.measureText(t).width; });
-    let x = cxm - tot / 2; cx.textAlign = 'left';
-    parts.forEach(([t, w, c]) => { cx.font = f(w, size); cx.fillStyle = c; cx.fillText(t, x, yy); x += cx.measureText(t).width; });
-  };
-  const widthOf = (parts, size) => { let tot = 0; parts.forEach(([t, w]) => { cx.font = f(w, size); tot += cx.measureText(t).width; }); return tot; };
-  const chip = (x, yy, w, h, fill, stroke) => { rr(cx, x, yy, w, h, h / 2); if (fill) { cx.fillStyle = fill; cx.fill(); } if (stroke) { cx.lineWidth = 2; cx.strokeStyle = stroke; cx.stroke(); } };
-  if (v === 2) {   // uma só linha, tudo junto
-    const parts = [['TERMINADO' + (pen ? ` (${pen})` : ''), 800, '#fff'], ['   ·   ', 600, 'rgba(255,255,255,.5)'], [`${wdS} ${dayN} ${monS}`, 700, SOFT]];
-    if (tm) { parts.push(['   ·   ', 600, 'rgba(255,255,255,.5)']); parts.push([tm, 800, OR]); }
-    let size = 34; while (widthOf(parts, size) > W - 2 * M - 90 && size > 22) size -= 2;
-    runs(parts, W / 2, y + 78, size);
-  } else if (v === 3) {   // duas pastilhas: estado | dia e hora
-    const t1 = 'TERMINADO' + (pen ? ` · ${pen}` : ''), p2 = [[`${wdS} ${dayN} ${monS}`, 700, '#fff']]; if (tm) p2.push(['  ·  ', 600, 'rgba(255,255,255,.55)'], [tm, 800, OR]);
-    cx.font = f(800, 28); const w1 = cx.measureText(t1).width + 56, w2 = widthOf(p2, 28) + 56, gap = 16, x0 = W / 2 - (w1 + w2 + gap) / 2, yy = y + 36;
-    chip(x0, yy, w1, 60, '#fff'); cx.fillStyle = '#15136B'; cx.font = f(800, 28); cx.textAlign = 'center'; cx.fillText(t1, x0 + w1 / 2, yy + 41);
-    chip(x0 + w1 + gap, yy, w2, 60, 'rgba(255,255,255,.12)', 'rgba(255,255,255,.45)'); runs(p2, x0 + w1 + gap + w2 / 2, yy + 41, 28);
-  } else if (v === 4) {   // divisor com linhas de cada lado e data por baixo
-    const t = 'TERMINADO' + (pen ? `  ·  ${pen}` : ''); cx.font = f(800, 30); const tw = cx.measureText(t).width;
-    cx.fillStyle = '#fff'; cx.textAlign = 'center'; cx.fillText(t, W / 2, y + 40);
-    cx.fillStyle = 'rgba(255,255,255,.35)'; cx.fillRect(M + 50, y + 28, W / 2 - tw / 2 - 28 - (M + 50), 2); cx.fillRect(W / 2 + tw / 2 + 28, y + 28, W - M - 50 - (W / 2 + tw / 2 + 28), 2);
-    const parts = [[`${wdL.charAt(0).toUpperCase() + wdL.slice(1)}, ${dayN} de ${dt ? dt.toLocaleDateString('pt-PT', { month: 'long' }) : ''}`, 600, SOFT]]; if (tm) parts.push(['   ·   ', 600, 'rgba(255,255,255,.5)'], [tm, 800, OR]);
-    let size = 34; while (widthOf(parts, size) > W - 2 * M - 90 && size > 22) size -= 2;
-    runs(parts, W / 2, y + 100, size);
-  } else if (v === 5) {   // selo de calendário + estado
-    const bw = 104, bh = 126, gap = 28, l1 = 'TERMINADO', l2 = `${wdL.charAt(0).toUpperCase() + wdL.slice(1)}${tm ? '  ·  ' : ''}`;
-    cx.font = f(800, 36); const w1 = cx.measureText(l1).width; cx.font = f(600, 30); const w2 = cx.measureText(l2).width + (tm ? (cx.font = f(800, 30), cx.measureText(tm).width) : 0);
-    const tw = Math.max(w1, w2, pen ? 160 : 0), x0 = W / 2 - (bw + gap + tw) / 2, by = y + 8;
-    rr(cx, x0, by, bw, bh, 22); cx.fillStyle = '#fff'; cx.fill();
-    cx.textAlign = 'center'; cx.fillStyle = '#d95f00'; cx.font = f(800, 22); cx.fillText(wdS, x0 + bw / 2, by + 30);
-    cx.fillStyle = '#15136B'; cx.font = f(800, 50); cx.fillText(String(dayN), x0 + bw / 2, by + 82); cx.font = f(700, 22); cx.fillText(monS, x0 + bw / 2, by + 112);
-    const tx = x0 + bw + gap; cx.textAlign = 'left'; cx.fillStyle = '#fff'; cx.font = f(800, 36); cx.fillText(l1, tx, by + 40);
-    runs0(cx, [[l2, 600, SOFT], [tm, 800, OR]], tx, by + 82, 30, f);
-    if (pen) { cx.fillStyle = OR; cx.font = f(800, 28); cx.fillText(pen, tx, by + 118); }
-  } else {   // 1 · pastilhas + linha de data
-    const pills = [['TERMINADO', '#fff', '#15136B']]; if (pen) pills.push([`PENÁLTIS ${m.pen[0]}–${m.pen[1]}`, '#ff7a0a', '#fff']);
-    cx.font = f(800, 27); const pw = pills.map(([t]) => cx.measureText(t).width + 56), tot = pw.reduce((a, b) => a + b, 0) + 14 * (pills.length - 1), pillY = y + 14;
-    let px = W / 2 - tot / 2;
-    pills.forEach(([t, bg, fg], i) => { rr(cx, px, pillY, pw[i], 54, 27); cx.fillStyle = bg; cx.fill(); cx.fillStyle = fg; cx.font = f(800, 27); cx.textAlign = 'center'; cx.fillText(t, px + pw[i] / 2, pillY + 37); px += pw[i] + 14; });
-    const parts = [[longDate(m.date), 600, SOFT]]; if (tm) parts.push(['  ·  ', 600, SOFT], [tm, 800, OR]);
-    runs(parts, W / 2, pillY + 54 + 46, 31);
-  }
+// ===== Dia e hora (pastilha de vidro no topo do painel) e estado (pastilha branca por baixo dos nomes) =====
+function datePill(S, y) {
+  const { cx, W, m } = S, dt = m.date ? new Date(m.date + 'T12:00') : null;
+  if (!dt) return;
+  const wd = dt.toLocaleDateString('pt-PT', { weekday: 'long' }).toUpperCase(), mon = dt.toLocaleDateString('pt-PT', { month: 'short' }).replace('.', '').toUpperCase();
+  const a = `${wd} ${dt.getDate()} ${mon}`, tm = m.time || '', sep = '   ·   ';
+  cx.font = sFont(700, 28); const wa = cx.measureText(a).width; cx.font = sFont(800, 28); const ws = tm ? cx.measureText(sep + tm).width : 0;
+  const w = wa + ws + 64, x0 = W / 2 - w / 2;
+  rr(cx, x0, y, w, 60, 30); cx.fillStyle = 'rgba(255,255,255,.12)'; cx.fill(); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.45)'; cx.stroke();
+  cx.textAlign = 'left'; cx.fillStyle = '#fff'; cx.font = sFont(700, 28); cx.fillText(a, x0 + 32, y + 41);
+  if (tm) { cx.fillStyle = '#ffb066'; cx.font = sFont(800, 28); cx.fillText(sep + tm, x0 + 32 + wa, y + 41); }
 }
-// pedaços de texto alinhados à esquerda a partir de x
-function runs0(cx, parts, x, yy, size, f) { parts.forEach(([t, w, c]) => { if (!t) return; cx.font = f(w, size); cx.fillStyle = c; cx.textAlign = 'left'; cx.fillText(t, x, yy); x += cx.measureText(t).width; }); }
+function statusPill(S, y) {
+  const { cx, W, m } = S, t = 'TERMINADO' + (m.pen ? `  ·  G.P. ${m.pen[0]}–${m.pen[1]}` : '');
+  cx.font = sFont(800, 28); const w = cx.measureText(t).width + 64, x0 = W / 2 - w / 2;
+  rr(cx, x0, y, w, 60, 30); cx.fillStyle = '#fff'; cx.fill();
+  cx.fillStyle = '#15136B'; cx.textAlign = 'center'; cx.fillText(t, W / 2, y + 41);
+}
 
 function shareVidro(S) {
-  const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 90, ink = '#fff';
+  const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 84, ink = '#fff';
   const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
-  const baseEnd = hasG ? 546 + (nRows - 1) * row + 50 + (more ? 44 : 0) : 480, ph2 = baseEnd + 130, py = H - bot - ph2;
+  const cyOff = 142 + R, pillOff = cyOff + R + 130, gyOff = cyOff + R + 268;
+  const baseEnd = hasG ? gyOff + 10 + (nRows - 1) * row + 50 + (more ? 44 : 0) : pillOff + 68, ph2 = baseEnd + 130, py = H - bot - ph2;
   S.panel = { x: M, y: py, w: W - 2 * M, h: ph2 };
   vBg(S, py); S.rec = true; vHeader(S);
   if (S.ph && m.foto) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${m.foto.fonte}`, M + 30, py - 22); }
   glass(S, M, py, W - 2 * M, ph2, 64, .36);
-  const cy = py + 52 + R, xl = M + 160, xr = W - M - 160;
+  datePill(S, py + 38);   // dia e hora, por cima dos emblemas, ao centro
+  const cy = py + cyOff, xl = M + 160, xr = W - M - 160;
   crestAt(S, S.ih, S.hf, xl, cy, R); crestAt(S, S.ia, S.af, xr, cy, R);
   cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
   const ss = fitText(cx, S.sc, xr - xl - 2 * R - 40, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
   for (const [nm, x] of [[S.hn, xl], [S.an, xr]]) nameAt(S, nm, x, cy + R + 62, 2 * (Math.min(x - M, W - M - x) - 36), 42, ink);
-  statusBlock(S, S.sv || 1, cy + R + 110);
-  const gy = cy + R + 300;
+  statusPill(S, py + pillOff);   // "Terminado" em baixo, por baixo dos nomes
+  const gy = py + gyOff;
   if (hasG) {
     cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
     const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: '#ffb066' }, w = W / 2 - M - 48 - 20;
@@ -688,7 +652,7 @@ function shareVidro(S) {
   logoAt(S, S.lgW, W / 2, py + ph2 - 62, 150);
 }
 
-async function drawShare(c, m, fmt, sv = 1) {
+async function drawShare(c, m, fmt) {
   const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350, sz = SHARE_SAFE[story ? 'story' : 'post'];
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const cx = cv.getContext('2d');
@@ -700,7 +664,7 @@ async function drawShare(c, m, fmt, sv = 1) {
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
-    sc: `${m.hg}–${m.ag}`, sv,
+    sc: `${m.hg}–${m.ag}`,
   };
   S.rects = []; S.rec = false;
   const _ft = cx.fillText.bind(cx), _di = cx.drawImage.bind(cx);
@@ -736,15 +700,6 @@ function shareIssues(cv, fmt) {
     if (a.x0 < b.x1 + gap && b.x0 < a.x1 + gap && a.y0 < b.y1 + gap && b.y0 < a.y1 + gap) out.push('toca: ' + id(a) + ' / ' + id(b));
   }
   return out;
-}
-
-// Página para comparar as 5 versões do estado/data/hora: #/estilos/<competição>/<jogo>/<story|post>
-function estilos(cid, mid) {
-  const c = DB.competitions.find((x) => x.id === (cid || '2-liga')), m = c && c.matches.find((x) => x.id === (mid || 'l2-6-2'));
-  if (!m) return (app.innerHTML = '<div class="empty">Jogo não encontrado.</div>');
-  const fmt = location.hash.split('/')[4] === 'post' ? 'post' : 'story';
-  app.innerHTML = `<h1>Estado, dia e hora</h1><p class="sub">${esc(tname(c, m.home))} ${m.hg}–${m.ag} ${esc(tname(c, m.away))}</p><div class="estg">${STATUS_NAMES.map((nm, i) => `<div class="est"><div class="esl"><b>${i + 1}</b> ${nm}</div><div class="esc" data-i="${i + 1}"></div></div>`).join('')}</div>`;
-  setTimeout(async () => { for (const box of document.querySelectorAll('.esc')) { box.appendChild(await drawShare(c, m, fmt, +box.dataset.i)); } }, 0);
 }
 
 async function openShare(cid, mid) {
