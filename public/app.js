@@ -448,7 +448,6 @@ function applyTheme() {
   const m = document.querySelector("meta[name=theme-color]"); if (m) m.content = t === "dark" ? "#090A22" : "#F3F4F8";
 }
 function setPref(p) { try { localStorage.setItem('onze-theme', p); } catch {} applyTheme(); }
-document.getElementById("theme").onclick = () => { const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark"; setPref(resolveTheme('auto') === t ? 'auto' : t); if (location.hash.startsWith('#/conta')) route(); };
 if (mq) (mq.addEventListener ? mq.addEventListener('change', () => { if (getPref() === 'auto') applyTheme(); }) : mq.addListener(() => { if (getPref() === 'auto') applyTheme(); }));
 applyTheme();
 
