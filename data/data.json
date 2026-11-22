@@ -1818,8 +1818,863 @@
       "name": "3.ª Liga Feminina",
       "tag": "3.º escalão",
       "season": "2026/27",
-      "teams": [],
-      "matches": []
+      "phase": "1.ª Fase",
+      "teams": [
+        {
+          "id": "tirsense",
+          "name": "Tirsense",
+          "short": "Tirsense"
+        },
+        {
+          "id": "leixoes",
+          "name": "Leixões SC",
+          "short": "Leixões"
+        },
+        {
+          "id": "fc-romariz",
+          "name": "FC Romariz",
+          "short": "Romariz"
+        },
+        {
+          "id": "fc-porto-b",
+          "name": "FC Porto B",
+          "short": "Porto B"
+        },
+        {
+          "id": "feirense",
+          "name": "CD Feirense",
+          "short": "Feirense"
+        },
+        {
+          "id": "gd-aldeia-nova",
+          "name": "GD Aldeia Nova",
+          "short": "Aldeia Nova"
+        },
+        {
+          "id": "estoril-praia",
+          "name": "Estoril Praia",
+          "short": "Estoril"
+        },
+        {
+          "id": "guia-fc",
+          "name": "Guia FC",
+          "short": "Guia"
+        },
+        {
+          "id": "amora-fc",
+          "name": "Amora FC",
+          "short": "Amora"
+        },
+        {
+          "id": "academica-oaf",
+          "name": "Académica OAF",
+          "short": "Académica"
+        },
+        {
+          "id": "ud-leiria",
+          "name": "UD Leiria",
+          "short": "Leiria"
+        },
+        {
+          "id": "ferreiras",
+          "name": "Ferreiras",
+          "short": "Ferreiras"
+        }
+      ],
+      "series": [
+        {
+          "name": "Série Norte",
+          "table": [
+            {
+              "id": "fc-porto-b",
+              "j": 6,
+              "v": 3,
+              "e": 3,
+              "d": 0,
+              "gm": 13,
+              "gs": 7,
+              "pts": 12
+            },
+            {
+              "id": "tirsense",
+              "j": 6,
+              "v": 3,
+              "e": 2,
+              "d": 1,
+              "gm": 20,
+              "gs": 7,
+              "pts": 11
+            },
+            {
+              "id": "leixoes",
+              "j": 6,
+              "v": 3,
+              "e": 2,
+              "d": 1,
+              "gm": 16,
+              "gs": 10,
+              "pts": 11
+            },
+            {
+              "id": "fc-romariz",
+              "j": 6,
+              "v": 2,
+              "e": 2,
+              "d": 2,
+              "gm": 7,
+              "gs": 5,
+              "pts": 8
+            },
+            {
+              "id": "gd-aldeia-nova",
+              "j": 6,
+              "v": 2,
+              "e": 1,
+              "d": 3,
+              "gm": 8,
+              "gs": 11,
+              "pts": 7
+            },
+            {
+              "id": "feirense",
+              "j": 6,
+              "v": 0,
+              "e": 0,
+              "d": 6,
+              "gm": 6,
+              "gs": 30,
+              "pts": 0
+            }
+          ]
+        },
+        {
+          "name": "Série Sul",
+          "table": [
+            {
+              "id": "ud-leiria",
+              "j": 6,
+              "v": 6,
+              "e": 0,
+              "d": 0,
+              "gm": 29,
+              "gs": 4,
+              "pts": 18
+            },
+            {
+              "id": "academica-oaf",
+              "j": 6,
+              "v": 3,
+              "e": 1,
+              "d": 2,
+              "gm": 13,
+              "gs": 8,
+              "pts": 10
+            },
+            {
+              "id": "ferreiras",
+              "j": 6,
+              "v": 3,
+              "e": 0,
+              "d": 3,
+              "gm": 13,
+              "gs": 19,
+              "pts": 9
+            },
+            {
+              "id": "guia-fc",
+              "j": 6,
+              "v": 3,
+              "e": 0,
+              "d": 3,
+              "gm": 16,
+              "gs": 5,
+              "pts": 9
+            },
+            {
+              "id": "amora-fc",
+              "j": 6,
+              "v": 2,
+              "e": 1,
+              "d": 3,
+              "gm": 9,
+              "gs": 11,
+              "pts": 7
+            },
+            {
+              "id": "estoril-praia",
+              "j": 6,
+              "v": 0,
+              "e": 0,
+              "d": 6,
+              "gm": 4,
+              "gs": 37,
+              "pts": 0
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": "l3-n-1",
+          "round": 1,
+          "serie": "Série Norte",
+          "date": "2026-09-26",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "leixoes",
+          "hg": 3,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-2",
+          "round": 1,
+          "serie": "Série Norte",
+          "date": "2026-09-26",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "fc-porto-b",
+          "hg": 1,
+          "ag": 2
+        },
+        {
+          "id": "l3-n-3",
+          "round": 1,
+          "serie": "Série Norte",
+          "date": "2026-09-26",
+          "time": "15:00",
+          "home": "feirense",
+          "away": "gd-aldeia-nova",
+          "hg": 0,
+          "ag": 1
+        },
+        {
+          "id": "l3-s-1",
+          "round": 1,
+          "serie": "Série Sul",
+          "date": "2026-09-26",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "guia-fc",
+          "hg": 0,
+          "ag": 7
+        },
+        {
+          "id": "l3-s-2",
+          "round": 1,
+          "serie": "Série Sul",
+          "date": "2026-09-26",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "academica-oaf",
+          "hg": 2,
+          "ag": 1
+        },
+        {
+          "id": "l3-s-3",
+          "round": 1,
+          "serie": "Série Sul",
+          "date": "2026-09-26",
+          "time": "16:00",
+          "home": "ud-leiria",
+          "away": "ferreiras",
+          "hg": 6,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-4",
+          "round": 2,
+          "serie": "Série Norte",
+          "date": "2026-10-10",
+          "time": "15:00",
+          "home": "fc-porto-b",
+          "away": "tirsense",
+          "hg": 2,
+          "ag": 2
+        },
+        {
+          "id": "l3-n-5",
+          "round": 2,
+          "serie": "Série Norte",
+          "date": "2026-10-10",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "fc-romariz",
+          "hg": 0,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-4",
+          "round": 2,
+          "serie": "Série Sul",
+          "date": "2026-10-10",
+          "time": "15:00",
+          "home": "guia-fc",
+          "away": "amora-fc",
+          "hg": 3,
+          "ag": 0
+        },
+        {
+          "id": "l3-s-5",
+          "round": 2,
+          "serie": "Série Sul",
+          "date": "2026-10-10",
+          "time": "15:00",
+          "home": "ferreiras",
+          "away": "estoril-praia",
+          "hg": 8,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-6",
+          "round": 2,
+          "serie": "Série Sul",
+          "date": "2026-10-10",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "ud-leiria",
+          "hg": 1,
+          "ag": 4
+        },
+        {
+          "id": "l3-n-6",
+          "round": 2,
+          "serie": "Série Norte",
+          "date": "2026-10-11",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "feirense",
+          "hg": 5,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-7",
+          "round": 3,
+          "serie": "Série Norte",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "fc-porto-b",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-8",
+          "round": 3,
+          "serie": "Série Norte",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "gd-aldeia-nova",
+          "hg": 2,
+          "ag": 0
+        },
+        {
+          "id": "l3-n-9",
+          "round": 3,
+          "serie": "Série Norte",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "feirense",
+          "away": "fc-romariz",
+          "hg": 2,
+          "ag": 4
+        },
+        {
+          "id": "l3-s-7",
+          "round": 3,
+          "serie": "Série Sul",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "guia-fc",
+          "away": "ferreiras",
+          "hg": 0,
+          "ag": 1
+        },
+        {
+          "id": "l3-s-8",
+          "round": 3,
+          "serie": "Série Sul",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "academica-oaf",
+          "hg": 1,
+          "ag": 6
+        },
+        {
+          "id": "l3-s-9",
+          "round": 3,
+          "serie": "Série Sul",
+          "date": "2026-10-17",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "ud-leiria",
+          "hg": 0,
+          "ag": 3
+        },
+        {
+          "id": "l3-n-10",
+          "round": 4,
+          "serie": "Série Norte",
+          "date": "2026-10-31",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "leixoes",
+          "hg": 3,
+          "ag": 6
+        },
+        {
+          "id": "l3-n-11",
+          "round": 4,
+          "serie": "Série Norte",
+          "date": "2026-10-31",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "tirsense",
+          "hg": 0,
+          "ag": 0
+        },
+        {
+          "id": "l3-n-12",
+          "round": 9,
+          "serie": "Série Norte",
+          "date": "2026-10-31",
+          "time": "16:30",
+          "home": "fc-porto-b",
+          "away": "feirense",
+          "hg": 6,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-10",
+          "round": 4,
+          "serie": "Série Sul",
+          "date": "2026-10-31",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "ferreiras",
+          "hg": 1,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-11",
+          "round": 4,
+          "serie": "Série Sul",
+          "date": "2026-10-31",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "guia-fc",
+          "hg": 2,
+          "ag": 0
+        },
+        {
+          "id": "l3-s-12",
+          "round": 9,
+          "serie": "Série Sul",
+          "date": "2026-10-31",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "ud-leiria",
+          "hg": 0,
+          "ag": 6
+        },
+        {
+          "id": "l3-n-13",
+          "round": 5,
+          "serie": "Série Norte",
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "fc-romariz",
+          "hg": 0,
+          "ag": 0
+        },
+        {
+          "id": "l3-n-14",
+          "round": 5,
+          "serie": "Série Norte",
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "feirense",
+          "hg": 11,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-15",
+          "round": 5,
+          "serie": "Série Norte",
+          "date": "2026-11-07",
+          "time": "17:30",
+          "home": "fc-porto-b",
+          "away": "gd-aldeia-nova",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "id": "l3-s-13",
+          "round": 5,
+          "serie": "Série Sul",
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "ferreiras",
+          "away": "academica-oaf",
+          "hg": 0,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-14",
+          "round": 5,
+          "serie": "Série Sul",
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "guia-fc",
+          "away": "ud-leiria",
+          "hg": 1,
+          "ag": 2
+        },
+        {
+          "id": "l3-s-15",
+          "round": 5,
+          "serie": "Série Sul",
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "amora-fc",
+          "hg": 1,
+          "ag": 5
+        },
+        {
+          "id": "l3-s-16",
+          "round": 6,
+          "serie": "Série Sul",
+          "date": "2026-11-21",
+          "time": "17:00",
+          "home": "ferreiras",
+          "away": "ud-leiria",
+          "hg": 1,
+          "ag": 8
+        },
+        {
+          "id": "l3-n-16",
+          "round": 6,
+          "serie": "Série Norte",
+          "date": "2026-11-22",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "tirsense",
+          "hg": 3,
+          "ag": 2
+        },
+        {
+          "id": "l3-n-17",
+          "round": 6,
+          "serie": "Série Norte",
+          "date": "2026-11-22",
+          "time": "15:00",
+          "home": "fc-porto-b",
+          "away": "fc-romariz",
+          "hg": 1,
+          "ag": 0
+        },
+        {
+          "id": "l3-n-18",
+          "round": 6,
+          "serie": "Série Norte",
+          "date": "2026-11-22",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "feirense",
+          "hg": 3,
+          "ag": 0
+        },
+        {
+          "id": "l3-s-17",
+          "round": 6,
+          "serie": "Série Sul",
+          "date": "2026-11-22",
+          "time": "15:00",
+          "home": "guia-fc",
+          "away": "estoril-praia",
+          "hg": 5,
+          "ag": 0
+        },
+        {
+          "id": "l3-s-18",
+          "round": 6,
+          "serie": "Série Sul",
+          "date": "2026-11-22",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "amora-fc",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "id": "l3-n-19",
+          "round": 7,
+          "serie": "Série Norte",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "feirense",
+          "away": "leixoes",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-20",
+          "round": 7,
+          "serie": "Série Norte",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "fc-porto-b",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-21",
+          "round": 7,
+          "serie": "Série Norte",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "gd-aldeia-nova",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-19",
+          "round": 7,
+          "serie": "Série Sul",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "guia-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-20",
+          "round": 7,
+          "serie": "Série Sul",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "ferreiras",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-21",
+          "round": 7,
+          "serie": "Série Sul",
+          "date": "2026-12-05",
+          "time": "15:00",
+          "home": "ud-leiria",
+          "away": "academica-oaf",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-22",
+          "round": 8,
+          "serie": "Série Norte",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "fc-porto-b",
+          "away": "leixoes",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-23",
+          "round": 8,
+          "serie": "Série Norte",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "tirsense",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-24",
+          "round": 8,
+          "serie": "Série Norte",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "feirense",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-22",
+          "round": 8,
+          "serie": "Série Sul",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "ferreiras",
+          "away": "guia-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-23",
+          "round": 8,
+          "serie": "Série Sul",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "estoril-praia",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-24",
+          "round": 8,
+          "serie": "Série Sul",
+          "date": "2026-12-19",
+          "time": "15:00",
+          "home": "ud-leiria",
+          "away": "amora-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-25",
+          "round": 9,
+          "serie": "Série Norte",
+          "date": "2027-01-10",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "gd-aldeia-nova",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-26",
+          "round": 9,
+          "serie": "Série Norte",
+          "date": "2027-01-10",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "fc-romariz",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-27",
+          "round": 4,
+          "serie": "Série Norte",
+          "date": "2027-01-10",
+          "time": "17:00",
+          "home": "feirense",
+          "away": "fc-porto-b",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-25",
+          "round": 4,
+          "serie": "Série Sul",
+          "date": "2027-01-10",
+          "time": "15:00",
+          "home": "ud-leiria",
+          "away": "estoril-praia",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-26",
+          "round": 9,
+          "serie": "Série Sul",
+          "date": "2027-01-10",
+          "time": "15:00",
+          "home": "ferreiras",
+          "away": "amora-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-27",
+          "round": 9,
+          "serie": "Série Sul",
+          "date": "2027-01-10",
+          "time": "15:00",
+          "home": "guia-fc",
+          "away": "academica-oaf",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-28",
+          "round": 10,
+          "serie": "Série Norte",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "fc-porto-b",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-29",
+          "round": 10,
+          "serie": "Série Norte",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "leixoes",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-n-30",
+          "round": 10,
+          "serie": "Série Norte",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "feirense",
+          "away": "tirsense",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-28",
+          "round": 10,
+          "serie": "Série Sul",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "ferreiras",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-29",
+          "round": 10,
+          "serie": "Série Sul",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "ud-leiria",
+          "away": "guia-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "l3-s-30",
+          "round": 10,
+          "serie": "Série Sul",
+          "date": "2027-01-16",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "estoril-praia",
+          "hg": null,
+          "ag": null
+        }
+      ]
     },
     {
       "id": "4-liga",
