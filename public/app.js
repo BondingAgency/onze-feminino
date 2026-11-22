@@ -543,7 +543,8 @@ function crestAt(S, img, name, x, y, r) {
     const t = initials(name); cx.fillStyle = '#15136B'; fitText(cx, t, r * 1.3, r * .8, 800); cx.textAlign = 'center'; cx.fillText(t, x, y + r * .26);
   }
 }
-function nameAt(S, text, x, y, maxW, size, color) {
+function nameAt(S, text, x, y, maxW, size, color) { S.curG = (S.curG || 0) + 1; nameAt0(S, text, x, y, maxW, size, color); S.curG = 0; }
+function nameAt0(S, text, x, y, maxW, size, color) {
   const cx = S.cx; cx.fillStyle = color; cx.textAlign = 'center'; cx.font = sFont(800, size);
   if (cx.measureText(text).width <= maxW) { cx.fillText(text, x, y); return; }
   const words = text.split(' '); let best = null;
@@ -578,7 +579,6 @@ const rowsFor = (avail, row, lo, hi) => Math.max(lo, Math.min(hi, Math.floor(ava
 // ===== Imagem de partilha: estilo Vidro, com zonas seguras =====
 // Zonas seguras (px, na imagem final): o Instagram/Facebook cobrem o topo dos Stories (perfil) e a base (caixa de resposta).
 const SHARE_SAFE = { story: { top: 250, bot: 340 }, post: { top: 90, bot: 90 } };
-const SHARE_BG = '#2b2c3e';   // fundo neutro quando o jogo não tem foto
 
 // vidro: copia a zona do que já está desenhado, desfoca-a (reduz e amplia, funciona em todos os browsers) e põe um brilho por cima
 function glass(S, x, y, w, h, r, tint) {
@@ -596,7 +596,7 @@ function glass(S, x, y, w, h, r, tint) {
 function vBg(S, topY) {
   const { cx, W, H, ph, M, top } = S;
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); return; }
-  cx.fillStyle = SHARE_BG; cx.fillRect(0, 0, W, H);
+  const g = cx.createLinearGradient(0, 0, W, H * .75); g.addColorStop(0, S.A); g.addColorStop(1, S.B); cx.fillStyle = g; cx.fillRect(0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.14)'; cx.fillRect(0, 0, W, H);
   const y0 = top + 116 + 30, r = Math.min(170, (topY - y0) / 2 - 24);   // emblemas grandes no espaço livre entre a faixa e o painel
   if (r >= 60) { const y = (y0 + topY) / 2; crestAt(S, S.ih, S.hf, W * .27, y, r); crestAt(S, S.ia, S.af, W * .73, y, r); }
 }
@@ -644,12 +644,12 @@ function statusBlock(S, v, y) {   // y = topo da zona (têm ~130 px de altura)
     let size = 34; while (widthOf(parts, size) > W - 2 * M - 90 && size > 22) size -= 2;
     runs(parts, W / 2, y + 100, size);
   } else if (v === 5) {   // selo de calendário + estado
-    const bw = 104, bh = 112, gap = 28, l1 = 'TERMINADO', l2 = `${wdL.charAt(0).toUpperCase() + wdL.slice(1)}${tm ? '  ·  ' : ''}`;
+    const bw = 104, bh = 126, gap = 28, l1 = 'TERMINADO', l2 = `${wdL.charAt(0).toUpperCase() + wdL.slice(1)}${tm ? '  ·  ' : ''}`;
     cx.font = f(800, 36); const w1 = cx.measureText(l1).width; cx.font = f(600, 30); const w2 = cx.measureText(l2).width + (tm ? (cx.font = f(800, 30), cx.measureText(tm).width) : 0);
     const tw = Math.max(w1, w2, pen ? 160 : 0), x0 = W / 2 - (bw + gap + tw) / 2, by = y + 8;
     rr(cx, x0, by, bw, bh, 22); cx.fillStyle = '#fff'; cx.fill();
-    cx.textAlign = 'center'; cx.fillStyle = '#d95f00'; cx.font = f(800, 24); cx.fillText(wdS, x0 + bw / 2, by + 32);
-    cx.fillStyle = '#15136B'; cx.font = f(800, 50); cx.fillText(String(dayN), x0 + bw / 2, by + 78); cx.font = f(700, 22); cx.fillText(monS, x0 + bw / 2, by + 102);
+    cx.textAlign = 'center'; cx.fillStyle = '#d95f00'; cx.font = f(800, 22); cx.fillText(wdS, x0 + bw / 2, by + 30);
+    cx.fillStyle = '#15136B'; cx.font = f(800, 50); cx.fillText(String(dayN), x0 + bw / 2, by + 82); cx.font = f(700, 22); cx.fillText(monS, x0 + bw / 2, by + 112);
     const tx = x0 + bw + gap; cx.textAlign = 'left'; cx.fillStyle = '#fff'; cx.font = f(800, 36); cx.fillText(l1, tx, by + 40);
     runs0(cx, [[l2, 600, SOFT], [tm, 800, OR]], tx, by + 82, 30, f);
     if (pen) { cx.fillStyle = OR; cx.font = f(800, 28); cx.fillText(pen, tx, by + 118); }
@@ -669,14 +669,15 @@ function shareVidro(S) {
   const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 90, ink = '#fff';
   const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
   const baseEnd = hasG ? 546 + (nRows - 1) * row + 50 + (more ? 44 : 0) : 480, ph2 = baseEnd + 130, py = H - bot - ph2;
-  vBg(S, py); vHeader(S);
-  if (S.ph && m.foto) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${m.foto.fonte}`, M + 12, py - 22); }
+  S.panel = { x: M, y: py, w: W - 2 * M, h: ph2 };
+  vBg(S, py); S.rec = true; vHeader(S);
+  if (S.ph && m.foto) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${m.foto.fonte}`, M + 30, py - 22); }
   glass(S, M, py, W - 2 * M, ph2, 64, .36);
   const cy = py + 52 + R, xl = M + 160, xr = W - M - 160;
   crestAt(S, S.ih, S.hf, xl, cy, R); crestAt(S, S.ia, S.af, xr, cy, R);
   cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
   const ss = fitText(cx, S.sc, xr - xl - 2 * R - 40, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
-  for (const [nm, x] of [[S.hn, xl], [S.an, xr]]) nameAt(S, nm, x, cy + R + 62, 2 * (x - M - 36), 42, ink);
+  for (const [nm, x] of [[S.hn, xl], [S.an, xr]]) nameAt(S, nm, x, cy + R + 62, 2 * (Math.min(x - M, W - M - x) - 36), 42, ink);
   statusBlock(S, S.sv || 1, cy + R + 110);
   const gy = cy + R + 300;
   if (hasG) {
@@ -693,15 +694,48 @@ async function drawShare(c, m, fmt, sv = 1) {
   const cx = cv.getContext('2d');
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
   const [ih, ia, ph, lgW, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), m.foto && m.foto.src ? loadImg(m.foto.src) : null, loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, em, M: 56, top: sz.top, bot: sz.bot,
+    cx, W, H, story, c, m, ih, ia, ph, lgW, em, M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
     sc: `${m.hg}–${m.ag}`, sv,
   };
+  S.rects = []; S.rec = false;
+  const _ft = cx.fillText.bind(cx), _di = cx.drawImage.bind(cx);
+  cx.fillText = (t, x, y, mw) => {
+    if (S.rec && String(t).trim()) {
+      const sz = parseFloat(cx.font.split(' ').find((p) => p.endsWith('px'))), w = cx.measureText(t).width, al = cx.textAlign;
+      const x0 = al === 'center' ? x - w / 2 : al === 'right' ? x - w : x;
+      S.rects.push({ k: 'texto', t: String(t), g: S.curG || 0, x0, x1: x0 + w, y0: y - sz * .78, y1: y + sz * (/[gjpqyçÇ(),;]/.test(String(t)) ? .22 : .04) });
+    }
+    _ft(t, x, y, mw);
+  };
+  cx.drawImage = (...a) => {
+    if (S.rec && a.length === 5 && typeof HTMLImageElement !== 'undefined' && a[0] instanceof HTMLImageElement) S.rects.push({ k: 'imagem', t: 'imagem', x0: a[1], y0: a[2], x1: a[1] + a[3], y1: a[2] + a[4] });
+    _di(...a);
+  };
   shareVidro(S);
+  cv.__rects = S.rects; cv.__panel = S.panel;
   return cv;
+}
+// Regras de design: dentro da zona segura, folga das margens e do painel, e nada a tocar em nada
+function shareIssues(cv, fmt) {
+  const R = cv.__rects || [], z = SHARE_SAFE[fmt], W = cv.width, H = cv.height, M = 56, P = cv.__panel, out = [], gap = 6;
+  const id = (a) => a.t === 'imagem' ? 'emblema/logo' : a.t;
+  R.forEach((a) => {
+    if (a.y0 < z.top - 1 || a.y1 > H - z.bot + 1) out.push('fora da zona segura: ' + id(a));
+    if (a.x0 < M + 24 || a.x1 > W - M - 24) out.push('encosta à margem: ' + id(a));
+    if (P && a.y0 >= P.y - 2 && a.y1 <= P.y + P.h + 2 && (a.y0 < P.y + 20 || a.y1 > P.y + P.h - 16)) out.push('encosta ao fundo/topo do painel: ' + id(a));
+  });
+  for (let i = 0; i < R.length; i++) for (let j = i + 1; j < R.length; j++) {
+    const a = R[i], b = R[j];
+    if (a.g && a.g === b.g) continue;   // linhas de um mesmo nome
+    if (a.k === 'texto' && b.k === 'texto' && Math.abs(a.y0 - b.y0) < 1 && (Math.abs(a.x1 - b.x0) < 3 || Math.abs(b.x1 - a.x0) < 3)) continue;   // pedaços da mesma linha
+    if (a.x0 < b.x1 + gap && b.x0 < a.x1 + gap && a.y0 < b.y1 + gap && b.y0 < a.y1 + gap) out.push('toca: ' + id(a) + ' / ' + id(b));
+  }
+  return out;
 }
 
 // Página para comparar as 5 versões do estado/data/hora: #/estilos/<competição>/<jogo>/<story|post>
