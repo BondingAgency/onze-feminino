@@ -535,7 +535,7 @@ function crestAt(S, img, name, x, y, r) {
   const cx = S.cx;
   if (img) {
     const k = (r * 2 * 1.05) / Math.max(img.width, img.height), w = img.width * k, h = img.height * k;
-    cx.save(); cx.shadowColor = 'rgba(0,0,0,.50)'; cx.shadowBlur = 30; cx.shadowOffsetY = 10;
+    cx.save(); cx.shadowColor = S.light ? 'rgba(0,0,0,.24)' : 'rgba(0,0,0,.50)'; cx.shadowBlur = 30; cx.shadowOffsetY = 10;
     cx.drawImage(img, x - w / 2, y - h / 2, w, h); cx.restore();
   } else {
     cx.save(); cx.shadowColor = 'rgba(0,0,0,.28)'; cx.shadowBlur = 34; cx.shadowOffsetY = 12; cx.beginPath(); cx.arc(x, y, r, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
@@ -568,7 +568,7 @@ function scorersAt(S, list, x, y, w, o) {
   return yy;
 }
 function logoAt(S, lg, x, y, w) { if (!lg) return; const h = w / (288 / 68); S.cx.drawImage(lg, x - w / 2, y - h / 2, w, h); }
-function emblemChip(S, x, y, size) { const { cx, em } = S; if (!em) return; cx.beginPath(); cx.arc(x + size / 2, y, size / 2 + 4, 0, 7); cx.fillStyle = '#fff'; cx.fill(); const r = size * .78 / em.height; cx.drawImage(em, x + size / 2 - em.width * r / 2, y - size * .39, em.width * r, size * .78); }
+function emblemChip(S, x, y, size) { const { cx, em } = S; if (!em) return; cx.beginPath(); cx.arc(x + size / 2, y, size / 2 + 4, 0, 7); cx.fillStyle = '#fff'; cx.fill(); if (S.light) { cx.lineWidth = 2; cx.strokeStyle = 'rgba(21,19,107,.25)'; cx.stroke(); } const r = size * .78 / em.height; cx.drawImage(em, x + size / 2 - em.width * r / 2, y - size * .39, em.width * r, size * .78); }
 function noPhotoBg(S, x, y, w, h) {  // dois blocos lisos com as cores dos clubes (sem degradê)
   const { cx } = S; cx.fillStyle = S.A; cx.fillRect(x, y, w, h); cx.fillStyle = S.B; cx.beginPath(); cx.moveTo(x + w, y); cx.lineTo(x + w, y + h); cx.lineTo(x + w * .34, y + h); cx.lineTo(x + w * .66, y); cx.closePath(); cx.fill();
 }
@@ -586,14 +586,15 @@ function glass(S, x, y, w, h, r, tint) {
   t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
   cx.save(); rr(cx, x, y, w, h, r); cx.clip();
   cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.drawImage(t, 0, 0, t.width, t.height, x - 6, y - 6, w + 12, h + 12);
-  cx.fillStyle = `rgba(10,10,36,${tint})`; cx.fillRect(x, y, w, h);
-  cx.fillStyle = 'rgba(255,255,255,.07)'; cx.fillRect(x, y, w, h);
+  if (S.light) { cx.fillStyle = 'rgba(21,19,107,.07)'; cx.fillRect(x, y, w, h); }
+  else { cx.fillStyle = `rgba(10,10,36,${tint})`; cx.fillRect(x, y, w, h); cx.fillStyle = 'rgba(255,255,255,.07)'; cx.fillRect(x, y, w, h); }
   cx.restore();
-  rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.34)'; cx.stroke();
-  cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore();
+  rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = S.light ? 'rgba(21,19,107,.24)' : 'rgba(255,255,255,.34)'; cx.stroke();
+  if (!S.light) { cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore(); }
 }
 function vBg(S, topY) {
-  const { cx, W, H, ph, M, top } = S;
+  const { cx, W, H, ph, M, top } = S, bg = S.bg || { mode: 'auto' };
+  if (bg.mode === 'color') { cx.fillStyle = bg.color; cx.fillRect(0, 0, W, H); return; }
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); return; }
   const g = cx.createLinearGradient(0, 0, W, H * .75); g.addColorStop(0, S.A); g.addColorStop(1, S.B); cx.fillStyle = g; cx.fillRect(0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.14)'; cx.fillRect(0, 0, W, H);
 }
@@ -601,8 +602,8 @@ function vHeader(S) {
   const { cx, W, M, top } = S;
   glass(S, M, top, W - 2 * M, 116, 58, .34);
   emblemChip(S, M + 26, top + 58, 64); cx.textAlign = 'left'; const tw = W - 2 * M - 150;
-  cx.fillStyle = '#fff'; fitText(cx, S.c.name, tw, 38, 800); cx.fillText(S.c.name, M + 114, top + 54);
-  cx.fillStyle = 'rgba(255,255,255,.82)'; fitText(cx, S.sub, tw, 26, 600); cx.fillText(S.sub, M + 114, top + 90);
+  cx.fillStyle = S.light ? '#15136B' : '#fff'; fitText(cx, S.c.name, tw, 38, 800); cx.fillText(S.c.name, M + 114, top + 54);
+  cx.fillStyle = S.light ? 'rgba(21,19,107,.72)' : 'rgba(255,255,255,.82)'; fitText(cx, S.sub, tw, 26, 600); cx.fillText(S.sub, M + 114, top + 90);
 }
 const longDate = (d) => { if (!d) return ''; const t = new Date(d + 'T12:00').toLocaleDateString('pt-PT', { weekday: 'long', day: 'numeric', month: 'long' }); return t.charAt(0).toUpperCase() + t.slice(1); };
 
@@ -614,19 +615,19 @@ function datePill(S, y) {
   const a = `${wd} ${dt.getDate()} ${mon}`, tm = m.time || '', sep = '   ·   ';
   cx.font = sFont(700, 28); const wa = cx.measureText(a).width; cx.font = sFont(800, 28); const ws = tm ? cx.measureText(sep + tm).width : 0;
   const w = wa + ws + 64, x0 = W / 2 - w / 2;
-  rr(cx, x0, y, w, 60, 30); cx.fillStyle = 'rgba(255,255,255,.12)'; cx.fill(); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.45)'; cx.stroke();
-  cx.textAlign = 'left'; cx.fillStyle = '#fff'; cx.font = sFont(700, 28); cx.fillText(a, x0 + 32, y + 41);
-  if (tm) { cx.fillStyle = '#ffb066'; cx.font = sFont(800, 28); cx.fillText(sep + tm, x0 + 32 + wa, y + 41); }
+  rr(cx, x0, y, w, 60, 30); cx.fillStyle = S.light ? 'rgba(21,19,107,.08)' : 'rgba(255,255,255,.12)'; cx.fill(); cx.lineWidth = 2; cx.strokeStyle = S.light ? 'rgba(21,19,107,.3)' : 'rgba(255,255,255,.45)'; cx.stroke();
+  cx.textAlign = 'left'; cx.fillStyle = S.light ? '#15136B' : '#fff'; cx.font = sFont(700, 28); cx.fillText(a, x0 + 32, y + 41);
+  if (tm) { cx.fillStyle = S.mc; cx.font = sFont(800, 28); cx.fillText(sep + tm, x0 + 32 + wa, y + 41); }
 }
 function statusPill(S, y) {
   const { cx, W, m } = S, t = 'TERMINADO' + (m.pen ? `  ·  G.P. ${m.pen[0]}–${m.pen[1]}` : '');
   cx.font = sFont(800, 28); const w = cx.measureText(t).width + 64, x0 = W / 2 - w / 2;
-  rr(cx, x0, y, w, 60, 30); cx.fillStyle = '#fff'; cx.fill();
-  cx.fillStyle = '#15136B'; cx.textAlign = 'center'; cx.fillText(t, W / 2, y + 41);
+  rr(cx, x0, y, w, 60, 30); cx.fillStyle = S.light ? '#15136B' : '#fff'; cx.fill();
+  cx.fillStyle = S.light ? '#fff' : '#15136B'; cx.textAlign = 'center'; cx.fillText(t, W / 2, y + 41);
 }
 
 function shareVidro(S) {
-  const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 84, ink = '#fff';
+  const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 84, ink = S.light ? '#15136B' : '#fff', mc = S.mc;
   const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
   const cyOff = 142 + R, pillOff = cyOff + R + 130, gyOff = cyOff + R + 268;
   const baseEnd = hasG ? gyOff + 10 + (nRows - 1) * row + 50 + (more ? 44 : 0) : pillOff + 68, ph2 = baseEnd + 130;
@@ -639,28 +640,34 @@ function shareVidro(S) {
   datePill(S, py + 38);   // dia e hora, por cima dos emblemas, ao centro
   const cy = py + cyOff, xl = M + 160, xr = W - M - 160;
   crestAt(S, S.ih, S.hf, xl, cy, R); crestAt(S, S.ia, S.af, xr, cy, R);
-  cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
+  cx.save(); cx.shadowColor = S.light ? 'rgba(0,0,0,.10)' : 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
   const ss = fitText(cx, S.sc, xr - xl - 2 * R - 40, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
   for (const [nm, x] of [[S.hn, xl], [S.an, xr]]) nameAt(S, nm, x, cy + R + 62, 2 * (Math.min(x - M, W - M - x) - 36), 42, ink);
   statusPill(S, py + pillOff);   // "Terminado" em baixo, por baixo dos nomes
   const gy = py + gyOff;
   if (hasG) {
-    cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
-    const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: '#ffb066' }, w = W / 2 - M - 48 - 20;
+    cx.fillStyle = S.light ? 'rgba(21,19,107,.2)' : 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
+    const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: mc }, w = W / 2 - M - 48 - 20;
     scorersAt(S, S.hl, M + 48, gy + 6, w, { ...q, align: 'left' }); scorersAt(S, S.al, W - M - 48, gy + 6, w, { ...q, align: 'right' });
   }
-  logoAt(S, S.lgW, W / 2, py + ph2 - 62, 150);
+  logoAt(S, S.light ? S.lgK : S.lgW, W / 2, py + ph2 - 62, 150);
 }
 
-async function drawShare(c, m, fmt, own) {
+// luminância relativa (para escolher texto claro ou escuro sobre uma cor lisa)
+function lumOf(hex) {
+  const h = String(hex).replace('#', ''), n = parseInt(h.length === 3 ? h.split('').map((x) => x + x).join('') : h, 16), f = (v) => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+  return .2126 * f(n >> 16 & 255) + .7152 * f(n >> 8 & 255) + .0722 * f(n & 255);
+}
+async function drawShare(c, m, fmt, opt) {
+  opt = opt || {}; const bgm = opt.bg || { mode: 'auto' }, solid = bgm.mode === 'color', own = !solid && bgm.mode === 'own' ? opt.own : null;
   const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350, sz = SHARE_SAFE[story ? 'story' : 'post'];
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const cx = cv.getContext('2d');
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
-  const [ih, ia, ph, lgW, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, em, own: !!own, M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
@@ -704,9 +711,12 @@ function shareIssues(cv, fmt) {
 
 async function openShare(cid, mid) {
   const c = DB.competitions.find((x) => x.id === cid), m = c && c.matches.find((x) => x.id === mid); if (!m) return;
-  let fmt = 'story', cv = null, guide = false, own = null;
+  let fmt = 'story', cv = null, guide = false, own = null, sel = 'auto', custom = '#2b6cb0';
+  const COL = { black: '#000000', white: '#ffffff', orange: '#ff7a0a', navy: '#15136b' };
+  const opts = () => sel === 'auto' ? {} : sel === 'own' ? { own, bg: { mode: 'own' } } : { bg: { mode: 'color', color: sel === 'custom' ? custom : COL[sel] } };
+  const mark = () => box.querySelectorAll('[data-bg]').forEach((b) => b.classList.toggle('on', b.dataset.bg === sel));
   const box = document.createElement('div'); box.className = 'shm';
-  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shn"></div><button class="shph" data-ph type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Adicionar a minha foto</span></button><input class="shfile" type="file" accept="image/*" hidden><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
+  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shn"></div><div class="shbg" role="group" aria-label="Fundo"><button data-bg="auto" class="on" type="button"><i class="sw sw-auto"></i><span>Original</span></button><button data-bg="black" type="button"><i class="sw" style="background:#000"></i><span>Preto</span></button><button data-bg="white" type="button"><i class="sw" style="background:#fff"></i><span>Branco</span></button><button data-bg="orange" type="button"><i class="sw" style="background:#ff7a0a"></i><span>Laranja</span></button><button data-bg="navy" type="button"><i class="sw" style="background:#15136b"></i><span>Azul</span></button><button data-bg="custom" type="button"><i class="sw sw-custom"></i><span>Cor</span></button><button data-bg="own" type="button"><i class="sw sw-photo"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></i><span>Foto</span></button></div><input class="shfile" type="file" accept="image/*" hidden><input class="shcol" type="color" value="#2b6cb0" hidden><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
   document.body.appendChild(box); document.body.classList.add('shopen');
   const note = () => { box.querySelector('.shn').textContent = fmt === 'story' ? 'Story 9:16 para Instagram e Facebook: o texto fica dentro da zona segura, longe do perfil (topo) e da caixa de resposta (base).' : 'Publicação 4:5 para o feed: o texto fica afastado das margens, para não ser cortado na grelha do perfil.'; };
   const close = () => { box.remove(); document.body.classList.remove('shopen'); };
@@ -717,13 +727,18 @@ async function openShare(cid, mid) {
     pv.style.aspectRatio = `${cv.width} / ${cv.height}`;
     if (guide) { const z = SHARE_SAFE[fmt], W = cv.width, H = cv.height; x.fillStyle = 'rgba(255,40,90,.22)'; x.fillRect(0, 0, W, z.top); x.fillRect(0, H - z.bot, W, z.bot); x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = 'rgba(255,60,110,.95)'; x.beginPath(); x.moveTo(0, z.top); x.lineTo(W, z.top); x.moveTo(0, H - z.bot); x.lineTo(W, H - z.bot); x.stroke(); }
   };
-  const render = async () => { box.querySelector('.shl').style.display = ''; note(); cv = await drawShare(c, m, fmt, own); paint(); box.querySelector('.shl').style.display = 'none'; };
+  const render = async () => { box.querySelector('.shl').style.display = ''; note(); cv = await drawShare(c, m, fmt, opts()); paint(); box.querySelector('.shl').style.display = 'none'; };
   box.addEventListener('click', async (e) => {
     if (e.target === box || e.target.closest('.shx')) return close();
     const f = e.target.closest('[data-f]');
     if (f) { fmt = f.dataset.f; box.querySelectorAll('[data-f]').forEach((b) => b.classList.toggle('on', b === f)); return render(); }
-    const ph = e.target.closest('[data-ph]');
-    if (ph) { if (own) { own = null; box.querySelector('.shph span').textContent = 'Adicionar a minha foto'; return render(); } return box.querySelector('.shfile').click(); }
+    const bg = e.target.closest('[data-bg]');
+    if (bg) {
+      const k = bg.dataset.bg;
+      if (k === 'custom') return box.querySelector('.shcol').click();
+      if (k === 'own') { if (own && sel !== 'own') { sel = 'own'; mark(); return render(); } return box.querySelector('.shfile').click(); }
+      sel = k; mark(); return render();
+    }
     const g = e.target.closest('[data-g]');
     if (g) { guide = !guide; g.textContent = guide ? 'Esconder zona segura' : 'Mostrar zona segura'; if (cv) paint(); return; }
     const a = e.target.closest('[data-a]'); if (!a || !cv) return;
@@ -737,8 +752,9 @@ async function openShare(cid, mid) {
   box.querySelector('.shfile').addEventListener('change', async (e) => {
     const f = e.target.files && e.target.files[0]; if (!f) return;
     const u = URL.createObjectURL(f), img = await loadImg(u); e.target.value = '';
-    if (!img) return; own = img; box.querySelector('.shph span').textContent = 'Remover a minha foto'; render();
+    if (!img) return; own = img; sel = 'own'; mark(); render();
   });
+  box.querySelector('.shcol').addEventListener('input', (e) => { custom = e.target.value; sel = 'custom'; box.querySelector('.sw-custom').style.background = custom; mark(); render(); });
   render();
 }
 
