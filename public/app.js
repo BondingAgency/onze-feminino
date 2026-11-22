@@ -369,6 +369,7 @@ function route() {
   if (a === 'ligas') ligas();
   else if (a === 'c' && c === 'equipa') equipa(b, d);
   else if (a === 'c' && c === 'jogo') jogo(b, d);
+  else if (a === 'fundos') fundos(b, c);
   else if (a === 'c') comp(b, c, d);
   else if (a === 'jogos') jogosAll(b, c);
   else if (a === 'noticias') noticias();
@@ -593,18 +594,55 @@ function glass(S, x, y, w, h, r, tint) {
   rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = S.light ? 'rgba(21,19,107,.24)' : 'rgba(255,255,255,.34)'; cx.stroke();
   if (!S.light) { cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore(); }
 }
+
+// ===== Fundos com a identidade Onze Feminino (azul-marinho #15136B, laranja #FF7A0A, laranja-vermelho #FF3B0F) =====
+const BRAND_NAMES = ['Marca', 'Campo', 'Faixas'];
+function brandBg(S) {
+  const { cx, W, H } = S, NAVY = '#15136B', OR = '#FF7A0A', RED = '#FF3B0F', v = S.brand || 1;
+  if (v === 2) {   // Campo: linhas de campo, com detalhes laranja
+    cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H);
+    cx.lineWidth = 6; cx.strokeStyle = 'rgba(255,255,255,.20)'; cx.lineJoin = 'round';
+    const bx = W * .2, bw = W * .6, bh = H * .15, ar = W * .13;
+    cx.strokeRect(bx, -10, bw, bh + 10); cx.strokeRect(bx, H - bh, bw, bh + 10);            // áreas
+    cx.beginPath(); cx.arc(W / 2, bh, ar, .2 * Math.PI, .8 * Math.PI); cx.stroke();          // meia-lua de cima
+    cx.beginPath(); cx.arc(W / 2, H - bh, ar, 1.2 * Math.PI, 1.8 * Math.PI); cx.stroke();    // meia-lua de baixo
+    cx.beginPath(); cx.moveTo(0, H / 2); cx.lineTo(W, H / 2); cx.stroke();                  // linha de meio-campo
+    cx.beginPath(); cx.arc(W / 2, H / 2, W * .27, 0, 7); cx.stroke();                        // círculo central
+    cx.fillStyle = OR; for (const y of [H * .095, H * .905]) { cx.beginPath(); cx.arc(W / 2, y, 14, 0, 7); cx.fill(); }   // marcas de penálti
+    cx.lineWidth = 10; cx.strokeStyle = OR;                                                  // cantos
+    [[0, 0, 0], [W, 0, .5], [W, H, 1], [0, H, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, 96, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
+    return;
+  }
+  if (v === 3) {   // Faixas: laranja com faixas inclinadas
+    cx.fillStyle = OR; cx.fillRect(0, 0, W, H);
+    const band = (y0, y1, th, col) => { cx.fillStyle = col; cx.beginPath(); cx.moveTo(0, y0); cx.lineTo(W, y1); cx.lineTo(W, y1 + th); cx.lineTo(0, y0 + th); cx.closePath(); cx.fill(); };
+    band(H * .20, H * .04, H * .15, NAVY); band(H * .30, H * .14, H * .035, RED);
+    band(H * .90, H * .74, H * .15, NAVY); band(H * .83, H * .67, H * .035, RED);
+    return;
+  }
+  // 1 · Marca: o nome em grande, tom sobre tom, com barras laranja
+  cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H);
+  if (S.lgW) {
+    const L = H * 1.02, T = L / (288 / 68);
+    cx.save(); cx.translate(W * .13, H / 2); cx.rotate(-Math.PI / 2); cx.globalAlpha = .09; cx.drawImage(S.lgW, -L / 2, -T / 2, L, T); cx.restore();
+    cx.save(); cx.translate(W * .93, H / 2); cx.rotate(Math.PI / 2); cx.globalAlpha = .06; cx.drawImage(S.lgW, -L / 2, -T / 2, L, T); cx.restore();
+  }
+  cx.fillStyle = OR; cx.fillRect(W - 26, 0, 26, H); cx.fillStyle = RED; cx.fillRect(W - 44, 0, 10, H);
+}
+// Página para comparar as propostas de fundo: #/fundos/<competição>/<jogo>/<story|post>
+function fundos(cid, mid) {
+  const c = DB.competitions.find((x) => x.id === (cid || '4-liga')), m = c && c.matches.find((x) => x.id === (mid || 'l4-h-22'));
+  if (!m) return (app.innerHTML = '<div class="empty">Jogo não encontrado.</div>');
+  const fmt = location.hash.split('/')[4] === 'post' ? 'post' : 'story';
+  app.innerHTML = `<h1>Fundos da identidade</h1><p class="sub">${esc(tname(c, m.home))} ${m.hg}–${m.ag} ${esc(tname(c, m.away))}</p><div class="estg">${BRAND_NAMES.map((nm, i) => `<div class="est"><div class="esl"><b>${i + 1}</b> ${nm}</div><div class="esc" data-i="${i + 1}"></div></div>`).join('')}</div>`;
+  setTimeout(async () => { for (const box of document.querySelectorAll('.esc')) { box.appendChild(await drawShare(c, m, fmt, { brand: +box.dataset.i })); } }, 0);
+}
+
 function vBg(S, topY) {
   const { cx, W, H, ph, M, top } = S, bg = S.bg || { mode: 'auto' };
   if (bg.mode === 'color') { cx.fillStyle = bg.color; cx.fillRect(0, 0, W, H); return; }
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); return; }
-  if (bg.mode !== 'clubs') {   // identidade Onze Feminino: azul-marinho com círculos laranja (formas lisas)
-    cx.fillStyle = '#15136B'; cx.fillRect(0, 0, W, H);
-    cx.fillStyle = '#FF7A0A'; cx.beginPath(); cx.arc(W * .96, H * .1, W * .58, 0, 7); cx.fill();
-    cx.fillStyle = '#FF3B0F'; cx.beginPath(); cx.arc(W * .02, H * .93, W * .46, 0, 7); cx.fill();
-    cx.lineWidth = 3; cx.strokeStyle = 'rgba(255,255,255,.16)'; cx.beginPath(); cx.arc(W * .96, H * .1, W * .8, 0, 7); cx.stroke();
-    cx.beginPath(); cx.arc(W * .02, H * .93, W * .66, 0, 7); cx.stroke();
-    return;
-  }
+  if (bg.mode !== 'clubs') { brandBg(S); return; }
   const g = cx.createLinearGradient(0, 0, W, H * .75); g.addColorStop(0, S.A); g.addColorStop(1, S.B); cx.fillStyle = g; cx.fillRect(0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.14)'; cx.fillRect(0, 0, W, H);
 }
 function vHeader(S) {
@@ -675,7 +713,7 @@ async function drawShare(c, m, fmt, opt) {
   const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 1, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
