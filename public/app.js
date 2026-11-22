@@ -598,22 +598,32 @@ function glass(S, x, y, w, h, r, tint) {
 // ===== Fundos com a identidade Onze Feminino (azul-marinho #15136B, laranja #FF7A0A, laranja-vermelho #FF3B0F) =====
 const BRAND_NAMES = ['Marca', 'Campo', 'Faixas', 'Campo degradê', 'Relvado'];
 function pitch(S, line, spot, corner, lw) {   // campo de futebol vertical com todas as marcações
-  const { cx, W, H } = S, m = W * .047, Wi = W - 2 * m, Hi = H - 2 * m, k = Wi / 1018;
+  const { cx, W, H, story } = S;
+  // proporções medidas nas duas referências: Story 9:16 e Publicação 4:5 (medidas em px da largura do campo "base")
+  const P = story ? { mx: .034 * W, my: .0598 * H, base: 877, pbW: 502, pbH: 213, gaW: 242, gaH: 74, sp: 141, ar: 131, cc: 150, cr: 45 }
+                  : { mx: .0463 * W, my: .0235 * H, base: 1018, pbW: 512, pbH: 210, gaW: 240, gaH: 75, sp: 150, ar: 118, cc: 151, cr: 44 };
+  const x1 = P.mx, x2 = W - P.mx, y1 = P.my, y2 = H - P.my, k = (x2 - x1) / P.base, th = Math.acos((P.pbH - P.sp) / P.ar), x0 = W / 2, ym = (y1 + y2) / 2;
   cx.lineWidth = lw || 7; cx.strokeStyle = line; cx.lineJoin = 'miter';
-  cx.strokeRect(m, m, Wi, Hi);                                                            // limite do campo
-  const pbW = 512 * k, pbH = 210 * k, gaW = 240 * k, gaH = 75 * k, sp = 150 * k, ar = 118 * k, th = Math.acos((pbH - sp) / ar);
-  for (const dir of [1, -1]) {                                                            // 1 = baliza de cima, -1 = de baixo
-    const y0 = dir === 1 ? m : H - m, x0 = W / 2, sy = y0 + dir * sp;
-    cx.strokeRect(x0 - pbW / 2, dir === 1 ? y0 : y0 - pbH, pbW, pbH);                    // grande área
-    cx.strokeRect(x0 - gaW / 2, dir === 1 ? y0 : y0 - gaH, gaW, gaH);                     // pequena área
-    cx.fillStyle = spot; cx.beginPath(); cx.arc(x0, sy, 9 * k, 0, 7); cx.fill();          // marca de penálti
-    cx.beginPath(); cx.arc(x0, sy, ar, dir * Math.PI / 2 - th, dir * Math.PI / 2 + th); cx.stroke();   // meia-lua
+  cx.strokeRect(x1, y1, x2 - x1, y2 - y1);                                                 // limite do campo
+  for (const dir of [1, -1]) {                                                             // 1 = baliza de cima, -1 = de baixo
+    const y0 = dir === 1 ? y1 : y2, sy = y0 + dir * P.sp * k;
+    cx.strokeRect(x0 - P.pbW * k / 2, dir === 1 ? y0 : y0 - P.pbH * k, P.pbW * k, P.pbH * k);   // grande área
+    cx.strokeRect(x0 - P.gaW * k / 2, dir === 1 ? y0 : y0 - P.gaH * k, P.gaW * k, P.gaH * k);   // pequena área
+    cx.fillStyle = spot; cx.beginPath(); cx.arc(x0, sy, 8 * k, 0, 7); cx.fill();                // marca de penálti
+    cx.beginPath(); cx.arc(x0, sy, P.ar * k, dir * Math.PI / 2 - th, dir * Math.PI / 2 + th); cx.stroke();   // meia-lua
   }
-  cx.beginPath(); cx.moveTo(m, H / 2); cx.lineTo(W - m, H / 2); cx.stroke();             // meio-campo
-  cx.beginPath(); cx.arc(W / 2, H / 2, 151 * k, 0, 7); cx.stroke();                       // círculo central
-  cx.fillStyle = spot; cx.beginPath(); cx.arc(W / 2, H / 2, 11 * k, 0, 7); cx.fill();
-  cx.strokeStyle = corner; const cr = 44 * k;                                             // cantos
-  [[m, m, 0], [W - m, m, .5], [W - m, H - m, 1], [m, H - m, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, cr, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
+  cx.beginPath(); cx.moveTo(x1, ym); cx.lineTo(x2, ym); cx.stroke();                       // meio-campo
+  cx.beginPath(); cx.arc(x0, ym, P.cc * k, 0, 7); cx.stroke();                              // círculo central
+  cx.fillStyle = spot; cx.beginPath(); cx.arc(x0, ym, 11 * k, 0, 7); cx.fill();
+  cx.strokeStyle = corner; const cr = P.cr * k;                                            // cantos
+  [[x1, y1, 0], [x2, y1, .5], [x2, y2, 1], [x1, y2, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, cr, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
+}
+// textura de relva (ruído fixo, igual em todas as imagens)
+function grassNoise(cx, W, H) {
+  const t = document.createElement('canvas'); t.width = t.height = 256; const g = t.getContext('2d'), d = g.createImageData(256, 256); let seed = 7;
+  const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  for (let i = 0; i < d.data.length; i += 4) { const v = rnd(), l = v < .5; d.data[i] = d.data[i + 1] = d.data[i + 2] = l ? 255 : 0; d.data[i + 3] = l ? v * 40 : (v - .5) * 70; }
+  g.putImageData(d, 0, 0); cx.fillStyle = cx.createPattern(t, 'repeat'); cx.fillRect(0, 0, W, H);
 }
 function brandBg(S) {
   const { cx, W, H } = S, NAVY = '#15136B', OR = '#FF7A0A', RED = '#FF3B0F', v = S.brand || 1;
@@ -624,13 +634,14 @@ function brandBg(S) {
     const g = cx.createLinearGradient(W * .15, 0, W * .85, H); g.addColorStop(0, NAVY); g.addColorStop(.45, '#3b1a7a'); g.addColorStop(1, RED);
     cx.fillStyle = g; cx.fillRect(0, 0, W, H); pitch(S, 'rgba(255,255,255,.30)', '#fff', '#fff'); return;
   }
-  if (v === 5) {   // Relvado: riscas de corte, degradê suave e as marcações do campo
-    const g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0e4a1c'); g.addColorStop(1, '#1d7a2b');
+  if (v === 5) {   // Relvado: riscas de corte, textura de relva, degradê suave e as marcações do campo
+    const g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0c4a1a'); g.addColorStop(1, '#1f7f2d');
     cx.fillStyle = g; cx.fillRect(0, 0, W, H);
-    const nb = 14, bh = H / nb; cx.fillStyle = 'rgba(255,255,255,.06)'; for (let i = 1; i < nb; i += 2) cx.fillRect(0, i * bh, W, bh);
-    const rg = cx.createRadialGradient(W / 2, H / 2, W * .3, W / 2, H / 2, H * .78); rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.36)');
+    const nb = S.story ? 19 : 14, bh = H / nb; cx.fillStyle = 'rgba(0,0,0,.15)'; for (let i = 1; i < nb; i += 2) cx.fillRect(0, i * bh, W, bh);
+    grassNoise(cx, W, H);
+    const rg = cx.createRadialGradient(W / 2, H / 2, W * .35, W / 2, H / 2, H * .8); rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.30)');
     cx.fillStyle = rg; cx.fillRect(0, 0, W, H);
-    pitch(S, 'rgba(255,255,255,.94)', '#fff', '#fff', 8); return;
+    pitch(S, 'rgba(255,255,255,.95)', '#fff', '#fff', 8); return;
   }
   if (v === 3) {   // Faixas: laranja com faixas inclinadas
     cx.fillStyle = OR; cx.fillRect(0, 0, W, H);
@@ -732,7 +743,7 @@ async function drawShare(c, m, fmt, opt) {
   const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 1, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 5, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
