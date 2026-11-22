@@ -531,12 +531,17 @@ function goalLines(m, team) {
 const sFont = (w, s) => `${w} ${s}px ArchivoV, system-ui, sans-serif`;
 function rr(cx, x, y, w, h, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
 function cover(cx, img, x, y, w, h) { const r = Math.max(w / img.width, h / img.height), iw = img.width * r, ih = img.height * r; cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); cx.restore(); }
-function crestAt(S, img, name, x, y, r, ring) {
+function crestAt(S, img, name, x, y, r) {
+  // emblema solto (sem círculo branco), com sombra para se ler sobre a foto; sem emblema, cai para as iniciais
   const cx = S.cx;
-  cx.save(); cx.shadowColor = 'rgba(0,0,0,.28)'; cx.shadowBlur = 34; cx.shadowOffsetY = 12; cx.beginPath(); cx.arc(x, y, r, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
-  if (ring) { cx.beginPath(); cx.arc(x, y, r + 5, 0, 7); cx.lineWidth = 8; cx.strokeStyle = ring; cx.stroke(); }
-  if (img) { const s = (r * 2 * 0.72) / Math.max(img.width, img.height); cx.drawImage(img, x - img.width * s / 2, y - img.height * s / 2, img.width * s, img.height * s); }
-  else { const t = initials(name); cx.fillStyle = '#15136B'; fitText(cx, t, r * 1.3, r * .8, 800); cx.textAlign = 'center'; cx.fillText(t, x, y + r * .26); }
+  if (img) {
+    const k = (r * 2 * 1.05) / Math.max(img.width, img.height), w = img.width * k, h = img.height * k;
+    cx.save(); cx.shadowColor = 'rgba(0,0,0,.50)'; cx.shadowBlur = 30; cx.shadowOffsetY = 10;
+    cx.drawImage(img, x - w / 2, y - h / 2, w, h); cx.restore();
+  } else {
+    cx.save(); cx.shadowColor = 'rgba(0,0,0,.28)'; cx.shadowBlur = 34; cx.shadowOffsetY = 12; cx.beginPath(); cx.arc(x, y, r, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
+    const t = initials(name); cx.fillStyle = '#15136B'; fitText(cx, t, r * 1.3, r * .8, 800); cx.textAlign = 'center'; cx.fillText(t, x, y + r * .26);
+  }
 }
 function scorersAt(S, list, x, y, w, o) {
   const cx = S.cx; let yy = y; const more = list.length - o.max;
