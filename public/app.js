@@ -275,6 +275,8 @@ function jogo(cid, mid) {
   <div class="hd mw">${when}</div></div>`;
   if (m.foto && m.foto.src) h += `<figure class="foto"><img src="${esc(m.foto.src)}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(m.foto.url)}" target="_blank" rel="noopener">${esc(m.foto.fonte)}</a></figcaption></figure>`;
 
+  if (done) h += `<button class="btn pri sharebtn" data-share="${esc(c.id)}|${esc(m.id)}" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg> Partilhar jogo</button>`;
+
   // Mulher do jogo (Liga BPI)
   if (MOTM_COMPS.includes(c.id)) {
     const mo = m.motm;
@@ -477,6 +479,128 @@ async function paintRings() {
     cr.style.setProperty('--ring', `hsl(${h.toFixed(0)} 72% ${Math.min(0.55, Math.max(0.42, l0)) * 100}%)`);
   }
 }
+
+// ===== Imagem de partilha do jogo (tipo Strava): resultado, emblemas e marcadoras =====
+const loadImg = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
+function fitText(cx, text, maxW, size, weight) {
+  let s = size; cx.font = `${weight} ${s}px ArchivoV, system-ui, sans-serif`;
+  while (cx.measureText(text).width > maxW && s > 18) { s -= 2; cx.font = `${weight} ${s}px ArchivoV, system-ui, sans-serif`; }
+  return s;
+}
+function goalLines(m, team) {
+  const by = new Map();
+  (m.goals || []).filter((g) => g.team === team).forEach((g) => {
+    const k = g.player || '?'; if (!by.has(k)) by.set(k, []);
+    by.get(k).push(`${g.min}'${g.note === 'penálti' ? ' (g.p.)' : g.note === 'autogolo' ? ' (a.g.)' : ''}`);
+  });
+  return [...by].map(([p, mins]) => ({ p, t: mins.join('  ') }));
+}
+async function drawShare(c, m, fmt) {
+  const W = 1080, H = fmt === 'story' ? 1920 : 1350, story = fmt === 'story';
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const cx = cv.getContext('2d');
+  try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); } catch {}
+  const [ih, ia, ph, lg, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), m.foto && m.foto.src ? loadImg(m.foto.src) : null, loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  // fundo: foto do jogo com película escura, ou cores dos dois clubes (como o cartão do jogo)
+  if (ph) {
+    const r = Math.max(W / ph.width, H / ph.height), w = ph.width * r, h = ph.height * r;
+    cx.drawImage(ph, (W - w) / 2, (H - h) / 2, w, h);
+    cx.fillStyle = 'rgba(7,7,26,.66)'; cx.fillRect(0, 0, W, H);
+  } else {
+    const [A, B] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
+    const g = cx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, A ? tone(A) : '#1b1a6b'); g.addColorStop(1, B ? tone(B) : '#2a2a55');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    cx.fillStyle = 'rgba(0,0,0,.18)'; cx.fillRect(0, 0, W, H);
+  }
+  cx.fillStyle = '#fff'; cx.textBaseline = 'alphabetic';
+  const M = 80;
+  // cabeçalho
+  let y = story ? 150 : 120;
+  if (em) { const e = 96, r = e / em.height; cx.save(); cx.beginPath(); cx.arc(M + e / 2, y - 22, e / 2 + 6, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore(); const iw = em.width * r * 0.78, ih2 = e * 0.78; cx.drawImage(em, M + e / 2 - iw / 2, y - 22 - ih2 / 2, iw, ih2); }
+  const tx = M + 96 + 28;
+  cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, c.name, W - tx - M, 46, 800); cx.fillText(c.name, tx, y - 18);
+  const sub = [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, `Jornada ${m.round}`].filter(Boolean).join(' · ');
+  cx.fillStyle = 'rgba(255,255,255,.78)'; fitText(cx, sub, W - tx - M, 32, 600); cx.fillText(sub, tx, y + 28);
+  const when = [m.date ? fmtDate(m.date) : '', m.time].filter(Boolean).join(' · ');
+  cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.85)'; fitText(cx, when, W - 2 * M, 34, 600);
+  const cy = story ? 620 : 470, R = story ? 140 : 128;
+  cx.fillText(when, W / 2, story ? 300 : 250);
+  // emblemas
+  const crest = (img, x, id) => {
+    cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 40; cx.shadowOffsetY = 14; cx.beginPath(); cx.arc(x, cy, R, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
+    if (img) { const s = (R * 2 * 0.72) / Math.max(img.width, img.height); cx.drawImage(img, x - img.width * s / 2, cy - img.height * s / 2, img.width * s, img.height * s); }
+    else { cx.fillStyle = '#15136B'; fitText(cx, initials(tname(c, id)), R * 1.3, 90, 800); cx.textAlign = 'center'; cx.fillText(initials(tname(c, id)), x, cy + 30); }
+  };
+  const xl = W * 0.19, xr = W * 0.81;
+  crest(ih, xl, m.home); crest(ia, xr, m.away);
+  cx.fillStyle = '#fff'; cx.textAlign = 'center';
+  const nw = W * 0.33;
+  for (const [id, x] of [[m.home, xl], [m.away, xr]]) { const n = sname(c, id); fitText(cx, n, nw, 50, 800); cx.fillText(n, x, cy + R + 78); }
+  // resultado
+  const sc = `${m.hg}–${m.ag}`; cx.fillStyle = '#fff'; cx.textAlign = 'center';
+  const ssz = fitText(cx, sc, xr - xl - 2 * R - 50, 210, 800);
+  cx.fillText(sc, W / 2, cy + ssz * 0.34);
+  const pill = 'TERMINADO'; cx.font = '800 30px ArchivoV, system-ui, sans-serif'; const pw = cx.measureText(pill).width + 56;
+  cx.fillStyle = 'rgba(255,255,255,.92)'; cx.beginPath(); cx.roundRect ? cx.roundRect(W / 2 - pw / 2, cy + 120, pw, 56, 28) : cx.rect(W / 2 - pw / 2, cy + 120, pw, 56); cx.fill();
+  cx.fillStyle = '#15136B'; cx.fillText(pill, W / 2, cy + 159);
+  // marcadoras
+  const hl = goalLines(m, 'home'), al = goalLines(m, 'away');
+  let gy = cy + R + (story ? 190 : 168);
+  if (hl.length + al.length) {
+    cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = '800 30px ArchivoV, system-ui, sans-serif'; cx.textAlign = 'center';
+    cx.fillText('GOLOS', W / 2, gy); gy += 22;
+    cx.fillStyle = 'rgba(255,255,255,.35)'; cx.fillRect(W / 2 - 40, gy, 80, 4); gy += 62;
+    const maxL = story ? 9 : 4, col = (arr, x, right) => {
+      let yy = gy; const shown = arr.slice(0, maxL);
+      shown.forEach((l) => {
+        cx.textAlign = right ? 'right' : 'left'; cx.fillStyle = '#fff'; const w = W / 2 - M - 20;
+        const nm = l.p; fitText(cx, nm, w - 8, 38, 800); const nsz = parseInt(cx.font.match(/(\d+)px/)[1]);
+        cx.fillText(nm, x, yy);
+        cx.fillStyle = 'rgba(255,255,255,.72)'; fitText(cx, l.t, w, 30, 600); cx.fillText(l.t, x, yy + 40);
+        yy += story ? 104 : 90;
+      });
+      if (arr.length > maxL) { cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = '600 28px ArchivoV, system-ui, sans-serif'; cx.textAlign = right ? 'right' : 'left'; cx.fillText(`+${arr.length - maxL} mais`, x, yy); }
+    };
+    col(hl, M, false); col(al, W - M, true);
+  } else if (m.hg + m.ag > 0) { /* sem marcadoras disponíveis: não escreve nada */ }
+  // rodapé
+  const fy = H - 100;
+  if (lg) { const vb = (() => { try { const s = atob(LOGO.dark.split(',')[1]); const v = s.match(/viewBox="([\d.\s-]+)"/); const a = v ? v[1].trim().split(/\s+/).map(Number) : null; return a ? a[2] / a[3] : lg.width / lg.height; } catch { return lg.width / lg.height; } })(); const lw = 330, lh = lw / vb; cx.drawImage(lg, W / 2 - lw / 2, fy - lh / 2 - 14, lw, lh); }
+  cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.62)'; cx.font = '600 26px ArchivoV, system-ui, sans-serif';
+  cx.fillText('onze-feminino.netlify.app', W / 2, fy + 52);
+  if (ph && m.foto) { cx.textAlign = 'left'; cx.font = '600 22px ArchivoV, system-ui, sans-serif'; cx.fillStyle = 'rgba(255,255,255,.6)'; cx.fillText(`Foto: ${m.foto.fonte}`, M, fy - 92); }
+  return cv;
+}
+async function openShare(cid, mid) {
+  const c = DB.competitions.find((x) => x.id === cid), m = c && c.matches.find((x) => x.id === mid); if (!m) return;
+  let fmt = 'story', cv = null;
+  const box = document.createElement('div'); box.className = 'shm';
+  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div></div>`;
+  document.body.appendChild(box); document.body.classList.add('shopen');
+  const close = () => { box.remove(); document.body.classList.remove('shopen'); };
+  const name = () => `onze-feminino-${sname(c, m.home)}-${m.hg}-${m.ag}-${sname(c, m.away)}-${fmt}.png`.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9.-]+/g, '-');
+  const blobOf = () => new Promise((r) => cv.toBlob(r, 'image/png'));
+  const render = async () => {
+    box.querySelector('.shl').style.display = ''; cv = await drawShare(c, m, fmt);
+    const pv = box.querySelector('canvas'); pv.width = cv.width; pv.height = cv.height; pv.getContext('2d').drawImage(cv, 0, 0);
+    pv.style.aspectRatio = `${cv.width} / ${cv.height}`; box.querySelector('.shl').style.display = 'none';
+  };
+  box.addEventListener('click', async (e) => {
+    if (e.target === box || e.target.closest('.shx')) return close();
+    const f = e.target.closest('[data-f]');
+    if (f) { fmt = f.dataset.f; box.querySelectorAll('[data-f]').forEach((b) => b.classList.toggle('on', b === f)); return render(); }
+    const a = e.target.closest('[data-a]'); if (!a || !cv) return;
+    const blob = await blobOf(), file = new File([blob], name(), { type: 'image/png' });
+    if (a.dataset.a === 'share' && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Onze Feminino', text: `${tname(c, m.home)} ${m.hg}–${m.ag} ${tname(c, m.away)}` }); } catch {}
+      return;
+    }
+    const u = URL.createObjectURL(blob), l = document.createElement('a'); l.href = u; l.download = name(); document.body.appendChild(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
+  });
+  render();
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-share]'); if (b) { const [cid, mid] = b.dataset.share.split('|'); openShare(cid, mid); } });
 
 // ===== Pop-up "Instalar a app no telemóvel?" =====
 (function installPrompt() {
