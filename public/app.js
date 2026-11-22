@@ -20,14 +20,17 @@ const sname = (c, id) => { const t = c.teams.find((x) => x.id === id); return t 
 const crestSrc = (id) => 'clubes/' + id.replace(/-b$/, '') + '.png';
 const CREST = (c, id, s = 34) => { const n = tname(c, id), src = crestSrc(id); return `<span class="cr" style="--s:${s}px;background:${colorOf(id)}"><b>${esc(initials(n))}</b>${src ? `<img src="${src}" alt="" decoding="async" onerror="this.remove()">` : ''}</span>`; };
 
+const roundName = (c, r) => (c && c.rounds && c.rounds[r]) || `Jornada ${r}`;
 function matchCard(c, m, withComp, noDate) {
   const done = played(m);
-  const hw = done && +m.hg > +m.ag, aw = done && +m.ag > +m.hg;
+  const pw = done && +m.hg === +m.ag && m.pen;                      // decidido nos penáltis
+  const hw = done && (+m.hg > +m.ag || (pw && m.pen[0] > m.pen[1])), aw = done && (+m.ag > +m.hg || (pw && m.pen[1] > m.pen[0]));
   const row = (id, g, lo) => `<div class="tn ${lo ? 'lo' : ''}">${CREST(c, id, 30)}<span>${esc(sname(c, id))}</span>${done ? `<b class="g">${g}</b>` : ''}</div>`;
   const info = [];
   if (done) info.push('<span class="ft">Final</span>'); else info.push(`<b>${esc(m.time || '--:--')}</b>`);
+  if (m.pen) info.push(`<small>g.p. ${m.pen[0]}–${m.pen[1]}</small>`);
   if (!noDate) info.push(`<small>${shortDate(m.date)}</small>`);
-  if (withComp) info.push(`<small>${esc(c.name.replace(/ Feminina$/, ''))}${m.serie ? ' ' + esc(m.serie.replace(/^Série /, '')) : ''}</small>`);
+  if (withComp) info.push(`<small>${esc(c.name.replace(/ Feminina$/, ''))}${m.serie ? ' ' + esc(m.serie.replace(/^Série /, '')) : ''}${c.cup ? ' · ' + esc(roundName(c, m.round)) : ''}</small>`);
   else if (m.serie) info.push(`<small>${esc(m.serie.replace(/^Série /, 'Série '))}</small>`);
   return `<a class="match" href="#/c/${c.id}/jogo/${m.id}"><div class="fxt">${row(m.home, m.hg, aw)}${row(m.away, m.ag, hw)}</div><div class="fxr">${info.join('')}</div></a>`;
 }
@@ -100,9 +103,9 @@ function heroCard(all, t) {
   const { c, m } = h, done = played(m);
   const side = (id) => { const r = teamRow(c, id); return `<a class="ht" href="${teamHref(c, id)}">${CREST(c, id, 78)}<span>${esc(sname(c, id))}</span><small>${r ? r.pos + '.º lugar' : '&nbsp;'}</small></a>`; };
   const day = m.date ? new Date(m.date + 'T12:00').toLocaleDateString('pt-PT', { weekday: 'long', day: 'numeric', month: 'short' }).replace('.', '').replace(/^./, (x) => x.toUpperCase()) : 'Data por definir';
-  return `<section class="hero"><div class="hk">${EMB(24, c.id)}<span>${esc(compShort(c))}</span><span class="dot"></span><span>Jornada ${m.round}</span><span class="cd">${untilLabel(m)}</span></div>
+  return `<section class="hero"><div class="hk">${EMB(24, c.id)}<span>${esc(compShort(c))}</span><span class="dot"></span><span>${esc(roundName(c, m.round))}</span><span class="cd">${untilLabel(m)}</span></div>
   <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd">${day}</div></div>${side(m.away)}</div>
-  <div class="hb"><a class="b1" href="#/c/${c.id}/jogo/${m.id}">Ver jogo</a><a class="b2" href="#/c/${c.id}/jogos/${m.round}">Jornada ${m.round}</a></div></section>`;
+  <div class="hb"><a class="b1" href="#/c/${c.id}/jogo/${m.id}">Ver jogo</a><a class="b2" href="#/c/${c.id}/jogos/${m.round}">${esc(roundName(c, m.round))}</a></div></section>`;
 }
 
 function followBlock() {
@@ -147,7 +150,7 @@ function comp(id, tab, arg) {
   const c = DB.competitions.find((x) => x.id === id);
   if (!c) return (app.innerHTML = '<div class="empty">Competição não encontrada.</div>');
   tab = tab || (!c.matches.length && c.series ? 'classificacao' : 'jogos');
-  const tabs = [['jogos', 'Jogos'], ['classificacao', 'Classificação'], ['equipas', 'Equipas']];
+  const tabs = [['jogos', 'Jogos'], ['classificacao', 'Classificação'], ['equipas', 'Equipas']].filter(([k]) => !(c.cup && k === 'classificacao'));
   let body = '';
   if (tab === 'jogos') body = jogos(c, arg);
   else if (tab === 'classificacao') body = tabela(c);
@@ -178,7 +181,7 @@ function jogos(c, arg) {
     : byDay(ms);
   const ri = rounds.indexOf(r), pr = rounds[ri - 1], nx = rounds[ri + 1];
   const arrow = (n, l, lab) => `<button class="rnav" ${n ? `data-go="#/c/${c.id}/jogos/${n}"` : 'disabled'} aria-label="${lab}">${l}</button>`;
-  return `<div class="rh"><div class="rt2">${arrow(pr, '‹', 'Jornada anterior')}<strong>Jornada ${r}</strong>${arrow(nx, '›', 'Jornada seguinte')}</div><span>${range}</span></div>${chips}${groups}`;
+  return `<div class="rh"><div class="rt2">${arrow(pr, '‹', 'Jornada anterior')}<strong>${esc(roundName(c, r))}</strong>${arrow(nx, '›', 'Jornada seguinte')}</div><span>${range}</span></div>${chips}${groups}`;
 }
 
 function tabela(c) {
@@ -249,6 +252,7 @@ function conta() {
 
 const teamHref = (c, id) => `#/c/${c.id}/equipa/${id}`;
 function teamRow(c, id) {
+  if (c.cup) return null;
   if (c.series) for (const sr of c.series) { const i = sr.table.findIndex((r) => r.id === id); if (i > -1) return { ...sr.table[i], pos: i + 1, grp: (c.phase ? c.phase + ' · ' : '') + sr.name }; }
   const s = standings(c); const i = s.findIndex((r) => r.id === id);
   return i > -1 && s[i].j ? { ...s[i], pos: i + 1, grp: '' } : null;
@@ -287,11 +291,11 @@ function jogo(cid, mid) {
   if (!m) return (app.innerHTML = '<div class="empty">Jogo não encontrado.</div>');
   const done = played(m);
   const side = (id) => `<a class="ht" href="${teamHref(c, id)}">${CREST(c, id, 64)}<span>${esc(sname(c, id))}</span></a>`;
-  const meta = [c.name, c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, `Jornada ${m.round}`].filter(Boolean).map(esc).join(' · ');
+  const meta = [c.name, c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).map(esc).join(' · ');
   const when = [m.date ? fmtDate(m.date) : 'Data por definir', m.time, m.venue].filter(Boolean).map(esc).join(' · ');
-  let h = `<a class="back" href="#/c/${c.id}/jogos/${m.round}">‹ Jornada ${m.round}</a>
+  let h = `<a class="back" href="#/c/${c.id}/jogos/${m.round}">‹ ${esc(roundName(c, m.round))}</a>
   <div class="hero mh"><div class="hk">${meta}</div>
-  <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd"><span class="stt ${done ? 'fin' : ''}">${done ? 'Terminado' : 'Por jogar'}</span></div></div>${side(m.away)}</div>
+  <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd"><span class="stt ${done ? 'fin' : ''}">${done ? 'Terminado' : 'Por jogar'}</span></div>${m.pen ? `<div class="hd" style="margin-top:6px">g.p. ${m.pen[0]}–${m.pen[1]}</div>` : ''}</div>${side(m.away)}</div>
   <div class="hd mw">${when}</div></div>`;
   if (m.foto && m.foto.src) h += `<figure class="foto"><img src="${esc(m.foto.src)}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(m.foto.url)}" target="_blank" rel="noopener">${esc(m.foto.fonte)}</a></figcaption></figure>`;
 
@@ -320,7 +324,7 @@ function jogo(cid, mid) {
       : `<div class="empty sm">O resumo deste jogo ainda não está disponível.</div>`);
   } else {
     const rh = teamRow(c, m.home), ra = teamRow(c, m.away);
-    const fm = Object.fromEntries(standings(c).map((t) => [t.id, t.form]));
+    const fm = c.cup ? {} : Object.fromEntries(standings(c).map((t) => [t.id, t.form]));
     const col = (id, r) => `<div class="pv">${CREST(c, id, 36)}<b>${esc(sname(c, id))}</b><span>${r ? `${r.pos}.º · ${r.pts} pts` : '—'}</span><div class="form">${(fm[id] || []).slice(-5).map((f) => `<i class="${f}">${f.toUpperCase()}</i>`).join('')}</div></div>`;
     h += `<h2>Frente a frente</h2><div class="prev">${col(m.home, rh)}<div class="vs">vs</div>${col(m.away, ra)}</div>`;
     if (m.summary) h += `<div class="sum">${String(m.summary).split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</div>`;
@@ -328,7 +332,7 @@ function jogo(cid, mid) {
   if (m.video) h += `<a class="btn pri vid" href="${esc(m.video)}" target="_blank" rel="noopener">▶ Ver vídeo do jogo</a>`;
 
   // Outros jogos da jornada
-  const others = c.matches.filter((x) => x.round === m.round && x.id !== m.id && (!m.serie || x.serie === m.serie));
+  const others = c.matches.filter((x) => x.round === m.round && x.id !== m.id && (!m.serie || x.serie === m.serie)).slice(0, c.cup ? 5 : 999);
   if (others.length) h += `<h2>Outros jogos da jornada</h2>${others.map((x) => matchCard(c, { ...x, serie: undefined }, false, false)).join('')}`;
   app.innerHTML = h;
 }
@@ -524,7 +528,6 @@ function goalLines(m, team) {
   return [...by].map(([p, mins]) => ({ p, t: mins.join('  ') }));
 }
 // ===== Imagem de partilha: 5 estilos =====
-const SHARE_STYLES = ['Foto e painel', 'Placar', 'Editorial', 'Marca', 'Vidro'];
 const sFont = (w, s) => `${w} ${s}px ArchivoV, system-ui, sans-serif`;
 function rr(cx, x, y, w, h, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
 function cover(cx, img, x, y, w, h) { const r = Math.max(w / img.width, h / img.height), iw = img.width * r, ih = img.height * r; cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); cx.restore(); }
@@ -552,149 +555,113 @@ function noPhotoBg(S, x, y, w, h) {  // dois blocos lisos com as cores dos clube
 }
 const rowsFor = (avail, row, lo, hi) => Math.max(lo, Math.min(hi, Math.floor(avail / row)));
 
-// 1 · Foto em cima, painel escuro por baixo (tipo Strava)
-function shareS1(S) {
-  const { cx, W, H, story, ph } = S, M = 76, ph_h = Math.round(H * (story ? .47 : .44));
-  if (ph) { cover(cx, ph, 0, 0, W, ph_h + 80); cx.fillStyle = 'rgba(7,7,26,.22)'; cx.fillRect(0, 0, W, ph_h + 80); }
-  else { noPhotoBg(S, 0, 0, W, ph_h + 80); crestAt(S, S.ih, S.hf, W * .24, ph_h * .52, 150); crestAt(S, S.ia, S.af, W * .76, ph_h * .52, 150); }
-  // faixa da competição sobre a foto
-  cx.fillStyle = 'rgba(7,7,26,.55)'; rr(cx, M - 20, 70, W - 2 * M + 40, 104, 52); cx.fill();
-  emblemChip(S, M + 4, 122, 66); cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, S.c.name, W - M - 150 - M, 38, 800); cx.fillText(S.c.name, M + 96, 119);
-  cx.fillStyle = 'rgba(255,255,255,.8)'; fitText(cx, S.sub, W - M - 150 - M, 26, 600); cx.fillText(S.sub, M + 96, 154);
-  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.8)'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M, ph_h - 16); }
-  // painel
-  cx.fillStyle = '#0a0a24'; rr(cx, 0, ph_h, W, H - ph_h + 90, 70); cx.fill();
-  const cy = ph_h + 150, R = 82;
-  crestAt(S, S.ih, S.hf, 160, cy, R); crestAt(S, S.ia, S.af, W - 160, cy, R);
-  cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (160 + R) - 40, 220, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
-  for (const [n, x] of [[S.hn, 160], [S.an, W - 160]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 40, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 58); }
-  cx.fillStyle = 'rgba(255,255,255,.62)'; cx.font = sFont(700, 28); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 118);
-  const gy = cy + R + 190, avail = H - 190 - gy, row = 92, max = rowsFor(avail, row, 2, 8);
-  if (S.hl.length + S.al.length) {
-    cx.fillStyle = 'rgba(255,255,255,.14)'; cx.fillRect(M, gy - 52, W - 2 * M, 2);
-    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: '#ff7a0a' };
-    scorersAt(S, S.hl, M, gy + 6, W / 2 - M - 24, { ...o, align: 'left' }); scorersAt(S, S.al, W - M, gy + 6, W / 2 - M - 24, { ...o, align: 'right' });
-  }
-  logoAt(S, S.lgW, W / 2, H - 78, 150);
+// ===== Cinco variações do estilo Vidro =====
+function alphaCol(col, a) {
+  if (col.startsWith('hsl')) return col.replace(')', ` / ${a})`);
+  const h = col.replace('#', ''), n = parseInt(h.length === 3 ? h.split('').map((x) => x + x).join('') : h, 16);
+  return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`;
 }
-
-// 2 · Placar: dois blocos lisos, um por equipa
-function shareS2(S) {
-  const { cx, W, H, story } = S, M = 70, band = story ? 150 : 124, mid = story ? 130 : 108, bh = (H - band - mid) / 2;
-  cx.fillStyle = '#07071a'; cx.fillRect(0, 0, W, H);
-  logoAt(S, S.lgW, M + 80, band / 2, 160); cx.textAlign = 'right'; cx.fillStyle = 'rgba(255,255,255,.8)'; fitText(cx, S.c.name, W - 2 * M - 260, 30, 700); cx.fillText(S.c.name, W - M, band / 2 + 10);
-  const block = (y, col, img, full, short, team, goals, score) => {
-    cx.fillStyle = col; cx.fillRect(0, y, W, bh);
-    crestAt(S, img, full, M + 104, y + 150, 104);
-    cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, short.toUpperCase(), W - M - 104 * 2 - 70 - 300, 62, 800); cx.fillText(short.toUpperCase(), M + 238, y + 138);
-    const lines = goals.slice(0, story ? 6 : 4); let yy = y + 214;
-    lines.forEach((l) => { cx.fillStyle = 'rgba(255,255,255,.92)'; fitText(cx, `${l.p}   ${l.t}`, W - M - 238 - 330, 34, 600); cx.fillText(`${l.p}   ${l.t}`, M + 238, yy); yy += 52; });
-    if (goals.length > lines.length) { cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = sFont(600, 28); cx.fillText(`+${goals.length - lines.length} mais`, M + 238, yy); }
-    cx.fillStyle = '#fff'; cx.textAlign = 'right'; const fs = story ? 400 : 300; cx.font = sFont(800, fs); cx.fillText(String(score), W - M, y + bh - (story ? 70 : 52));
-  };
-  block(band, S.A, S.ih, S.hf, S.hn, 'home', S.hl, S.m.hg);
-  block(band + bh + mid, S.B, S.ia, S.af, S.an, 'away', S.al, S.m.ag);
-  cx.fillStyle = '#07071a'; cx.fillRect(0, band + bh, W, mid); cx.textAlign = 'center'; cx.fillStyle = '#fff'; fitText(cx, `${S.sub}`, W - 2 * M, 30, 700); cx.fillText(S.sub, W / 2, band + bh + mid / 2 - 6);
-  cx.fillStyle = '#ff7a0a'; cx.font = sFont(800, 28); cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, band + bh + mid / 2 + 38);
-}
-
-// 3 · Editorial claro
-function shareS3(S) {
-  const { cx, W, H, story } = S, M = 80, NAVY = '#15136B', OR = '#ff7a0a';
-  cx.fillStyle = '#f4f1ea'; cx.fillRect(0, 0, W, H);
-  cx.fillStyle = OR; cx.fillRect(0, 0, W, 16);
-  emblemChip(S, M, 118, 78); cx.textAlign = 'left'; cx.fillStyle = NAVY; fitText(cx, S.c.name, W - M - 120 - 260, 44, 800); cx.fillText(S.c.name, M + 108, 118);
-  cx.fillStyle = '#6a6a8a'; fitText(cx, S.sub, W - M - 120 - 260, 28, 600); cx.fillText(S.sub, M + 108, 156);
-  logoAt(S, S.lgK, W - M - 80, 120, 160);
-  cx.fillStyle = '#6a6a8a'; cx.textAlign = 'left'; cx.font = sFont(600, 28); cx.fillText(S.when, M, 232);
-  const cy = story ? 520 : 470, R = 112;
-  crestAt(S, S.ih, S.hf, W * .2, cy, R, OR); crestAt(S, S.ia, S.af, W * .8, cy, R, OR);
-  cx.fillStyle = NAVY; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W * .6 - 2 * R - 70, 230, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
-  cx.fillStyle = '#6a6a8a'; cx.font = sFont(800, 26); cx.fillText('TERMINADO', W / 2, cy + 112);
-  for (const [n, x] of [[S.hn, W * .2], [S.an, W * .8]]) { cx.fillStyle = NAVY; fitText(cx, n, 330, 44, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 64); }
-  let gy = cy + R + 150; let end = gy;
-  if (S.hl.length + S.al.length) {
-    cx.fillStyle = OR; cx.fillRect(M, gy, 90, 8); cx.fillStyle = NAVY; cx.font = sFont(800, 28); cx.textAlign = 'left'; cx.fillText('GOLOS', M + 112, gy + 12);
-    gy += 70; const o = { max: story ? 6 : 4, row: 88, ns: 38, ms: 29, nameC: NAVY, minC: OR };
-    const e1 = scorersAt(S, S.hl, M, gy, W / 2 - M - 20, { ...o, align: 'left' }), e2 = scorersAt(S, S.al, W - M, gy, W / 2 - M - 20, { ...o, align: 'right' });
-    end = Math.max(e1, e2);
-  }
-  if (S.ph) { const py = end + 10, ph_h = H - 130 - py; if (ph_h >= 240) { cx.save(); rr(cx, M, py, W - 2 * M, ph_h, 36); cx.clip(); cover(cx, S.ph, M, py, W - 2 * M, ph_h); cx.restore(); if (S.m.foto) { cx.fillStyle = '#6a6a8a'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M, py + ph_h + 30); } } }
-  cx.fillStyle = '#6a6a8a'; cx.font = sFont(600, 24); cx.textAlign = 'center'; cx.fillText('onze-feminino.netlify.app', W / 2, H - 50);
-}
-
-// 4 · Marca: azul, laranja e corte inclinado
-function shareS4(S) {
-  const { cx, W, H, story, ph } = S, M = 76, NAVY = '#0f0e55', OR = '#ff7a0a', h = Math.round(H * (story ? .40 : .36)), sl = 120;
-  cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H);
-  cx.save(); cx.beginPath(); cx.moveTo(0, 0); cx.lineTo(W, 0); cx.lineTo(W, h - sl); cx.lineTo(0, h); cx.closePath(); cx.clip();
-  if (ph) { cover(cx, ph, 0, 0, W, h); cx.fillStyle = 'rgba(15,14,85,.36)'; cx.fillRect(0, 0, W, h); } else noPhotoBg(S, 0, 0, W, h);
-  cx.restore();
-  cx.fillStyle = OR; cx.beginPath(); cx.moveTo(0, h); cx.lineTo(W, h - sl); cx.lineTo(W, h - sl + 30); cx.lineTo(0, h + 30); cx.closePath(); cx.fill();
-  cx.fillStyle = OR; rr(cx, M, 86, Math.min(W - 2 * M, 640), 66, 33); cx.fill(); cx.fillStyle = NAVY; cx.textAlign = 'left'; fitText(cx, S.c.name.toUpperCase(), 560, 32, 800); cx.fillText(S.c.name.toUpperCase(), M + 30, 130);
-  cx.fillStyle = '#fff'; fitText(cx, S.sub, W - 2 * M, 28, 700); cx.fillText(S.sub, M, 196);
-  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.75)'; cx.font = sFont(600, 20); cx.fillText(`Foto: ${S.m.foto.fonte}`, M, h - sl - 30); }
-  const cy = h + 190, R = 112;
-  crestAt(S, S.ih, S.hf, W * .17, cy - 40, R, '#fff'); crestAt(S, S.ia, S.af, W * .83, cy - 80, R, '#fff');
-  cx.save(); cx.translate(W / 2, cy + 40); cx.transform(1, 0, -.18, 1, 0, 0); cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W * .66 - 2 * R - 60, 270, 800); cx.fillText(S.sc, 0, ss * .2); cx.restore();
-  cx.fillStyle = OR; cx.textAlign = 'center'; cx.font = sFont(800, 28); cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + 205);
-  cx.fillStyle = '#fff'; fitText(cx, S.hn, 330, 44, 800); cx.textAlign = 'center'; cx.fillText(S.hn, W * .17, cy - 40 + R + 62);
-  fitText(cx, S.an, 330, 44, 800); cx.fillText(S.an, W * .83, cy - 80 + R + 62);
-  const gy = cy + R + 190, avail = H - 200 - gy, row = 90, max = rowsFor(avail, row, 2, 8);
-  if (S.hl.length + S.al.length) {
-    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: OR };
-    scorersAt(S, S.hl, M, gy, W / 2 - M - 20, { ...o, align: 'left' }); scorersAt(S, S.al, W - M, gy, W / 2 - M - 20, { ...o, align: 'right' });
-  }
-  logoAt(S, S.lgW, W - M - 70, H - 78, 150);
-  cx.fillStyle = 'rgba(255,255,255,.6)'; cx.font = sFont(600, 22); cx.textAlign = 'left'; cx.fillText('onze-feminino.netlify.app', M, H - 70);
-}
-
-// 5 · Vidro: foto a toda a largura e painel de vidro ajustado ao conteúdo
 // vidro: copia a zona do que já está desenhado, desfoca-a (reduz e amplia, funciona em todos os browsers) e põe um brilho por cima
-function glass(S, x, y, w, h, r, tint) {
+function glass(S, x, y, w, h, r, o = {}) {
   const { cx } = S, k = 20, t = document.createElement('canvas');
   t.width = Math.max(2, Math.ceil(w / k)); t.height = Math.max(2, Math.ceil(h / k));
   t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
   cx.save(); rr(cx, x, y, w, h, r); cx.clip();
   cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.drawImage(t, 0, 0, t.width, t.height, x - 6, y - 6, w + 12, h + 12);
-  cx.fillStyle = `rgba(10,10,36,${tint})`; cx.fillRect(x, y, w, h);
-  cx.fillStyle = 'rgba(255,255,255,.07)'; cx.fillRect(x, y, w, h);
+  if (o.light) { cx.fillStyle = 'rgba(255,255,255,.60)'; cx.fillRect(x, y, w, h); }
+  else { cx.fillStyle = `rgba(10,10,36,${o.tint ?? .36})`; cx.fillRect(x, y, w, h); cx.fillStyle = 'rgba(255,255,255,.07)'; cx.fillRect(x, y, w, h); }
+  if (o.halves) {  // metade com a cor de cada clube
+    cx.fillStyle = alphaCol(S.A, .55); cx.fillRect(x, y, w, h);
+    cx.fillStyle = alphaCol(S.B, .55); cx.beginPath(); cx.moveTo(x + w, y); cx.lineTo(x + w, y + h); cx.lineTo(x + w * .36, y + h); cx.lineTo(x + w * .64, y); cx.closePath(); cx.fill();
+  }
+  if (o.col) { cx.fillStyle = o.col; cx.fillRect(x, y, w, h); }
   cx.restore();
-  rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.34)'; cx.stroke();
-  cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore();
+  rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = o.light ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.34)'; cx.stroke();
+  cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = o.light ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore();
 }
-function shareS5(S) {
-  const { cx, W, H, story, ph } = S, M = 40, R = 92, row = 90;
+function vBg(S) {
+  const { cx, W, H, ph } = S;
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); }
   else { noPhotoBg(S, 0, 0, W, H); crestAt(S, S.ih, S.hf, W * .27, H * .2, 170); crestAt(S, S.ia, S.af, W * .73, H * .2, 170); }
-  // painel ajustado ao conteúdo, ancorado em baixo
-  const maxRows = story ? 6 : 4, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length));
-  const more = Math.max(S.hl.length, S.al.length) > maxRows;
-  const hasG = S.hl.length + S.al.length > 0;
-  const head = 52 + 2 * R + 150;                       // emblemas, nomes e data
-  const body = hasG ? 96 + nRows * row + (more ? 44 : 0) : 0;
-  const ph2 = head + body + 120, py = H - M - ph2;
-  // faixa da competição, em vidro, no topo
-  glass(S, M, 64, W - 2 * M, 116, 58, .34);
-  emblemChip(S, M + 26, 122, 64); cx.textAlign = 'left'; cx.fillStyle = '#fff';
-  fitText(cx, S.c.name, W - 2 * M - 150, 38, 800); cx.fillText(S.c.name, M + 114, 118);
-  cx.fillStyle = 'rgba(255,255,255,.82)'; fitText(cx, S.sub, W - 2 * M - 150, 26, 600); cx.fillText(S.sub, M + 114, 154);
-  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.85)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M + 12, py - 22); }
-  glass(S, M, py, W - 2 * M, ph2, 64, .36);
+}
+function vHeader(S, light, withLogo) {
+  const { cx, W } = S, M = 40, ink = light ? '#15136B' : '#fff', soft = light ? 'rgba(21,19,107,.72)' : 'rgba(255,255,255,.8)';
+  glass(S, M, 64, W - 2 * M, 116, 58, { light, tint: .34 });
+  emblemChip(S, M + 26, 122, 64); cx.textAlign = 'left';
+  const tw = W - 2 * M - 150 - (withLogo ? 180 : 0);
+  cx.fillStyle = ink; fitText(cx, S.c.name, tw, 38, 800); cx.fillText(S.c.name, M + 114, 118);
+  cx.fillStyle = soft; fitText(cx, S.sub, tw, 26, 600); cx.fillText(S.sub, M + 114, 154);
+  if (withLogo) logoAt(S, light ? S.lgK : S.lgW, W - M - 26 - 78, 122, 150);
+}
+function vCredit(S, y) { const { cx } = S; if (S.ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, 52, y); } }
+
+// 1 e 2 e 5 · painel de vidro ajustado ao conteúdo (normal, claro, com as cores dos clubes)
+function shareVidro(S, o = {}) {
+  const { cx, W, H, story } = S, M = 40, R = 92, row = 90, light = !!o.light;
+  const ink = light ? '#15136B' : '#fff', soft = light ? 'rgba(21,19,107,.74)' : 'rgba(255,255,255,.78)', mc = light ? '#d95f00' : '#ffb066', rule = light ? 'rgba(21,19,107,.18)' : 'rgba(255,255,255,.22)';
+  vBg(S);
+  const maxRows = story ? 6 : 4, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
+  const ph2 = 52 + 2 * R + 150 + (hasG ? 96 + nRows * row + (more ? 44 : 0) : 0) + 120, py = H - M - ph2;
+  vHeader(S, light, false); vCredit(S, py - 22);
+  glass(S, M, py, W - 2 * M, ph2, 64, { light, tint: .36, halves: o.halves });
   const cy = py + 52 + R;
   crestAt(S, S.ih, S.hf, 190, cy, R); crestAt(S, S.ia, S.af, W - 190, cy, R);
-  cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = '#fff'; cx.textAlign = 'center';
+  cx.save(); cx.shadowColor = light ? 'rgba(255,255,255,.4)' : 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
   const ss = fitText(cx, S.sc, W - 2 * (190 + R) - 30, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
-  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 42, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 62); }
-  cx.fillStyle = 'rgba(255,255,255,.78)'; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 130);
-  let gy = cy + R + 196;
+  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = ink; fitText(cx, n, 300, 42, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 62); }
+  cx.fillStyle = soft; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`${S.end}  ·  ${S.when}`, W / 2, cy + R + 130);
+  const gy = cy + R + 196;
   if (hasG) {
-    cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
-    const o = { max: nRows, row, ns: 39, ms: 29, nameC: '#fff', minC: '#ffb066' }, w = W / 2 - M - 44 - 20;
-    scorersAt(S, S.hl, M + 48, gy + 6, w, { ...o, align: 'left' }); scorersAt(S, S.al, W - M - 48, gy + 6, w, { ...o, align: 'right' });
+    cx.fillStyle = rule; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
+    const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: mc }, w = W / 2 - M - 44 - 20;
+    scorersAt(S, S.hl, M + 48, gy + 6, w, { ...q, align: 'left' }); scorersAt(S, S.al, W - M - 48, gy + 6, w, { ...q, align: 'right' });
   }
-  logoAt(S, S.lgW, W / 2, py + ph2 - 62, 150);
+  logoAt(S, light ? S.lgK : S.lgW, W / 2, py + ph2 - 62, 150);
 }
+
+// 3 · Duas cartas de vidro, uma por equipa
+function shareV3(S) {
+  const { cx, W, H, story } = S, M = 40, gap = 20, cw = (W - 2 * M - gap) / 2, R = 84;
+  vBg(S); vHeader(S, false, false);
+  const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
+  const barH = 96, ch = 48 + 2 * R + 66 + 250 + (hasG ? 50 + nRows * 84 + (more ? 40 : 0) : 0) + 30;
+  const cy0 = H - M - barH - 20 - ch;
+  vCredit(S, cy0 - 22);
+  [[M, S.A, S.ih, S.hf, S.hn, S.m.hg, S.hl], [M + cw + gap, S.B, S.ia, S.af, S.an, S.m.ag, S.al]].forEach(([x, col, img, full, short, goals, list]) => {
+    glass(S, x, cy0, cw, ch, 56, { tint: .30, col: alphaCol(col, .42) });
+    const mx = x + cw / 2, cy = cy0 + 48 + R;
+    crestAt(S, img, full, mx, cy, R);
+    cx.fillStyle = '#fff'; fitText(cx, short, cw - 50, 42, 800); cx.textAlign = 'center'; cx.fillText(short, mx, cy + R + 56);
+    cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 20; cx.font = sFont(800, 250); cx.textAlign = 'center'; cx.fillText(String(goals), mx, cy + R + 56 + 215); cx.restore();
+    if (hasG) { const gy = cy + R + 56 + 215 + 80; cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + 40, gy - 50, cw - 80, 2);
+      scorersAt(S, list, mx, gy + 6, cw - 60, { max: nRows, row: 84, ns: 36, ms: 28, nameC: '#fff', minC: '#ffb066', align: 'center' }); }
+  });
+  glass(S, M, H - M - barH, W - 2 * M, barH, 48, { tint: .36 });
+  cx.fillStyle = 'rgba(255,255,255,.85)'; cx.font = sFont(700, 27); cx.textAlign = 'left'; cx.fillText(`${S.end}  ·  ${S.when}`, M + 40, H - M - barH / 2 + 10);
+  logoAt(S, S.lgW, W - M - 40 - 75, H - M - barH / 2, 150);
+}
+
+// 4 · Barra de resultado compacta e cartão das marcadoras por cima
+function shareV4(S) {
+  const { cx, W, H, story } = S, M = 40, R = 72, barH = story ? 350 : 330, by = H - M - barH;
+  vBg(S); vHeader(S, false, true);
+  glass(S, M, by, W - 2 * M, barH, 60, { tint: .36 });
+  const cy = by + 58 + R;
+  crestAt(S, S.ih, S.hf, 170, cy, R); crestAt(S, S.ia, S.af, W - 170, cy, R);
+  cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 22; cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (170 + R) - 40, 200, 800); cx.fillText(S.sc, W / 2, cy + ss * .34 - 8); cx.restore();
+  cx.fillStyle = '#fff'; for (const [n, x] of [[S.hn, 170], [S.an, W - 170]]) { fitText(cx, n, 290, 38, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 52); }
+  cx.fillStyle = 'rgba(255,255,255,.8)'; cx.font = sFont(700, 26); cx.textAlign = 'center'; cx.fillText(`${S.end}  ·  ${S.when}`, W / 2, by + barH - 40);
+  const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows;
+  if (S.hl.length + S.al.length) {
+    const sh = 64 + nRows * 84 + (more ? 40 : 0), sy = by - 20 - sh;
+    vCredit(S, sy - 22);
+    glass(S, M, sy, W - 2 * M, sh, 52, { tint: .30 });
+    const q = { max: nRows, row: 84, ns: 37, ms: 28, nameC: '#fff', minC: '#ffb066' }, w = W / 2 - M - 40 - 20;
+    scorersAt(S, S.hl, M + 44, sy + 62, w, { ...q, align: 'left' }); scorersAt(S, S.al, W - M - 44, sy + 62, w, { ...q, align: 'right' });
+  } else vCredit(S, by - 22);
+}
+
+const SHARE_STYLES = ['Vidro', 'Vidro claro', 'Duas cartas', 'Barra', 'Cores do clube'];
 
 async function drawShare(c, m, fmt, style = 1) {
   const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350;
@@ -708,10 +675,10 @@ async function drawShare(c, m, fmt, style = 1) {
     A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
-    sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, `Jornada ${m.round}`].filter(Boolean).join(' · '),
-    when: [m.date ? fmtDate(m.date) : '', m.time].filter(Boolean).join(' · '), sc: `${m.hg}–${m.ag}`,
+    sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
+    when: [m.date ? fmtDate(m.date) : '', m.time].filter(Boolean).join(' · '), sc: `${m.hg}–${m.ag}`, end: m.pen ? `G.P. ${m.pen[0]}–${m.pen[1]}` : 'TERMINADO',
   };
-  [shareS1, shareS2, shareS3, shareS4, shareS5][(style || 1) - 1](S);
+  [(x) => shareVidro(x), (x) => shareVidro(x, { light: true }), shareV3, shareV4, (x) => shareVidro(x, { halves: true })][(style || 1) - 1](S);
   return cv;
 }
 const SHARE_STYLE_KEY = 'elas-share-style';

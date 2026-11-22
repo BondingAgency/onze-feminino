@@ -13502,6 +13502,4005 @@
           "ag": null
         }
       ]
+    },
+    {
+      "id": "taca-de-portugal",
+      "name": "Taça de Portugal Feminina",
+      "tag": "Eliminatórias",
+      "season": "2026/27",
+      "cup": true,
+      "rounds": {
+        "1": "1.ª Eliminatória",
+        "2": "2.ª Eliminatória",
+        "3": "3.ª Eliminatória",
+        "4": "4.ª Eliminatória"
+      },
+      "teams": [
+        {
+          "id": "estoril-praia",
+          "name": "Estoril Praia",
+          "short": "Estoril Praia"
+        },
+        {
+          "id": "ferreiras",
+          "name": "Ferreiras",
+          "short": "Ferreiras"
+        },
+        {
+          "id": "sao-pedro",
+          "name": "São Pedro",
+          "short": "São Pedro"
+        },
+        {
+          "id": "santa-clara",
+          "name": "Santa Clara",
+          "short": "Santa Clara"
+        },
+        {
+          "id": "fc-alverca",
+          "name": "FC Alverca",
+          "short": "FC Alverca"
+        },
+        {
+          "id": "vc-pico-da-pedra",
+          "name": "VC Pico da Pedra",
+          "short": "VC Pico da Pedra"
+        },
+        {
+          "id": "aguias-negras-tabuadelo",
+          "name": "Águias Negras Tabuadelo",
+          "short": "Águias Negras Tabuadelo"
+        },
+        {
+          "id": "fc-tadim",
+          "name": "FC Tadim",
+          "short": "FC Tadim"
+        },
+        {
+          "id": "gil-vicente",
+          "name": "Gil Vicente",
+          "short": "Gil Vicente"
+        },
+        {
+          "id": "freiriz",
+          "name": "Freiriz",
+          "short": "Freiriz"
+        },
+        {
+          "id": "uds-roriz",
+          "name": "UDS Roriz",
+          "short": "UDS Roriz"
+        },
+        {
+          "id": "merelinense",
+          "name": "Merelinense",
+          "short": "Merelinense"
+        },
+        {
+          "id": "ad-esposende",
+          "name": "AD Esposende",
+          "short": "AD Esposende"
+        },
+        {
+          "id": "arsenal-crespos",
+          "name": "Arsenal Crespos",
+          "short": "Arsenal Crespos"
+        },
+        {
+          "id": "fc-famalicao",
+          "name": "FC Famalicão",
+          "short": "FC Famalicão"
+        },
+        {
+          "id": "fc-ferreirense",
+          "name": "FC Ferreirense",
+          "short": "FC Ferreirense"
+        },
+        {
+          "id": "fc-sao-romao",
+          "name": "FC São Romão",
+          "short": "FC São Romão"
+        },
+        {
+          "id": "leixoes",
+          "name": "Leixões",
+          "short": "Leixões"
+        },
+        {
+          "id": "fc-penafiel",
+          "name": "FC Penafiel",
+          "short": "FC Penafiel"
+        },
+        {
+          "id": "tirsense",
+          "name": "Tirsense",
+          "short": "Tirsense"
+        },
+        {
+          "id": "castelo-da-maia",
+          "name": "Castêlo da Maia",
+          "short": "Castêlo da Maia"
+        },
+        {
+          "id": "pacos-de-ferreira",
+          "name": "Paços de Ferreira",
+          "short": "Paços de Ferreira"
+        },
+        {
+          "id": "rio-tinto",
+          "name": "SC Rio Tinto",
+          "short": "SC Rio Tinto"
+        },
+        {
+          "id": "nogueirense-fc",
+          "name": "Nogueirense FC",
+          "short": "Nogueirense FC"
+        },
+        {
+          "id": "freamunde",
+          "name": "Freamunde",
+          "short": "Freamunde"
+        },
+        {
+          "id": "sp-cruz",
+          "name": "Sp. Cruz",
+          "short": "Sp. Cruz"
+        },
+        {
+          "id": "ad-varzea-fc",
+          "name": "AD Várzea FC",
+          "short": "AD Várzea FC"
+        },
+        {
+          "id": "ermesinde-1936",
+          "name": "Ermesinde 1936",
+          "short": "Ermesinde 1936"
+        },
+        {
+          "id": "fc-romariz",
+          "name": "FC Romariz",
+          "short": "FC Romariz"
+        },
+        {
+          "id": "gd-aldeia-nova",
+          "name": "GD Aldeia Nova",
+          "short": "GD Aldeia Nova"
+        },
+        {
+          "id": "ud-lavrense",
+          "name": "UD Lavrense",
+          "short": "UD Lavrense"
+        },
+        {
+          "id": "ad-marco-09",
+          "name": "AD Marco 09",
+          "short": "AD Marco 09"
+        },
+        {
+          "id": "perosinho",
+          "name": "Perosinho",
+          "short": "Perosinho"
+        },
+        {
+          "id": "fc-arouca",
+          "name": "FC Arouca",
+          "short": "FC Arouca"
+        },
+        {
+          "id": "feirense",
+          "name": "Feirense",
+          "short": "Feirense"
+        },
+        {
+          "id": "ad-baiao",
+          "name": "AD Baião",
+          "short": "AD Baião"
+        },
+        {
+          "id": "boavista-fc",
+          "name": "Boavista FC",
+          "short": "Boavista FC"
+        },
+        {
+          "id": "argoncilhe",
+          "name": "Argoncilhe",
+          "short": "Argoncilhe"
+        },
+        {
+          "id": "adc-lobao",
+          "name": "ADC Lobão",
+          "short": "ADC Lobão"
+        },
+        {
+          "id": "lusitania-de-lourosa",
+          "name": "Lusitânia de Lourosa",
+          "short": "Lusitânia de Lourosa"
+        },
+        {
+          "id": "pacos-de-brandao",
+          "name": "Paços de Brandão",
+          "short": "Paços de Brandão"
+        },
+        {
+          "id": "at-cucujaes",
+          "name": "At. Cucujães",
+          "short": "At. Cucujães"
+        },
+        {
+          "id": "cd-loureiro",
+          "name": "CD Loureiro",
+          "short": "CD Loureiro"
+        },
+        {
+          "id": "ccr-sao-martinho",
+          "name": "CCR São Martinho",
+          "short": "CCR São Martinho"
+        },
+        {
+          "id": "fc-parada",
+          "name": "FC Parada",
+          "short": "FC Parada"
+        },
+        {
+          "id": "rio-mau-fc",
+          "name": "Rio Mau FC",
+          "short": "Rio Mau FC"
+        },
+        {
+          "id": "gd-ilha",
+          "name": "GD Ilha",
+          "short": "GD Ilha"
+        },
+        {
+          "id": "ca-ouriense",
+          "name": "Atl. Ouriense",
+          "short": "Atl. Ouriense"
+        },
+        {
+          "id": "qt-sc-rio-maior",
+          "name": "QT SC Rio Maior",
+          "short": "QT SC Rio Maior"
+        },
+        {
+          "id": "juveforce",
+          "name": "JuveForce",
+          "short": "JuveForce"
+        },
+        {
+          "id": "adrc-vasco-da-gama",
+          "name": "ADRC Vasco da Gama",
+          "short": "ADRC Vasco da Gama"
+        },
+        {
+          "id": "clube-albergaria",
+          "name": "Clube de Albergaria",
+          "short": "Clube de Albergaria"
+        },
+        {
+          "id": "ad-estacao",
+          "name": "AD Estação",
+          "short": "AD Estação"
+        },
+        {
+          "id": "ud-turquel",
+          "name": "UD Turquel",
+          "short": "UD Turquel"
+        },
+        {
+          "id": "academica-oaf",
+          "name": "Académica OAF",
+          "short": "Académica OAF"
+        },
+        {
+          "id": "academico",
+          "name": "Académico",
+          "short": "Académico"
+        },
+        {
+          "id": "nege",
+          "name": "NEGE",
+          "short": "NEGE"
+        },
+        {
+          "id": "ud-leiria",
+          "name": "UD Leiria",
+          "short": "UD Leiria"
+        },
+        {
+          "id": "real-sc",
+          "name": "Real SC",
+          "short": "Real SC"
+        },
+        {
+          "id": "cac",
+          "name": "CAC",
+          "short": "CAC"
+        },
+        {
+          "id": "ar-porto-alto",
+          "name": "AR Porto Alto",
+          "short": "AR Porto Alto"
+        },
+        {
+          "id": "venda-do-pinheiro",
+          "name": "Venda do Pinheiro",
+          "short": "Venda do Pinheiro"
+        },
+        {
+          "id": "at-malveira",
+          "name": "At. Malveira",
+          "short": "At. Malveira"
+        },
+        {
+          "id": "est-amadora",
+          "name": "Est. Amadora",
+          "short": "Est. Amadora"
+        },
+        {
+          "id": "ouriquense",
+          "name": "Ouriquense",
+          "short": "Ouriquense"
+        },
+        {
+          "id": "mocarriense",
+          "name": "Moçarriense",
+          "short": "Moçarriense"
+        },
+        {
+          "id": "amora-fc",
+          "name": "Amora FC",
+          "short": "Amora FC"
+        },
+        {
+          "id": "guia-fc",
+          "name": "Guia FC",
+          "short": "Guia FC"
+        },
+        {
+          "id": "casa-pia-ac",
+          "name": "Casa Pia AC",
+          "short": "Casa Pia AC"
+        },
+        {
+          "id": "cf-benfica",
+          "name": "Fut. Benfica",
+          "short": "Fut. Benfica"
+        },
+        {
+          "id": "belenenses",
+          "name": "Belenenses",
+          "short": "Belenenses"
+        },
+        {
+          "id": "lusitano-gc",
+          "name": "Lusitano GC",
+          "short": "Lusitano GC"
+        },
+        {
+          "id": "leoes-porto-salvo",
+          "name": "Leões Porto Salvo",
+          "short": "Leões Porto Salvo"
+        },
+        {
+          "id": "olimpico-montijo",
+          "name": "Olímpico Montijo",
+          "short": "Olímpico Montijo"
+        },
+        {
+          "id": "grupo-uniao-sport",
+          "name": "Grupo União Sport",
+          "short": "Grupo União Sport"
+        },
+        {
+          "id": "seixal-clube-1925",
+          "name": "Seixal Clube 1925",
+          "short": "Seixal Clube 1925"
+        },
+        {
+          "id": "eff-setubal",
+          "name": "Esc. Fut. Fem. Setúbal",
+          "short": "Esc. Fut. Fem. Setúbal"
+        },
+        {
+          "id": "barreirense",
+          "name": "Barreirense",
+          "short": "Barreirense"
+        },
+        {
+          "id": "destreza-e-aventura",
+          "name": "Destreza e Aventura",
+          "short": "Destreza e Aventura"
+        },
+        {
+          "id": "melgacense",
+          "name": "Melgacense",
+          "short": "Melgacense"
+        },
+        {
+          "id": "cerveira",
+          "name": "Cerveira",
+          "short": "Cerveira"
+        },
+        {
+          "id": "moreirense",
+          "name": "Moreirense",
+          "short": "Moreirense"
+        },
+        {
+          "id": "sacavenense",
+          "name": "Sacavenense",
+          "short": "Sacavenense"
+        },
+        {
+          "id": "a-dos-francos",
+          "name": "A-dos-Francos",
+          "short": "A-dos-Francos"
+        },
+        {
+          "id": "porto-dave",
+          "name": "Porto D´Ave",
+          "short": "Porto D´Ave"
+        },
+        {
+          "id": "ilustre-caminha",
+          "name": "Ilustre Caminha",
+          "short": "Ilustre Caminha"
+        },
+        {
+          "id": "cadima",
+          "name": "Cadima",
+          "short": "Cadima"
+        },
+        {
+          "id": "cd-gouveia",
+          "name": "CD Gouveia",
+          "short": "CD Gouveia"
+        },
+        {
+          "id": "rio-ave",
+          "name": "Rio Ave",
+          "short": "Rio Ave"
+        },
+        {
+          "id": "racing-power-fc",
+          "name": "Racing Power FC",
+          "short": "Racing Power FC"
+        },
+        {
+          "id": "fc-porto",
+          "name": "FC Porto",
+          "short": "FC Porto"
+        },
+        {
+          "id": "maritimo",
+          "name": "Marítimo",
+          "short": "Marítimo"
+        },
+        {
+          "id": "vitoria-sc",
+          "name": "Vitória SC",
+          "short": "Vitória SC"
+        },
+        {
+          "id": "braga",
+          "name": "SC Braga",
+          "short": "SC Braga"
+        },
+        {
+          "id": "valadares-gaia",
+          "name": "Valadares Gaia",
+          "short": "Valadares Gaia"
+        },
+        {
+          "id": "benfica",
+          "name": "Benfica",
+          "short": "Benfica"
+        },
+        {
+          "id": "sporting-cp",
+          "name": "Sporting",
+          "short": "Sporting"
+        },
+        {
+          "id": "torreense",
+          "name": "Torreense",
+          "short": "Torreense"
+        }
+      ],
+      "matches": [
+        {
+          "id": "tp-1-1",
+          "round": 1,
+          "date": "2026-10-03",
+          "time": "15:00",
+          "home": "estoril-praia",
+          "away": "ferreiras",
+          "hg": 0,
+          "ag": 7,
+          "goals": [
+            {
+              "team": "away",
+              "min": "22",
+              "player": "Carolina Gomes"
+            },
+            {
+              "team": "away",
+              "min": "36",
+              "player": "Inês Raposo"
+            },
+            {
+              "team": "away",
+              "min": "47",
+              "player": "Joana Rocha"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Constança Fernandes"
+            },
+            {
+              "team": "away",
+              "min": "73",
+              "player": "Ana Santos"
+            },
+            {
+              "team": "away",
+              "min": "86",
+              "player": "Ana Santos"
+            },
+            {
+              "team": "away",
+              "min": "79",
+              "player": "Cristiana Rosa"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-2",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "11:00",
+          "home": "sao-pedro",
+          "away": "santa-clara",
+          "hg": 3,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "68",
+              "player": "Inês Andrade"
+            },
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Iara Francisco"
+            },
+            {
+              "team": "home",
+              "min": "86",
+              "player": "Joana Pires"
+            },
+            {
+              "team": "away",
+              "min": "54",
+              "player": "Micaela Vasconcelos"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-3",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "14:00",
+          "home": "fc-alverca",
+          "away": "vc-pico-da-pedra",
+          "hg": 1,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Eduarda Szatkowski"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-4",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "aguias-negras-tabuadelo",
+          "away": "fc-tadim",
+          "hg": 8,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "12",
+              "player": "Joana Pereira"
+            },
+            {
+              "team": "home",
+              "min": "23",
+              "player": "Raquel Silva"
+            },
+            {
+              "team": "home",
+              "min": "73",
+              "player": "Raquel Silva"
+            },
+            {
+              "team": "home",
+              "min": "79",
+              "player": "Raquel Silva",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "27",
+              "player": "Maria Silva"
+            },
+            {
+              "team": "home",
+              "min": "38",
+              "player": "Jacinta Silva"
+            },
+            {
+              "team": "home",
+              "min": "47",
+              "player": "Bruna Monteiro"
+            },
+            {
+              "team": "home",
+              "min": "55",
+              "player": "Ana Machado"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-5",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "gil-vicente",
+          "away": "freiriz",
+          "hg": 23,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "1",
+              "player": "Maria Malta"
+            },
+            {
+              "team": "home",
+              "min": "3",
+              "player": "Maria Malta"
+            },
+            {
+              "team": "home",
+              "min": "6",
+              "player": "Maria Malta"
+            },
+            {
+              "team": "home",
+              "min": "5",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "18",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "30",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "32",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "15",
+              "player": "Maria Ribeiro"
+            },
+            {
+              "team": "home",
+              "min": "17",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "20",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "26",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "55",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "70",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "25",
+              "player": "Patrícia Barreiros"
+            },
+            {
+              "team": "home",
+              "min": "42",
+              "player": "Sara Cartaxo",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "56",
+              "player": "Sara Cartaxo",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "58",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "61",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "85",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "65",
+              "player": "Patrícia Dias"
+            },
+            {
+              "team": "home",
+              "min": "80",
+              "player": "Eva Cruz"
+            },
+            {
+              "team": "home",
+              "min": "83",
+              "player": "Eva Cruz"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-6",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "uds-roriz",
+          "away": "merelinense",
+          "hg": 1,
+          "ag": 1,
+          "pen": [
+            7,
+            8
+          ],
+          "goals": [
+            {
+              "team": "home",
+              "min": "66",
+              "player": "Daniela Lopes"
+            },
+            {
+              "team": "away",
+              "min": "90",
+              "player": "Vitória Antunes"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-7",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ad-esposende",
+          "away": "arsenal-crespos",
+          "hg": 3,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "34",
+              "player": "Joana Sousa"
+            },
+            {
+              "team": "home",
+              "min": "84",
+              "player": "Jéssica Junior"
+            },
+            {
+              "team": "home",
+              "min": "89",
+              "player": "Filipa Peres"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-8",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "fc-famalicao",
+          "away": "fc-ferreirense",
+          "hg": 3,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "2",
+              "player": "Marta Carrasco"
+            },
+            {
+              "team": "home",
+              "min": "25",
+              "player": "Patrícia Teixeira"
+            },
+            {
+              "team": "home",
+              "min": "35",
+              "player": "Andrea Mirón",
+              "note": "penálti"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-9",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "fc-sao-romao",
+          "away": "leixoes",
+          "hg": 1,
+          "ag": 6,
+          "goals": [
+            {
+              "team": "home",
+              "min": "15",
+              "player": "Jessica Pontes"
+            },
+            {
+              "team": "away",
+              "min": "28",
+              "player": "Beatriz Pinto",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "38",
+              "player": "Beatriz Proença"
+            },
+            {
+              "team": "away",
+              "min": "52",
+              "player": "Rute Silva"
+            },
+            {
+              "team": "away",
+              "min": "67",
+              "player": "Ana Pais"
+            },
+            {
+              "team": "away",
+              "min": "75",
+              "player": "Jessica Pontes",
+              "note": "autogolo"
+            },
+            {
+              "team": "away",
+              "min": "80",
+              "player": "Beatriz Duarte"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-10",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "fc-penafiel",
+          "away": "tirsense",
+          "hg": 0,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "away",
+              "min": "28",
+              "player": "Ana Brandão"
+            },
+            {
+              "team": "away",
+              "min": "33",
+              "player": "Beatriz Costa"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-11",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "castelo-da-maia",
+          "away": "pacos-de-ferreira",
+          "hg": 0,
+          "ag": 6,
+          "goals": [
+            {
+              "team": "away",
+              "min": "26",
+              "player": "Ana Roxo"
+            },
+            {
+              "team": "away",
+              "min": "32",
+              "player": "Marta Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "42",
+              "player": "Matilde Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "44",
+              "player": "Matilde Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "70",
+              "player": "Beatriz Melo"
+            },
+            {
+              "team": "away",
+              "min": "82",
+              "player": "Bruna Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-12",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "rio-tinto",
+          "away": "nogueirense-fc",
+          "hg": 11,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "11",
+              "player": "Leonor Granja"
+            },
+            {
+              "team": "home",
+              "min": "17",
+              "player": "Beatriz Amorim"
+            },
+            {
+              "team": "home",
+              "min": "47",
+              "player": "Beatriz Amorim"
+            },
+            {
+              "team": "home",
+              "min": "74",
+              "player": "Beatriz Amorim"
+            },
+            {
+              "team": "home",
+              "min": "20",
+              "player": "Maria Silva"
+            },
+            {
+              "team": "home",
+              "min": "38",
+              "player": "Catarina Pereira"
+            },
+            {
+              "team": "home",
+              "min": "62",
+              "player": "Catarina Pereira"
+            },
+            {
+              "team": "home",
+              "min": "66",
+              "player": "Catarina Pereira"
+            },
+            {
+              "team": "home",
+              "min": "52",
+              "player": "Beatriz Santos"
+            },
+            {
+              "team": "home",
+              "min": "83",
+              "player": "Helena Figueiredo"
+            },
+            {
+              "team": "home",
+              "min": "88",
+              "player": "Joana Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-13",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "freamunde",
+          "away": "sp-cruz",
+          "hg": 1,
+          "ag": 8,
+          "goals": [
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Ana Benedita Sousa"
+            },
+            {
+              "team": "away",
+              "min": "13",
+              "player": "Dara Melo"
+            },
+            {
+              "team": "away",
+              "min": "16",
+              "player": "Carina Santos",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "22",
+              "player": "Jenifer Correia"
+            },
+            {
+              "team": "away",
+              "min": "34",
+              "player": "Diana Cangalhas",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "45+2",
+              "player": "Filipa Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "46",
+              "player": "Edgilza Pereira"
+            },
+            {
+              "team": "away",
+              "min": "48",
+              "player": "Elen Oliveira"
+            },
+            {
+              "team": "away",
+              "min": "76",
+              "player": "Raihana Encola"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-14",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ad-varzea-fc",
+          "away": "ermesinde-1936",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "10",
+              "player": "Sara Pereira"
+            },
+            {
+              "team": "home",
+              "min": "90+13",
+              "player": "Ana Sousa"
+            },
+            {
+              "team": "away",
+              "min": "43",
+              "player": "Inês Santos"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-15",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "fc-romariz",
+          "away": "gd-aldeia-nova",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "57",
+              "player": "Anabela Moreira"
+            },
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Sara Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Tita"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-16",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ud-lavrense",
+          "away": "ad-marco-09",
+          "hg": 3,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "16",
+              "player": "Maria Abreu"
+            },
+            {
+              "team": "home",
+              "min": "19",
+              "player": "Luana Monteiro",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "34",
+              "player": "Joana Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-17",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "perosinho",
+          "away": "fc-arouca",
+          "hg": 1,
+          "ag": 3,
+          "goals": [
+            {
+              "team": "home",
+              "min": "10",
+              "player": "Nádia Drago"
+            },
+            {
+              "team": "away",
+              "min": "17",
+              "player": "Ana Santos"
+            },
+            {
+              "team": "away",
+              "min": "45",
+              "player": "Ana Santos"
+            },
+            {
+              "team": "away",
+              "min": "57",
+              "player": "Ana Santos"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-18",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "feirense",
+          "away": "ad-baiao",
+          "hg": 6,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "16",
+              "player": "Joana Carvalho"
+            },
+            {
+              "team": "home",
+              "min": "37",
+              "player": "Juliana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "47",
+              "player": "Juliana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "39",
+              "player": "Inês Macedo"
+            },
+            {
+              "team": "home",
+              "min": "56",
+              "player": "Marta Oliveira"
+            },
+            {
+              "team": "home",
+              "min": "89",
+              "player": "Ticha Sá"
+            },
+            {
+              "team": "away",
+              "min": "22",
+              "player": "Verónica Carvalho"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-19",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "boavista-fc",
+          "away": "argoncilhe",
+          "hg": 3,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "45+4",
+              "player": "Lara Lopes"
+            },
+            {
+              "team": "home",
+              "min": "58",
+              "player": "Inês Príncipe"
+            },
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Filipa Fernandes"
+            },
+            {
+              "team": "away",
+              "min": "25",
+              "player": "Soraia Queirós"
+            },
+            {
+              "team": "away",
+              "min": "63",
+              "player": "Fabiana Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-20",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "adc-lobao",
+          "away": "lusitania-de-lourosa",
+          "hg": 3,
+          "ag": 3,
+          "pen": [
+            3,
+            2
+          ],
+          "goals": [
+            {
+              "team": "home",
+              "min": "9",
+              "player": "Cátia Reis"
+            },
+            {
+              "team": "home",
+              "min": "41",
+              "player": "Susana Rocha"
+            },
+            {
+              "team": "home",
+              "min": "105",
+              "player": "Susana Rocha",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "34",
+              "player": "Raquel Dias"
+            },
+            {
+              "team": "away",
+              "min": "90+4",
+              "player": "Ana Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "117",
+              "player": "Flávia Marinho"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-21",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "pacos-de-brandao",
+          "away": "at-cucujaes",
+          "hg": 4,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "45+2",
+              "player": "Laura Lima"
+            },
+            {
+              "team": "home",
+              "min": "67",
+              "player": "Luana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "73",
+              "player": "Luana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "86",
+              "player": "Inês Moreira"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-22",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "cd-loureiro",
+          "away": "ccr-sao-martinho",
+          "hg": 4,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "24",
+              "player": "Beatriz Santos"
+            },
+            {
+              "team": "home",
+              "min": "69",
+              "player": "Beatriz Santos"
+            },
+            {
+              "team": "home",
+              "min": "37",
+              "player": "Bibiana Cabral"
+            },
+            {
+              "team": "home",
+              "min": "66",
+              "player": "Bibiana Cabral"
+            },
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Catarina Rebelo",
+              "note": "autogolo"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-23",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "fc-parada",
+          "away": "rio-mau-fc",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "8",
+              "player": "Beatriz Cruz"
+            },
+            {
+              "team": "home",
+              "min": "45+1",
+              "player": "Ana Silva"
+            },
+            {
+              "team": "home",
+              "min": "59",
+              "player": "Lara Moreira"
+            },
+            {
+              "team": "home",
+              "min": "62",
+              "player": "Lara Moreira"
+            },
+            {
+              "team": "home",
+              "min": "90+2",
+              "player": "Francisca Vidinha"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-24",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "gd-ilha",
+          "away": "ca-ouriense",
+          "hg": 1,
+          "ag": 8,
+          "goals": [
+            {
+              "team": "home",
+              "min": "84",
+              "player": "Íris Sarraipa",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "6",
+              "player": "Catarina Lavinas"
+            },
+            {
+              "team": "away",
+              "min": "26",
+              "player": "Gabi Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "43",
+              "player": "Gabi Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "32",
+              "player": "Lícia Cruz"
+            },
+            {
+              "team": "away",
+              "min": "41",
+              "player": "Clara Nóbrega"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Sophia Foschi"
+            },
+            {
+              "team": "away",
+              "min": "53",
+              "player": "Sophia Foschi"
+            },
+            {
+              "team": "away",
+              "min": "90+3",
+              "player": "Carolina Gil",
+              "note": "autogolo"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-25",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "adrc-vasco-da-gama",
+          "away": "clube-albergaria",
+          "hg": 0,
+          "ag": 8,
+          "goals": [
+            {
+              "team": "away",
+              "min": "8",
+              "player": "Cristiana Martins"
+            },
+            {
+              "team": "away",
+              "min": "44",
+              "player": "Maria André"
+            },
+            {
+              "team": "away",
+              "min": "53",
+              "player": "Irlanda Lopes"
+            },
+            {
+              "team": "away",
+              "min": "68",
+              "player": "Irlanda Lopes"
+            },
+            {
+              "team": "away",
+              "min": "83",
+              "player": "Catarina Almeida"
+            },
+            {
+              "team": "away",
+              "min": "88",
+              "player": "Joana Silva"
+            },
+            {
+              "team": "away",
+              "min": "90+2",
+              "player": "Joana Silva"
+            },
+            {
+              "team": "away",
+              "min": "90",
+              "player": "Rafaela Mesquita"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-26",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ad-estacao",
+          "away": "ud-turquel",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "90+7",
+              "player": "Raquel Tarouco"
+            },
+            {
+              "team": "home",
+              "min": "90+15",
+              "player": "Inês Gonçalves"
+            },
+            {
+              "team": "away",
+              "min": "90+21",
+              "player": "Maria Rodrigues"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-27",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "academico",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "27",
+              "player": "Sony Costa"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Laura Pereira"
+            },
+            {
+              "team": "home",
+              "min": "69",
+              "player": "Filipa Fernandes"
+            },
+            {
+              "team": "home",
+              "min": "75",
+              "player": "Valentina Bártolo"
+            },
+            {
+              "team": "home",
+              "min": "77",
+              "player": "Carolina Jesus"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-28",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "nege",
+          "away": "ud-leiria",
+          "hg": 0,
+          "ag": 13,
+          "goals": [
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Laura Rosa"
+            },
+            {
+              "team": "away",
+              "min": "7",
+              "player": "Laura Rosa"
+            },
+            {
+              "team": "away",
+              "min": "23",
+              "player": "Alexia da Silva"
+            },
+            {
+              "team": "away",
+              "min": "26",
+              "player": "Madalina Tatar"
+            },
+            {
+              "team": "away",
+              "min": "35",
+              "player": "Madalina Tatar"
+            },
+            {
+              "team": "away",
+              "min": "39",
+              "player": "Madalina Tatar"
+            },
+            {
+              "team": "away",
+              "min": "61",
+              "player": "Madalina Tatar"
+            },
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Nicole Filipe"
+            },
+            {
+              "team": "away",
+              "min": "47",
+              "player": "Nicole Filipe"
+            },
+            {
+              "team": "away",
+              "min": "50",
+              "player": "Diva Meira"
+            },
+            {
+              "team": "away",
+              "min": "55",
+              "player": "Matilde Botas"
+            },
+            {
+              "team": "away",
+              "min": "77",
+              "player": "Carolina Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "83",
+              "player": "Carolina Ferreira"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-29",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "real-sc",
+          "away": "cac",
+          "hg": 8,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "2",
+              "player": "Lorena Santana"
+            },
+            {
+              "team": "home",
+              "min": "13",
+              "player": "Lorena Santana"
+            },
+            {
+              "team": "home",
+              "min": "17",
+              "player": "Alex Day"
+            },
+            {
+              "team": "home",
+              "min": "48",
+              "player": "Mafalda Almeida"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Inês Matos"
+            },
+            {
+              "team": "home",
+              "min": "52",
+              "player": "Mady Soumaré"
+            },
+            {
+              "team": "home",
+              "min": "54",
+              "player": "Mady Soumaré"
+            },
+            {
+              "team": "home",
+              "min": "90+2",
+              "player": "Seema Sakran"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-30",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ar-porto-alto",
+          "away": "venda-do-pinheiro",
+          "hg": 1,
+          "ag": 3,
+          "goals": [
+            {
+              "team": "home",
+              "min": "28",
+              "player": "Emily Silva"
+            },
+            {
+              "team": "away",
+              "min": "45+1",
+              "player": "Alíria Conceição"
+            },
+            {
+              "team": "away",
+              "min": "76",
+              "player": "Alíria Conceição"
+            },
+            {
+              "team": "away",
+              "min": "72",
+              "player": "Ana Lucas"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-31",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "at-malveira",
+          "away": "est-amadora",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "13",
+              "player": "Nádia Frade",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "39",
+              "player": "Madalena Silva"
+            },
+            {
+              "team": "away",
+              "min": "72",
+              "player": "Madalena Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-32",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "ouriquense",
+          "away": "mocarriense",
+          "hg": 7,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "7",
+              "player": "Maria Inês Ferreira"
+            },
+            {
+              "team": "home",
+              "min": "13",
+              "player": "Leonor Xavier"
+            },
+            {
+              "team": "home",
+              "min": "19",
+              "player": "Leonor Xavier"
+            },
+            {
+              "team": "home",
+              "min": "33",
+              "player": "Marta Oliveira"
+            },
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Maria Ferreira"
+            },
+            {
+              "team": "home",
+              "min": "78",
+              "player": "Maria Ferreira"
+            },
+            {
+              "team": "home",
+              "min": "90+2",
+              "player": "Beatriz Ferreira"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-33",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "amora-fc",
+          "away": "guia-fc",
+          "hg": 0,
+          "ag": 0,
+          "pen": [
+            4,
+            3
+          ],
+          "goals": []
+        },
+        {
+          "id": "tp-1-34",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "casa-pia-ac",
+          "away": "cf-benfica",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "68",
+              "player": "Carolina Beckert"
+            },
+            {
+              "team": "away",
+              "min": "4",
+              "player": "Letycia Bonifácio",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Beatriz Pinho"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-35",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "belenenses",
+          "away": "lusitano-gc",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "5",
+              "player": "Beatriz Tristão"
+            },
+            {
+              "team": "home",
+              "min": "45",
+              "player": "Beatriz Tristão"
+            },
+            {
+              "team": "home",
+              "min": "14",
+              "player": "Gabi Tavares"
+            },
+            {
+              "team": "home",
+              "min": "80",
+              "player": "Gabi Tavares"
+            },
+            {
+              "team": "home",
+              "min": "65",
+              "player": "Teresa Martins"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-36",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "leoes-porto-salvo",
+          "away": "olimpico-montijo",
+          "hg": 13,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "3",
+              "player": "Livia",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "11",
+              "player": "Livia"
+            },
+            {
+              "team": "home",
+              "min": "35",
+              "player": "Livia"
+            },
+            {
+              "team": "home",
+              "min": "85",
+              "player": "Livia"
+            },
+            {
+              "team": "home",
+              "min": "7",
+              "player": "Diana Serafim",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "79",
+              "player": "Diana Serafim"
+            },
+            {
+              "team": "home",
+              "min": "8",
+              "player": "Maria Almeida"
+            },
+            {
+              "team": "home",
+              "min": "26",
+              "player": "Maria Amaro"
+            },
+            {
+              "team": "home",
+              "min": "30",
+              "player": "Maria Amaro"
+            },
+            {
+              "team": "home",
+              "min": "40",
+              "player": "Maria Amaro"
+            },
+            {
+              "team": "home",
+              "min": "54",
+              "player": "Maria Amaro"
+            },
+            {
+              "team": "home",
+              "min": "74",
+              "player": "Jacira Mendes"
+            },
+            {
+              "team": "home",
+              "min": "76",
+              "player": "Mafalda Marques"
+            },
+            {
+              "team": "away",
+              "min": "10",
+              "player": "Brenda Reis"
+            },
+            {
+              "team": "away",
+              "min": "13",
+              "player": "Matilde Medeiros"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-37",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "grupo-uniao-sport",
+          "away": "seixal-clube-1925",
+          "hg": 3,
+          "ag": 3,
+          "pen": [
+            1,
+            4
+          ],
+          "goals": [
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Diana Bernardes Melo",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "56",
+              "player": "Margarida Valido"
+            },
+            {
+              "team": "home",
+              "min": "75",
+              "player": "Joana Moser e Vasconcelos"
+            },
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Inês Rodrigues"
+            },
+            {
+              "team": "away",
+              "min": "32",
+              "player": "Raquel Messias"
+            },
+            {
+              "team": "away",
+              "min": "90+4",
+              "player": "Mariana Henriques"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-38",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "15:00",
+          "home": "eff-setubal",
+          "away": "barreirense",
+          "hg": 11,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "38",
+              "player": "Jéssica Caliço",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "42",
+              "player": "Iva Vieira"
+            },
+            {
+              "team": "home",
+              "min": "45+1",
+              "player": "Soraia Aperta"
+            },
+            {
+              "team": "home",
+              "min": "49",
+              "player": "Catarina Martinho"
+            },
+            {
+              "team": "home",
+              "min": "72",
+              "player": "Catarina Martinho"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Andreia Mendonça"
+            },
+            {
+              "team": "home",
+              "min": "61",
+              "player": "Lara Silva"
+            },
+            {
+              "team": "home",
+              "min": "65",
+              "player": "Carolina Santana"
+            },
+            {
+              "team": "home",
+              "min": "81",
+              "player": "Carolina Santana"
+            },
+            {
+              "team": "home",
+              "min": "77",
+              "player": "Mayara"
+            },
+            {
+              "team": "home",
+              "min": "87",
+              "player": "Andreia Cordeiro"
+            },
+            {
+              "team": "away",
+              "min": "28",
+              "player": "Rita Pereira"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-39",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "16:00",
+          "home": "destreza-e-aventura",
+          "away": "melgacense",
+          "hg": 3,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "3",
+              "player": "Bruna Silva"
+            },
+            {
+              "team": "home",
+              "min": "51",
+              "player": "Ana Pereira"
+            },
+            {
+              "team": "home",
+              "min": "60",
+              "player": "Ana Pereira"
+            },
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Beatriz Gomes"
+            },
+            {
+              "team": "away",
+              "min": "39",
+              "player": "Adriana Cruz"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-40",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "18:00",
+          "home": "cerveira",
+          "away": "moreirense",
+          "hg": 0,
+          "ag": 6,
+          "goals": [
+            {
+              "team": "away",
+              "min": "16",
+              "player": "Inês Lopes"
+            },
+            {
+              "team": "away",
+              "min": "34",
+              "player": "Inês Lopes"
+            },
+            {
+              "team": "away",
+              "min": "60",
+              "player": "Inês Lopes"
+            },
+            {
+              "team": "away",
+              "min": "39",
+              "player": "Ana Romeu"
+            },
+            {
+              "team": "away",
+              "min": "57",
+              "player": "Margarida Maia"
+            },
+            {
+              "team": "away",
+              "min": "68",
+              "player": "Bárbara Martins"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-41",
+          "round": 1,
+          "date": "2026-10-04",
+          "time": "18:00",
+          "home": "sacavenense",
+          "away": "a-dos-francos",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "63",
+              "player": "Sara Soares"
+            },
+            {
+              "team": "away",
+              "min": "61",
+              "player": "Marta Inês"
+            },
+            {
+              "team": "away",
+              "min": "90+11",
+              "player": "Soraia Comparada"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-42",
+          "round": 1,
+          "date": "2026-10-05",
+          "time": "16:00",
+          "home": "porto-dave",
+          "away": "ilustre-caminha",
+          "hg": 9,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "4",
+              "player": "Márcia Oliveira"
+            },
+            {
+              "team": "home",
+              "min": "40",
+              "player": "Márcia Oliveira"
+            },
+            {
+              "team": "home",
+              "min": "18",
+              "player": "Sara Gomes"
+            },
+            {
+              "team": "home",
+              "min": "31",
+              "player": "Sara Gomes"
+            },
+            {
+              "team": "home",
+              "min": "84",
+              "player": "Sara Gomes"
+            },
+            {
+              "team": "home",
+              "min": "35",
+              "player": "Daniela Pereira"
+            },
+            {
+              "team": "home",
+              "min": "62",
+              "player": "Amélia Galhardo",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "73",
+              "player": "Rafaela Silva"
+            },
+            {
+              "team": "home",
+              "min": "82",
+              "player": "Carol Martins"
+            },
+            {
+              "team": "away",
+              "min": "76",
+              "player": "Sílvia Gonçalves"
+            }
+          ]
+        },
+        {
+          "id": "tp-1-43",
+          "round": 1,
+          "date": "2026-10-07",
+          "time": "20:30",
+          "home": "cadima",
+          "away": "cd-gouveia",
+          "hg": 3,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "72",
+              "player": "Mariana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "90+3",
+              "player": "Mariana Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "89",
+              "player": "Nani Oliveira"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-1",
+          "round": 2,
+          "date": "2026-10-24",
+          "time": "11:30",
+          "home": "ca-ouriense",
+          "away": "ad-esposende",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "2",
+              "player": "Natasha Wahnon"
+            },
+            {
+              "team": "home",
+              "min": "14",
+              "player": "Lícia Cruz"
+            },
+            {
+              "team": "home",
+              "min": "76",
+              "player": "Lícia Cruz"
+            },
+            {
+              "team": "home",
+              "min": "16",
+              "player": "Bruna Cabá"
+            },
+            {
+              "team": "home",
+              "min": "80",
+              "player": "Clara Nóbrega",
+              "note": "penálti"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-2",
+          "round": 2,
+          "date": "2026-10-24",
+          "time": "15:00",
+          "home": "clube-albergaria",
+          "away": "ud-leiria",
+          "hg": 4,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "45+1",
+              "player": "Cristiana Martins"
+            },
+            {
+              "team": "home",
+              "min": "49",
+              "player": "Rafaela Mesquita"
+            },
+            {
+              "team": "home",
+              "min": "53",
+              "player": "Beatriz Lisboa",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "86",
+              "player": "Maria André"
+            },
+            {
+              "team": "away",
+              "min": "6",
+              "player": "Carolina Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "71",
+              "player": "Cristiana Duarte",
+              "note": "penálti"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-3",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "11:30",
+          "home": "ferreiras",
+          "away": "ad-varzea-fc",
+          "hg": 6,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "8",
+              "player": "Patrícia Teixeira"
+            },
+            {
+              "team": "home",
+              "min": "16",
+              "player": "Patrícia Teixeira"
+            },
+            {
+              "team": "home",
+              "min": "37",
+              "player": "Cristiana Rosa"
+            },
+            {
+              "team": "home",
+              "min": "45+1",
+              "player": "Cristiana Rosa"
+            },
+            {
+              "team": "home",
+              "min": "58",
+              "player": "Catarina Carmo"
+            },
+            {
+              "team": "home",
+              "min": "83",
+              "player": "Constança Fernandes"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-4",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "a-dos-francos",
+          "away": "sao-pedro",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "7",
+              "player": "Viviane Mota"
+            },
+            {
+              "team": "home",
+              "min": "60",
+              "player": "Catarina Amaro"
+            },
+            {
+              "team": "away",
+              "min": "73",
+              "player": "Catarina Paiva"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-5",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "leixoes",
+          "away": "venda-do-pinheiro",
+          "hg": 9,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "1",
+              "player": "Beatriz Pinto"
+            },
+            {
+              "team": "home",
+              "min": "7",
+              "player": "Marisa Mendes"
+            },
+            {
+              "team": "home",
+              "min": "9",
+              "player": "Marisa Mendes"
+            },
+            {
+              "team": "home",
+              "min": "18",
+              "player": "Michelle Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "30",
+              "player": "Michelle Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "47",
+              "player": "Michelle Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "73",
+              "player": "Michelle Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "26",
+              "player": "Inês Ribeiro"
+            },
+            {
+              "team": "home",
+              "min": "51",
+              "player": "Rute Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-6",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "cadima",
+          "away": "eff-setubal",
+          "hg": 0,
+          "ag": 3,
+          "goals": [
+            {
+              "team": "away",
+              "min": "15",
+              "player": "Andreia Cordeiro"
+            },
+            {
+              "team": "away",
+              "min": "32",
+              "player": "Andreia Cordeiro"
+            },
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Catarina Martinho"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-7",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "ud-lavrense",
+          "hg": 2,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "78",
+              "player": "Glenda Falcão"
+            },
+            {
+              "team": "home",
+              "min": "88",
+              "player": "Inês Reis"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-8",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "leoes-porto-salvo",
+          "away": "tirsense",
+          "hg": 0,
+          "ag": 8,
+          "goals": [
+            {
+              "team": "away",
+              "min": "10",
+              "player": "Margarida Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "15",
+              "player": "Margarida Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "24",
+              "player": "Margarida Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "22",
+              "player": "Inês Fernandes"
+            },
+            {
+              "team": "away",
+              "min": "39",
+              "player": "Inês Fernandes"
+            },
+            {
+              "team": "away",
+              "min": "50",
+              "player": "Beatriz Ferreira"
+            },
+            {
+              "team": "away",
+              "min": "59",
+              "player": "Ana Bernardes",
+              "note": "autogolo"
+            },
+            {
+              "team": "away",
+              "min": "81",
+              "player": "Tânia Costa"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-9",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "juveforce",
+          "away": "merelinense",
+          "hg": 7,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "2",
+              "player": "Salomé Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "6",
+              "player": "Salomé Rodrigues"
+            },
+            {
+              "team": "home",
+              "min": "33",
+              "player": "Beatriz Jesus"
+            },
+            {
+              "team": "home",
+              "min": "42",
+              "player": "Beatriz Jesus"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Érica Cavadas"
+            },
+            {
+              "team": "home",
+              "min": "54",
+              "player": "Sara Costa"
+            },
+            {
+              "team": "home",
+              "min": "57",
+              "player": "Carolina Ferreira"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-10",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "pacos-de-brandao",
+          "away": "fc-alverca",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "11",
+              "player": "Bruna Vieira"
+            },
+            {
+              "team": "away",
+              "min": "7",
+              "player": "Íris Martins"
+            },
+            {
+              "team": "away",
+              "min": "90+21",
+              "player": "Rita Durães",
+              "note": "penálti"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-11",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "porto-dave",
+          "away": "cf-benfica",
+          "hg": 0,
+          "ag": 7,
+          "goals": [
+            {
+              "team": "away",
+              "min": "7",
+              "player": "Mariana Franco"
+            },
+            {
+              "team": "away",
+              "min": "18",
+              "player": "Mariana Franco"
+            },
+            {
+              "team": "away",
+              "min": "34",
+              "player": "Marta Xavier"
+            },
+            {
+              "team": "away",
+              "min": "36",
+              "player": "Inês Silva"
+            },
+            {
+              "team": "away",
+              "min": "65",
+              "player": "Letycia Bonifácio",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "83",
+              "player": "Deise Timas"
+            },
+            {
+              "team": "away",
+              "min": "84",
+              "player": "Beatriz Pinho"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-12",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "ouriquense",
+          "away": "feirense",
+          "hg": 0,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "away",
+              "min": "31",
+              "player": "Mara Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "90",
+              "player": "Mara Barbosa"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-13",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "boavista-fc",
+          "away": "moreirense",
+          "hg": 0,
+          "ag": 5,
+          "goals": [
+            {
+              "team": "away",
+              "min": "1",
+              "player": "Ana Monteiro"
+            },
+            {
+              "team": "away",
+              "min": "33",
+              "player": "Ana Monteiro"
+            },
+            {
+              "team": "away",
+              "min": "66",
+              "player": "Ana Monteiro"
+            },
+            {
+              "team": "away",
+              "min": "65",
+              "player": "Inês Lopes"
+            },
+            {
+              "team": "away",
+              "min": "71",
+              "player": "Bárbara Martins"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-14",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "seixal-clube-1925",
+          "away": "rio-tinto",
+          "hg": 0,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "away",
+              "min": "21",
+              "player": "Leonor Granja",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "89",
+              "player": "Beatriz Amorim"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-15",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "academica-oaf",
+          "away": "amora-fc",
+          "hg": 1,
+          "ag": 1,
+          "pen": [
+            5,
+            6
+          ],
+          "goals": [
+            {
+              "team": "home",
+              "min": "116",
+              "player": "Carolina Jesus"
+            },
+            {
+              "team": "away",
+              "min": "110",
+              "player": "Daniela Silva",
+              "note": "penálti"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-16",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "adc-lobao",
+          "away": "fc-arouca",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "12",
+              "player": "Matilde Sousa"
+            },
+            {
+              "team": "home",
+              "min": "15",
+              "player": "Bárbara Pereira"
+            },
+            {
+              "team": "home",
+              "min": "38",
+              "player": "Maria João"
+            },
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Susana Rocha"
+            },
+            {
+              "team": "home",
+              "min": "90+3",
+              "player": "Angelina Pinto",
+              "note": "autogolo"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-17",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "gil-vicente",
+          "away": "sp-cruz",
+          "hg": 29,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "3",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "6",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "11",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "12",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "19",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "22",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "25",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "34",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "37",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "45",
+              "player": "Carlota Cristo"
+            },
+            {
+              "team": "home",
+              "min": "10",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "30",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "43",
+              "player": "Verónica Khudyakova"
+            },
+            {
+              "team": "home",
+              "min": "17",
+              "player": "Elen Oliveira",
+              "note": "autogolo"
+            },
+            {
+              "team": "home",
+              "min": "32",
+              "player": "Sara Teixeira"
+            },
+            {
+              "team": "home",
+              "min": "60",
+              "player": "Sara Teixeira"
+            },
+            {
+              "team": "home",
+              "min": "48",
+              "player": "Serena Queirós"
+            },
+            {
+              "team": "home",
+              "min": "55",
+              "player": "Serena Queirós"
+            },
+            {
+              "team": "home",
+              "min": "62",
+              "player": "Izzy Groves"
+            },
+            {
+              "team": "home",
+              "min": "68",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "70",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "88",
+              "player": "Diana Meriva"
+            },
+            {
+              "team": "home",
+              "min": "79",
+              "player": "Manu Baptista Filipe"
+            },
+            {
+              "team": "home",
+              "min": "87",
+              "player": "Manu Baptista Filipe"
+            },
+            {
+              "team": "home",
+              "min": "90+1",
+              "player": "Manu Baptista Filipe"
+            },
+            {
+              "team": "home",
+              "min": "80",
+              "player": "Eva Cruz"
+            },
+            {
+              "team": "home",
+              "min": "82",
+              "player": "Patrícia Dias"
+            },
+            {
+              "team": "home",
+              "min": "84",
+              "player": "Patrícia Dias"
+            },
+            {
+              "team": "home",
+              "min": "90+2",
+              "player": "Patrícia Barreiros"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-18",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "fc-famalicao",
+          "away": "est-amadora",
+          "hg": 7,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "1",
+              "player": "Liliana Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "64",
+              "player": "Liliana Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "6",
+              "player": "Maria Gaspar"
+            },
+            {
+              "team": "home",
+              "min": "72",
+              "player": "Maria Gaspar",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "81",
+              "player": "Maria Gaspar"
+            },
+            {
+              "team": "home",
+              "min": "28",
+              "player": "Kika Silva"
+            },
+            {
+              "team": "home",
+              "min": "49",
+              "player": "Patrícia Teixeira"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-19",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "fc-parada",
+          "away": "real-sc",
+          "hg": 0,
+          "ag": 13,
+          "goals": [
+            {
+              "team": "away",
+              "min": "1",
+              "player": "Alex Day"
+            },
+            {
+              "team": "away",
+              "min": "6",
+              "player": "Inês Matos"
+            },
+            {
+              "team": "away",
+              "min": "15",
+              "player": "Inês Matos"
+            },
+            {
+              "team": "away",
+              "min": "20",
+              "player": "Mady Soumaré"
+            },
+            {
+              "team": "away",
+              "min": "23",
+              "player": "Karissa Vela"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Karissa Vela"
+            },
+            {
+              "team": "away",
+              "min": "27",
+              "player": "Ellen Persson"
+            },
+            {
+              "team": "away",
+              "min": "48",
+              "player": "Mafalda Almeida"
+            },
+            {
+              "team": "away",
+              "min": "55",
+              "player": "Seema Sakran"
+            },
+            {
+              "team": "away",
+              "min": "80",
+              "player": "Seema Sakran"
+            },
+            {
+              "team": "away",
+              "min": "57",
+              "player": "Joana Silva",
+              "note": "autogolo"
+            },
+            {
+              "team": "away",
+              "min": "58",
+              "player": "Diana Barreto"
+            },
+            {
+              "team": "away",
+              "min": "85",
+              "player": "Sara Fernandes"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-20",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "cd-loureiro",
+          "away": "ad-estacao",
+          "hg": 1,
+          "ag": 4,
+          "goals": [
+            {
+              "team": "home",
+              "min": "61",
+              "player": "Beatriz Santos"
+            },
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Lara Costa"
+            },
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Inês Gonçalves"
+            },
+            {
+              "team": "away",
+              "min": "54",
+              "player": "Daniela Peralta"
+            },
+            {
+              "team": "away",
+              "min": "68",
+              "player": "Francisca Antunes"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-21",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "15:00",
+          "home": "destreza-e-aventura",
+          "away": "aguias-negras-tabuadelo",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "4",
+              "player": "Carolina Gonçalves"
+            },
+            {
+              "team": "home",
+              "min": "38",
+              "player": "Valentina Libano"
+            },
+            {
+              "team": "away",
+              "min": "7",
+              "player": "Maria Santos"
+            }
+          ]
+        },
+        {
+          "id": "tp-2-22",
+          "round": 2,
+          "date": "2026-10-25",
+          "time": "18:00",
+          "home": "belenenses",
+          "away": "pacos-de-ferreira",
+          "hg": 4,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "23",
+              "player": "Beatriz Tristão"
+            },
+            {
+              "team": "home",
+              "min": "45",
+              "player": "Beatriz Tristão"
+            },
+            {
+              "team": "home",
+              "min": "49",
+              "player": "Beatriz Tristão"
+            },
+            {
+              "team": "home",
+              "min": "54",
+              "player": "Carlota Magalhães"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-1",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "11:00",
+          "home": "clube-albergaria",
+          "away": "rio-ave",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "15",
+              "player": "Ivânia Moreira"
+            },
+            {
+              "team": "home",
+              "min": "21",
+              "player": "Joana Silva"
+            },
+            {
+              "team": "away",
+              "min": "27",
+              "player": "Malgorzata Lichwa",
+              "note": "autogolo"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-2",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "15:00",
+          "home": "destreza-e-aventura",
+          "away": "racing-power-fc",
+          "hg": 0,
+          "ag": 8,
+          "goals": [
+            {
+              "team": "away",
+              "min": "2",
+              "player": "Jessie Halladay"
+            },
+            {
+              "team": "away",
+              "min": "26",
+              "player": "Jessie Halladay"
+            },
+            {
+              "team": "away",
+              "min": "38",
+              "player": "Jessie Halladay"
+            },
+            {
+              "team": "away",
+              "min": "24",
+              "player": "Laura Luís"
+            },
+            {
+              "team": "away",
+              "min": "68",
+              "player": "Laura Luís"
+            },
+            {
+              "team": "away",
+              "min": "44",
+              "player": "Ana Tomaz"
+            },
+            {
+              "team": "away",
+              "min": "84",
+              "player": "Marta Salvador"
+            },
+            {
+              "team": "away",
+              "min": "86",
+              "player": "Luriane Tavares"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-3",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "15:00",
+          "home": "rio-tinto",
+          "away": "fc-porto",
+          "hg": 0,
+          "ag": 4,
+          "goals": [
+            {
+              "team": "away",
+              "min": "3",
+              "player": "Lina Jamaï"
+            },
+            {
+              "team": "away",
+              "min": "15",
+              "player": "Lina Jamaï"
+            },
+            {
+              "team": "away",
+              "min": "59",
+              "player": "Lina Jamaï"
+            },
+            {
+              "team": "away",
+              "min": "82",
+              "player": "Fatumata Sissé"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-4",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "15:00",
+          "home": "moreirense",
+          "away": "maritimo",
+          "hg": 1,
+          "ag": 5,
+          "goals": [
+            {
+              "team": "home",
+              "min": "87",
+              "player": "Helena Brás"
+            },
+            {
+              "team": "away",
+              "min": "3",
+              "player": "Ana Machado",
+              "note": "autogolo"
+            },
+            {
+              "team": "away",
+              "min": "40",
+              "player": "Jessie Hunt"
+            },
+            {
+              "team": "away",
+              "min": "55",
+              "player": "Samanta Freitas"
+            },
+            {
+              "team": "away",
+              "min": "75",
+              "player": "Rita Coutinho"
+            },
+            {
+              "team": "away",
+              "min": "90+1",
+              "player": "Carolina Nunes"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-5",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "15:00",
+          "home": "cf-benfica",
+          "away": "ad-estacao",
+          "hg": 8,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "4",
+              "player": "Rita Barreto"
+            },
+            {
+              "team": "home",
+              "min": "85",
+              "player": "Rita Barreto"
+            },
+            {
+              "team": "home",
+              "min": "21",
+              "player": "Rafaela Redondo"
+            },
+            {
+              "team": "home",
+              "min": "35",
+              "player": "Inês Silva",
+              "note": "penálti"
+            },
+            {
+              "team": "home",
+              "min": "43",
+              "player": "Marta Galvão"
+            },
+            {
+              "team": "home",
+              "min": "56",
+              "player": "Franciele Barbosa"
+            },
+            {
+              "team": "home",
+              "min": "81",
+              "player": "Franciele Barbosa"
+            },
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Mariana Franco"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-6",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "18:00",
+          "home": "ferreiras",
+          "away": "tirsense",
+          "hg": 3,
+          "ag": 4,
+          "goals": [
+            {
+              "team": "home",
+              "min": "43",
+              "player": "Joana Rocha"
+            },
+            {
+              "team": "home",
+              "min": "52",
+              "player": "Joana Rocha"
+            },
+            {
+              "team": "home",
+              "min": "71",
+              "player": "Isabella Rozier"
+            },
+            {
+              "team": "away",
+              "min": "26",
+              "player": "Ana Brandão"
+            },
+            {
+              "team": "away",
+              "min": "31",
+              "player": "Margarida Barbosa"
+            },
+            {
+              "team": "away",
+              "min": "56",
+              "player": "Matilde Faria"
+            },
+            {
+              "team": "away",
+              "min": "73",
+              "player": "Beatriz Guerreiro",
+              "note": "autogolo"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-7",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "11:00",
+          "home": "leixoes",
+          "away": "vitoria-sc",
+          "hg": 0,
+          "ag": 5,
+          "goals": [
+            {
+              "team": "away",
+              "min": "17",
+              "player": "Lia Howard"
+            },
+            {
+              "team": "away",
+              "min": "43",
+              "player": "Lia Howard"
+            },
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Filipa Manso-Preto"
+            },
+            {
+              "team": "away",
+              "min": "57",
+              "player": "Betinha"
+            },
+            {
+              "team": "away",
+              "min": "71",
+              "player": "Rita Dias"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-8",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "14:00",
+          "home": "fc-famalicao",
+          "away": "real-sc",
+          "hg": 0,
+          "ag": 3,
+          "goals": [
+            {
+              "team": "away",
+              "min": "35",
+              "player": "Karissa Vela"
+            },
+            {
+              "team": "away",
+              "min": "51",
+              "player": "Diana Barreto"
+            },
+            {
+              "team": "away",
+              "min": "65",
+              "player": "Mafalda Almeida"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-9",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "gil-vicente",
+          "away": "braga",
+          "hg": 0,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "away",
+              "min": "20",
+              "player": "Francisca Castro"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-10",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "belenenses",
+          "away": "valadares-gaia",
+          "hg": 1,
+          "ag": 2,
+          "goals": [
+            {
+              "team": "home",
+              "min": "16",
+              "player": "Amélia Silva"
+            },
+            {
+              "team": "away",
+              "min": "5",
+              "player": "Matilde Nave"
+            },
+            {
+              "team": "away",
+              "min": "90+11",
+              "player": "Vanessa Marques"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-11",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "gd-aldeia-nova",
+          "away": "benfica",
+          "hg": 0,
+          "ag": 5,
+          "goals": [
+            {
+              "team": "away",
+              "min": "30",
+              "player": "Ziqin Shao"
+            },
+            {
+              "team": "away",
+              "min": "45+1",
+              "player": "Ziqin Shao"
+            },
+            {
+              "team": "away",
+              "min": "56",
+              "player": "Chandra Davidson"
+            },
+            {
+              "team": "away",
+              "min": "69",
+              "player": "Neide Guedes",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "90+2",
+              "player": "Cristina Fernandes"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-12",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "juveforce",
+          "away": "sporting-cp",
+          "hg": 0,
+          "ag": 3,
+          "goals": [
+            {
+              "team": "away",
+              "min": "73",
+              "player": "Emma Ramírez"
+            },
+            {
+              "team": "away",
+              "min": "88",
+              "player": "Telma Encarnação",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "90+3",
+              "player": "Ruby Grant"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-13",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "fc-alverca",
+          "away": "adc-lobao",
+          "hg": 2,
+          "ag": 1,
+          "goals": [
+            {
+              "team": "home",
+              "min": "26",
+              "player": "Sofia Abreu"
+            },
+            {
+              "team": "home",
+              "min": "66",
+              "player": "Rita Durães",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "63",
+              "player": "Ana Silva"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-14",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "eff-setubal",
+          "away": "amora-fc",
+          "hg": 1,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "50",
+              "player": "Beatriz Correia"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-15",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "15:00",
+          "home": "ca-ouriense",
+          "away": "a-dos-francos",
+          "hg": 5,
+          "ag": 0,
+          "goals": [
+            {
+              "team": "home",
+              "min": "3",
+              "player": "Ana Beja"
+            },
+            {
+              "team": "home",
+              "min": "77",
+              "player": "Ana Beja"
+            },
+            {
+              "team": "home",
+              "min": "32",
+              "player": "Romina Rosário"
+            },
+            {
+              "team": "home",
+              "min": "57",
+              "player": "Romina Rosário"
+            },
+            {
+              "team": "home",
+              "min": "42",
+              "player": "Rita Lourenço"
+            }
+          ]
+        },
+        {
+          "id": "tp-3-16",
+          "round": 3,
+          "date": "2026-11-15",
+          "time": "16:00",
+          "home": "feirense",
+          "away": "torreense",
+          "hg": 0,
+          "ag": 16,
+          "goals": [
+            {
+              "team": "away",
+              "min": "10",
+              "player": "Sophie Hoban"
+            },
+            {
+              "team": "away",
+              "min": "45+1",
+              "player": "Sophie Hoban"
+            },
+            {
+              "team": "away",
+              "min": "16",
+              "player": "Ella Tonkin"
+            },
+            {
+              "team": "away",
+              "min": "32",
+              "player": "Daniela Silva"
+            },
+            {
+              "team": "away",
+              "min": "45",
+              "player": "Daniela Silva"
+            },
+            {
+              "team": "away",
+              "min": "52",
+              "player": "Daniela Silva"
+            },
+            {
+              "team": "away",
+              "min": "44",
+              "player": "Margarida Guerreiro"
+            },
+            {
+              "team": "away",
+              "min": "54",
+              "player": "Margarida Guerreiro"
+            },
+            {
+              "team": "away",
+              "min": "53",
+              "player": "Tânia Pires",
+              "note": "autogolo"
+            },
+            {
+              "team": "away",
+              "min": "58",
+              "player": "Tinaya Alexander",
+              "note": "penálti"
+            },
+            {
+              "team": "away",
+              "min": "61",
+              "player": "Janaina Weimer"
+            },
+            {
+              "team": "away",
+              "min": "65",
+              "player": "Janaina Weimer"
+            },
+            {
+              "team": "away",
+              "min": "79",
+              "player": "Janaina Weimer"
+            },
+            {
+              "team": "away",
+              "min": "84",
+              "player": "Janaina Weimer"
+            },
+            {
+              "team": "away",
+              "min": "90",
+              "player": "Janaina Weimer"
+            },
+            {
+              "team": "away",
+              "min": "74",
+              "player": "Matilde Costa"
+            }
+          ]
+        },
+        {
+          "id": "tp-4-1",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "cf-benfica",
+          "away": "torreense",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-2",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "tirsense",
+          "away": "vitoria-sc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-3",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "fc-porto",
+          "away": "racing-power-fc",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-4",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "real-sc",
+          "away": "eff-setubal",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-5",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "benfica",
+          "away": "valadares-gaia",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-6",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "maritimo",
+          "away": "braga",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-7",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "sporting-cp",
+          "away": "fc-alverca",
+          "hg": null,
+          "ag": null
+        },
+        {
+          "id": "tp-4-8",
+          "round": 4,
+          "date": "2026-12-13",
+          "time": "15:00",
+          "home": "clube-albergaria",
+          "away": "ca-ouriense",
+          "hg": null,
+          "ag": null
+        }
+      ]
     }
   ]
 }
