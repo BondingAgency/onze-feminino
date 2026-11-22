@@ -596,22 +596,33 @@ function glass(S, x, y, w, h, r, tint) {
 }
 
 // ===== Fundos com a identidade Onze Feminino (azul-marinho #15136B, laranja #FF7A0A, laranja-vermelho #FF3B0F) =====
-const BRAND_NAMES = ['Marca', 'Campo', 'Faixas'];
+const BRAND_NAMES = ['Marca', 'Campo', 'Faixas', 'Campo degradê', 'Relvado'];
+function pitch(S, line, spot, corner) {   // linhas de um campo de futebol (vertical)
+  const { cx, W, H } = S, bx = W * .2, bw = W * .6, bh = H * .15, ar = W * .13;
+  cx.lineWidth = 6; cx.strokeStyle = line; cx.lineJoin = 'round';
+  cx.strokeRect(bx, -10, bw, bh + 10); cx.strokeRect(bx, H - bh, bw, bh + 10);                   // áreas
+  cx.beginPath(); cx.arc(W / 2, bh, ar, .2 * Math.PI, .8 * Math.PI); cx.stroke();                  // meia-lua de cima
+  cx.beginPath(); cx.arc(W / 2, H - bh, ar, 1.2 * Math.PI, 1.8 * Math.PI); cx.stroke();            // meia-lua de baixo
+  cx.beginPath(); cx.moveTo(0, H / 2); cx.lineTo(W, H / 2); cx.stroke();                          // meio-campo
+  cx.beginPath(); cx.arc(W / 2, H / 2, W * .27, 0, 7); cx.stroke();                                // círculo central
+  cx.fillStyle = spot; for (const y of [H * .095, H * .905]) { cx.beginPath(); cx.arc(W / 2, y, 14, 0, 7); cx.fill(); }
+  cx.lineWidth = 10; cx.strokeStyle = corner;                                                      // cantos
+  [[0, 0, 0], [W, 0, .5], [W, H, 1], [0, H, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, 96, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
+}
 function brandBg(S) {
   const { cx, W, H } = S, NAVY = '#15136B', OR = '#FF7A0A', RED = '#FF3B0F', v = S.brand || 1;
   if (v === 2) {   // Campo: linhas de campo, com detalhes laranja
-    cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H);
-    cx.lineWidth = 6; cx.strokeStyle = 'rgba(255,255,255,.20)'; cx.lineJoin = 'round';
-    const bx = W * .2, bw = W * .6, bh = H * .15, ar = W * .13;
-    cx.strokeRect(bx, -10, bw, bh + 10); cx.strokeRect(bx, H - bh, bw, bh + 10);            // áreas
-    cx.beginPath(); cx.arc(W / 2, bh, ar, .2 * Math.PI, .8 * Math.PI); cx.stroke();          // meia-lua de cima
-    cx.beginPath(); cx.arc(W / 2, H - bh, ar, 1.2 * Math.PI, 1.8 * Math.PI); cx.stroke();    // meia-lua de baixo
-    cx.beginPath(); cx.moveTo(0, H / 2); cx.lineTo(W, H / 2); cx.stroke();                  // linha de meio-campo
-    cx.beginPath(); cx.arc(W / 2, H / 2, W * .27, 0, 7); cx.stroke();                        // círculo central
-    cx.fillStyle = OR; for (const y of [H * .095, H * .905]) { cx.beginPath(); cx.arc(W / 2, y, 14, 0, 7); cx.fill(); }   // marcas de penálti
-    cx.lineWidth = 10; cx.strokeStyle = OR;                                                  // cantos
-    [[0, 0, 0], [W, 0, .5], [W, H, 1], [0, H, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, 96, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
-    return;
+    cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H); pitch(S, 'rgba(255,255,255,.20)', OR, OR); return;
+  }
+  if (v === 4) {   // Campo com degradê nas cores da marca (azul-marinho para laranja-avermelhado)
+    const g = cx.createLinearGradient(W * .15, 0, W * .85, H); g.addColorStop(0, NAVY); g.addColorStop(.45, '#3b1a7a'); g.addColorStop(1, RED);
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H); pitch(S, 'rgba(255,255,255,.30)', '#fff', '#fff'); return;
+  }
+  if (v === 5) {   // Relvado: degradê verde com riscas de corte
+    const g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0a3d22'); g.addColorStop(1, '#1f9a4a');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    cx.fillStyle = 'rgba(255,255,255,.05)'; for (let i = 0; i < 12; i += 2) cx.fillRect(0, i * H / 12, W, H / 12);
+    pitch(S, 'rgba(255,255,255,.55)', '#fff', '#fff'); return;
   }
   if (v === 3) {   // Faixas: laranja com faixas inclinadas
     cx.fillStyle = OR; cx.fillRect(0, 0, W, H);
