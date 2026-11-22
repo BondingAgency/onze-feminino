@@ -646,7 +646,6 @@ function shareVidro(S) {
   statusPill(S, py + pillOff);   // "Terminado" em baixo, por baixo dos nomes
   const gy = py + gyOff;
   if (hasG) {
-    cx.fillStyle = S.light ? 'rgba(21,19,107,.2)' : 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
     const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: mc }, w = W / 2 - M - 48 - 20;
     scorersAt(S, S.hl, M + 48, gy + 6, w, { ...q, align: 'left' }); scorersAt(S, S.al, W - M - 48, gy + 6, w, { ...q, align: 'right' });
   }
