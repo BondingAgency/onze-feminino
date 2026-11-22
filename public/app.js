@@ -273,6 +273,7 @@ function jogo(cid, mid) {
   <div class="hero mh"><div class="hk">${meta}</div>
   <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd"><span class="stt ${done ? 'fin' : ''}">${done ? 'Terminado' : 'Por jogar'}</span></div></div>${side(m.away)}</div>
   <div class="hd mw">${when}</div></div>`;
+  if (m.foto && m.foto.src) h += `<figure class="foto"><img src="${esc(m.foto.src)}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(m.foto.url)}" target="_blank" rel="noopener">${esc(m.foto.fonte)}</a></figcaption></figure>`;
 
   // Mulher do jogo (Liga BPI)
   if (MOTM_COMPS.includes(c.id)) {
