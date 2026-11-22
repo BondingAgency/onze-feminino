@@ -390,3 +390,6 @@ html[data-theme=light] .cstar.on{color:var(--acc)}
 .shdots button.on .dot{border-color:#fff;box-shadow:0 0 0 2px #ff7a0a}
 .dot-auto{background:linear-gradient(135deg,#2a6fd1,#c0392b)}
 .dot-custom{background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd5ff,#3b4bff,#d63bff,#ff3b3b)}
+
+.dot-auto{background:linear-gradient(135deg,#15136b 52%,#ff7a0a 52%)!important}
+.dot-clubs{background:linear-gradient(135deg,#2a6fd1,#c0392b)}

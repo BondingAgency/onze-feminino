@@ -581,9 +581,10 @@ const SHARE_SAFE = { story: { top: 250, bot: 340 }, post: { top: 90, bot: 90 } }
 
 // vidro: copia a zona do que já está desenhado, desfoca-a (reduz e amplia, funciona em todos os browsers) e põe um brilho por cima
 function glass(S, x, y, w, h, r, tint) {
-  const { cx } = S, k = 20, t = document.createElement('canvas');
-  t.width = Math.max(2, Math.ceil(w / k)); t.height = Math.max(2, Math.ceil(h / k));
-  t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
+  const { cx } = S, k = 20, mk = (cw, ch) => { const c2 = document.createElement('canvas'); c2.width = cw; c2.height = ch; const g2 = c2.getContext('2d'); g2.imageSmoothingEnabled = true; g2.imageSmoothingQuality = 'high'; return c2; };
+  // desfoque: copia a zona e reduz-a por metades (média correta, sem degraus) antes de a ampliar
+  let t = mk(Math.round(w), Math.round(h)); t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
+  while (t.width > w / k && t.width > 4) { const n2 = mk(Math.max(2, Math.ceil(t.width / 2)), Math.max(2, Math.ceil(t.height / 2))); n2.getContext('2d').drawImage(t, 0, 0, t.width, t.height, 0, 0, n2.width, n2.height); t = n2; }
   cx.save(); rr(cx, x, y, w, h, r); cx.clip();
   cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.drawImage(t, 0, 0, t.width, t.height, x - 6, y - 6, w + 12, h + 12);
   if (S.light) { cx.fillStyle = 'rgba(21,19,107,.07)'; cx.fillRect(x, y, w, h); }
@@ -596,6 +597,14 @@ function vBg(S, topY) {
   const { cx, W, H, ph, M, top } = S, bg = S.bg || { mode: 'auto' };
   if (bg.mode === 'color') { cx.fillStyle = bg.color; cx.fillRect(0, 0, W, H); return; }
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); return; }
+  if (bg.mode !== 'clubs') {   // identidade Onze Feminino: azul-marinho com círculos laranja (formas lisas)
+    cx.fillStyle = '#15136B'; cx.fillRect(0, 0, W, H);
+    cx.fillStyle = '#FF7A0A'; cx.beginPath(); cx.arc(W * .96, H * .1, W * .58, 0, 7); cx.fill();
+    cx.fillStyle = '#FF3B0F'; cx.beginPath(); cx.arc(W * .02, H * .93, W * .46, 0, 7); cx.fill();
+    cx.lineWidth = 3; cx.strokeStyle = 'rgba(255,255,255,.16)'; cx.beginPath(); cx.arc(W * .96, H * .1, W * .8, 0, 7); cx.stroke();
+    cx.beginPath(); cx.arc(W * .02, H * .93, W * .66, 0, 7); cx.stroke();
+    return;
+  }
   const g = cx.createLinearGradient(0, 0, W, H * .75); g.addColorStop(0, S.A); g.addColorStop(1, S.B); cx.fillStyle = g; cx.fillRect(0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.14)'; cx.fillRect(0, 0, W, H);
 }
 function vHeader(S) {
@@ -663,7 +672,7 @@ async function drawShare(c, m, fmt, opt) {
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const cx = cv.getContext('2d');
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
-  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
     cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
@@ -712,10 +721,10 @@ async function openShare(cid, mid) {
   const c = DB.competitions.find((x) => x.id === cid), m = c && c.matches.find((x) => x.id === mid); if (!m) return;
   let fmt = 'story', cv = null, guide = false, own = null, sel = 'auto', custom = '#2b6cb0';
   const COL = { black: '#000000', white: '#ffffff', orange: '#ff7a0a', navy: '#15136b' };
-  const opts = () => sel === 'auto' ? {} : sel === 'own' ? { own, bg: { mode: 'own' } } : { bg: { mode: 'color', color: sel === 'custom' ? custom : COL[sel] } };
+  const opts = () => sel === 'auto' ? {} : sel === 'clubs' ? { bg: { mode: 'clubs' } } : sel === 'own' ? { own, bg: { mode: 'own' } } : { bg: { mode: 'color', color: sel === 'custom' ? custom : COL[sel] } };
   const mark = () => { box.querySelectorAll('[data-bg]').forEach((b) => b.classList.toggle('on', b.dataset.bg === sel)); box.querySelector('.shfoto span').textContent = own ? 'Trocar foto' : 'Adicionar foto'; };
   const box = document.createElement('div'); box.className = 'shm';
-  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><button class="shfoto" data-bg="own" type="button"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Adicionar foto</span></button><div class="shdots" role="group" aria-label="Fundo"><button data-bg="auto" class="on" type="button" aria-label="Original" title="Original"><i class="dot dot-auto"></i></button><button data-bg="black" type="button" aria-label="Preto" title="Preto"><i class="dot" style="background:#000"></i></button><button data-bg="white" type="button" aria-label="Branco" title="Branco"><i class="dot" style="background:#fff"></i></button><button data-bg="orange" type="button" aria-label="Laranja" title="Laranja"><i class="dot" style="background:#ff7a0a"></i></button><button data-bg="navy" type="button" aria-label="Azul" title="Azul"><i class="dot" style="background:#15136b"></i></button><button data-bg="custom" type="button" aria-label="Outra cor" title="Outra cor"><i class="dot dot-custom"></i></button></div><input class="shfile" type="file" accept="image/*" hidden><input class="shcol" type="color" value="#2b6cb0" hidden><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
+  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><button class="shfoto" data-bg="own" type="button"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Adicionar foto</span></button><div class="shdots" role="group" aria-label="Fundo"><button data-bg="auto" class="on" type="button" aria-label="Original" title="Original"><i class="dot dot-auto"></i></button><button data-bg="clubs" type="button" aria-label="Cores dos clubes" title="Cores dos clubes"><i class="dot dot-clubs"></i></button><button data-bg="black" type="button" aria-label="Preto" title="Preto"><i class="dot" style="background:#000"></i></button><button data-bg="white" type="button" aria-label="Branco" title="Branco"><i class="dot" style="background:#fff"></i></button><button data-bg="orange" type="button" aria-label="Laranja" title="Laranja"><i class="dot" style="background:#ff7a0a"></i></button><button data-bg="navy" type="button" aria-label="Azul" title="Azul"><i class="dot" style="background:#15136b"></i></button><button data-bg="custom" type="button" aria-label="Outra cor" title="Outra cor"><i class="dot dot-custom"></i></button></div><input class="shfile" type="file" accept="image/*" hidden><input class="shcol" type="color" value="#2b6cb0" hidden><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
   document.body.appendChild(box); document.body.classList.add('shopen');
   const note = () => {};
   const close = () => { box.remove(); document.body.classList.remove('shopen'); };
