@@ -649,29 +649,51 @@ function shareS4(S) {
   cx.fillStyle = 'rgba(255,255,255,.6)'; cx.font = sFont(600, 22); cx.textAlign = 'left'; cx.fillText('onze-feminino.netlify.app', M, H - 70);
 }
 
-// 5 · Vidro: foto a toda a largura e painel translúcido
+// 5 · Vidro: foto a toda a largura e painel de vidro ajustado ao conteúdo
+// vidro: copia a zona do que já está desenhado, desfoca-a (reduz e amplia, funciona em todos os browsers) e põe um brilho por cima
+function glass(S, x, y, w, h, r, tint) {
+  const { cx } = S, k = 20, t = document.createElement('canvas');
+  t.width = Math.max(2, Math.ceil(w / k)); t.height = Math.max(2, Math.ceil(h / k));
+  t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
+  cx.save(); rr(cx, x, y, w, h, r); cx.clip();
+  cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.drawImage(t, 0, 0, t.width, t.height, x - 6, y - 6, w + 12, h + 12);
+  cx.fillStyle = `rgba(10,10,36,${tint})`; cx.fillRect(x, y, w, h);
+  cx.fillStyle = 'rgba(255,255,255,.07)'; cx.fillRect(x, y, w, h);
+  cx.restore();
+  rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.34)'; cx.stroke();
+  cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore();
+}
 function shareS5(S) {
-  const { cx, W, H, story, ph } = S, M = 44, py = Math.round(H * (story ? .40 : .36));
-  if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.20)'; cx.fillRect(0, 0, W, H); } else { noPhotoBg(S, 0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.16)'; cx.fillRect(0, 0, W, H); }
-  emblemChip(S, 64, 120, 80); cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, S.c.name, W - 64 - 130 - 64, 44, 800); cx.fillText(S.c.name, 64 + 108, 118);
-  cx.fillStyle = 'rgba(255,255,255,.85)'; fitText(cx, S.sub, W - 64 - 130 - 64, 28, 600); cx.fillText(S.sub, 64 + 108, 158);
-  const ph2 = H - py - M;
-  cx.save(); rr(cx, M, py, W - 2 * M, ph2, 56); cx.clip();
-  if (ph && 'filter' in cx) { try { cx.filter = 'blur(26px)'; cover(cx, ph, M - 40, py - 40, W - 2 * M + 80, ph2 + 80); cx.filter = 'none'; } catch { cx.filter = 'none'; } }
-  cx.fillStyle = ph ? 'rgba(10,10,36,.52)' : 'rgba(10,10,36,.55)'; cx.fillRect(M, py, W - 2 * M, ph2); cx.restore();
-  rr(cx, M, py, W - 2 * M, ph2, 56); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.34)'; cx.stroke();
-  const cy = py + 150, R = 84;
+  const { cx, W, H, story, ph } = S, M = 40, R = 92, row = 90;
+  if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); }
+  else { noPhotoBg(S, 0, 0, W, H); crestAt(S, S.ih, S.hf, W * .27, H * .2, 170); crestAt(S, S.ia, S.af, W * .73, H * .2, 170); }
+  // painel ajustado ao conteúdo, ancorado em baixo
+  const maxRows = story ? 6 : 4, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length));
+  const more = Math.max(S.hl.length, S.al.length) > maxRows;
+  const hasG = S.hl.length + S.al.length > 0;
+  const head = 52 + 2 * R + 150;                       // emblemas, nomes e data
+  const body = hasG ? 96 + nRows * row + (more ? 44 : 0) : 0;
+  const ph2 = head + body + 120, py = H - M - ph2;
+  // faixa da competição, em vidro, no topo
+  glass(S, M, 64, W - 2 * M, 116, 58, .34);
+  emblemChip(S, M + 26, 122, 64); cx.textAlign = 'left'; cx.fillStyle = '#fff';
+  fitText(cx, S.c.name, W - 2 * M - 150, 38, 800); cx.fillText(S.c.name, M + 114, 118);
+  cx.fillStyle = 'rgba(255,255,255,.82)'; fitText(cx, S.sub, W - 2 * M - 150, 26, 600); cx.fillText(S.sub, M + 114, 154);
+  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.85)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M + 12, py - 22); }
+  glass(S, M, py, W - 2 * M, ph2, 64, .36);
+  const cy = py + 52 + R;
   crestAt(S, S.ih, S.hf, 190, cy, R); crestAt(S, S.ia, S.af, W - 190, cy, R);
-  cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (190 + R) - 30, 210, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
-  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 40, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 58); }
-  cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 116);
-  const gy = cy + R + 196, avail = H - M - 190 - gy, row = 90, max = rowsFor(avail, row, 2, 8);
-  if (S.hl.length + S.al.length) {
-    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: '#ffb066' };
-    scorersAt(S, S.hl, M + 44, gy, W / 2 - M - 44 - 20, { ...o, align: 'left' }); scorersAt(S, S.al, W - M - 44, gy, W / 2 - M - 44 - 20, { ...o, align: 'right' });
+  cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = '#fff'; cx.textAlign = 'center';
+  const ss = fitText(cx, S.sc, W - 2 * (190 + R) - 30, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
+  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 42, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 62); }
+  cx.fillStyle = 'rgba(255,255,255,.78)'; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 130);
+  let gy = cy + R + 196;
+  if (hasG) {
+    cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
+    const o = { max: nRows, row, ns: 39, ms: 29, nameC: '#fff', minC: '#ffb066' }, w = W / 2 - M - 44 - 20;
+    scorersAt(S, S.hl, M + 48, gy + 6, w, { ...o, align: 'left' }); scorersAt(S, S.al, W - M - 48, gy + 6, w, { ...o, align: 'right' });
   }
-  logoAt(S, S.lgW, W / 2, H - M - 74, 150);
-  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.75)'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, 64, py - 22); }
+  logoAt(S, S.lgW, W / 2, py + ph2 - 62, 150);
 }
 
 async function drawShare(c, m, fmt, style = 1) {
