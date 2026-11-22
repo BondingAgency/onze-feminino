@@ -543,6 +543,20 @@ function crestAt(S, img, name, x, y, r) {
     const t = initials(name); cx.fillStyle = '#15136B'; fitText(cx, t, r * 1.3, r * .8, 800); cx.textAlign = 'center'; cx.fillText(t, x, y + r * .26);
   }
 }
+function nameAt(S, text, x, y, maxW, size, color) {
+  const cx = S.cx; cx.fillStyle = color; cx.textAlign = 'center'; cx.font = sFont(800, size);
+  if (cx.measureText(text).width <= maxW) { cx.fillText(text, x, y); return; }
+  const words = text.split(' '); let best = null;
+  for (let i = 1; i < words.length; i++) {
+    const a = words.slice(0, i).join(' '), b = words.slice(i).join(' ');
+    const w = Math.max(cx.measureText(a).width, cx.measureText(b).width);
+    if (!best || w < best.w) best = { a, b };
+  }
+  if (!best) { fitText(cx, text, maxW, size, 800); cx.fillText(text, x, y); return; }
+  let sz = size; cx.font = sFont(800, sz);
+  while (Math.max(cx.measureText(best.a).width, cx.measureText(best.b).width) > maxW && sz > 22) { sz -= 2; cx.font = sFont(800, sz); }
+  cx.fillText(best.a, x, y - 8); cx.fillText(best.b, x, y - 8 + sz * 1.05);
+}
 function scorersAt(S, list, x, y, w, o) {
   const cx = S.cx; let yy = y; const more = list.length - o.max;
   list.slice(0, o.max).forEach((l) => {
@@ -584,10 +598,10 @@ function glass(S, x, y, w, h, r, o = {}) {
   rr(cx, x, y, w, h, r); cx.lineWidth = 2; cx.strokeStyle = o.light ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.34)'; cx.stroke();
   cx.save(); rr(cx, x, y, w, h, r); cx.clip(); cx.fillStyle = o.light ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.22)'; cx.fillRect(x + r, y, w - 2 * r, 2); cx.restore();
 }
-function vBg(S) {
-  const { cx, W, H, ph } = S;
+function vBg(S, topY) {
+  const { cx, W, H, ph } = S; topY = topY || H * .4;
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); }
-  else { noPhotoBg(S, 0, 0, W, H); crestAt(S, S.ih, S.hf, W * .27, H * .2, 170); crestAt(S, S.ia, S.af, W * .73, H * .2, 170); }
+  else { noPhotoBg(S, 0, 0, W, H); const r = Math.min(170, (topY - 200) / 2 - 26), y = (200 + topY) / 2; if (r >= 60) { crestAt(S, S.ih, S.hf, W * .27, y, r); crestAt(S, S.ia, S.af, W * .73, y, r); } }
 }
 function vHeader(S, light, withLogo) {
   const { cx, W } = S, M = 40, ink = light ? '#15136B' : '#fff', soft = light ? 'rgba(21,19,107,.72)' : 'rgba(255,255,255,.8)';
@@ -604,18 +618,17 @@ function vCredit(S, y) { const { cx } = S; if (S.ph && S.m.foto) { cx.fillStyle 
 function shareVidro(S, o = {}) {
   const { cx, W, H, story } = S, M = 40, R = 92, row = 90, light = !!o.light;
   const ink = light ? '#15136B' : '#fff', soft = light ? 'rgba(21,19,107,.74)' : 'rgba(255,255,255,.78)', mc = light ? '#d95f00' : '#ffb066', rule = light ? 'rgba(21,19,107,.18)' : 'rgba(255,255,255,.22)';
-  vBg(S);
   const maxRows = story ? 6 : 4, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
-  const ph2 = 52 + 2 * R + 150 + (hasG ? 96 + nRows * row + (more ? 44 : 0) : 0) + 120, py = H - M - ph2;
-  vHeader(S, light, false); vCredit(S, py - 22);
+  const ph2 = 52 + 2 * R + 172 + (hasG ? 96 + nRows * row + (more ? 44 : 0) : 0) + 120, py = H - M - ph2;
+  vBg(S, py); vHeader(S, light, false); vCredit(S, py - 22);
   glass(S, M, py, W - 2 * M, ph2, 64, { light, tint: .36, halves: o.halves });
   const cy = py + 52 + R;
-  crestAt(S, S.ih, S.hf, 190, cy, R); crestAt(S, S.ia, S.af, W - 190, cy, R);
+  crestAt(S, S.ih, S.hf, 200, cy, R); crestAt(S, S.ia, S.af, W - 200, cy, R);
   cx.save(); cx.shadowColor = light ? 'rgba(255,255,255,.4)' : 'rgba(0,0,0,.35)'; cx.shadowBlur = 24; cx.fillStyle = ink; cx.textAlign = 'center';
-  const ss = fitText(cx, S.sc, W - 2 * (190 + R) - 30, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
-  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = ink; fitText(cx, n, 300, 42, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 62); }
-  cx.fillStyle = soft; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`${S.end}  ·  ${S.when}`, W / 2, cy + R + 130);
-  const gy = cy + R + 196;
+  const ss = fitText(cx, S.sc, W - 2 * (200 + R) - 30, 240, 800); cx.fillText(S.sc, W / 2, cy + ss * .34); cx.restore();
+  for (const [nm, x] of [[S.hn, 200], [S.an, W - 200]]) nameAt(S, nm, x, cy + R + 62, 2 * (x - M - 38), 42, ink);
+  cx.fillStyle = soft; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`${S.end}  ·  ${S.when}`, W / 2, cy + R + 152);
+  const gy = cy + R + 218;
   if (hasG) {
     cx.fillStyle = rule; cx.fillRect(M + 44, gy - 52, W - 2 * M - 88, 2);
     const q = { max: nRows, row, ns: 39, ms: 29, nameC: ink, minC: mc }, w = W / 2 - M - 44 - 20;
@@ -627,16 +640,15 @@ function shareVidro(S, o = {}) {
 // 3 · Duas cartas de vidro, uma por equipa
 function shareV3(S) {
   const { cx, W, H, story } = S, M = 40, gap = 20, cw = (W - 2 * M - gap) / 2, R = 84;
-  vBg(S); vHeader(S, false, false);
   const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
   const barH = 96, ch = 48 + 2 * R + 66 + 250 + (hasG ? 50 + nRows * 84 + (more ? 40 : 0) : 0) + 30;
   const cy0 = H - M - barH - 20 - ch;
-  vCredit(S, cy0 - 22);
+  vBg(S, cy0); vHeader(S, false, false); vCredit(S, cy0 - 22);
   [[M, S.A, S.ih, S.hf, S.hn, S.m.hg, S.hl], [M + cw + gap, S.B, S.ia, S.af, S.an, S.m.ag, S.al]].forEach(([x, col, img, full, short, goals, list]) => {
     glass(S, x, cy0, cw, ch, 56, { tint: .30, col: alphaCol(col, .42) });
     const mx = x + cw / 2, cy = cy0 + 48 + R;
     crestAt(S, img, full, mx, cy, R);
-    cx.fillStyle = '#fff'; fitText(cx, short, cw - 50, 42, 800); cx.textAlign = 'center'; cx.fillText(short, mx, cy + R + 56);
+    nameAt(S, short, mx, cy + R + 56, cw - 56, 40, '#fff');
     cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 20; cx.font = sFont(800, 250); cx.textAlign = 'center'; cx.fillText(String(goals), mx, cy + R + 56 + 215); cx.restore();
     if (hasG) { const gy = cy + R + 56 + 215 + 80; cx.fillStyle = 'rgba(255,255,255,.22)'; cx.fillRect(x + 40, gy - 50, cw - 80, 2);
       scorersAt(S, list, mx, gy + 6, cw - 60, { max: nRows, row: 84, ns: 36, ms: 28, nameC: '#fff', minC: '#ffb066', align: 'center' }); }
@@ -649,14 +661,14 @@ function shareV3(S) {
 // 4 · Barra de resultado compacta e cartão das marcadoras por cima
 function shareV4(S) {
   const { cx, W, H, story } = S, M = 40, R = 72, barH = story ? 350 : 330, by = H - M - barH;
-  vBg(S); vHeader(S, false, true);
+  const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows;
+  vBg(S, by - (S.hl.length + S.al.length ? 20 + 64 + nRows * 84 + (more ? 40 : 0) : 0)); vHeader(S, false, true);
   glass(S, M, by, W - 2 * M, barH, 60, { tint: .36 });
   const cy = by + 58 + R;
   crestAt(S, S.ih, S.hf, 170, cy, R); crestAt(S, S.ia, S.af, W - 170, cy, R);
   cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 22; cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (170 + R) - 40, 200, 800); cx.fillText(S.sc, W / 2, cy + ss * .34 - 8); cx.restore();
-  cx.fillStyle = '#fff'; for (const [n, x] of [[S.hn, 170], [S.an, W - 170]]) { fitText(cx, n, 290, 38, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 52); }
+  for (const [nm, x] of [[S.hn, 170], [S.an, W - 170]]) nameAt(S, nm, x, cy + R + 52, 2 * (x - M - 34), 38, '#fff');
   cx.fillStyle = 'rgba(255,255,255,.8)'; cx.font = sFont(700, 26); cx.textAlign = 'center'; cx.fillText(`${S.end}  ·  ${S.when}`, W / 2, by + barH - 40);
-  const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows;
   if (S.hl.length + S.al.length) {
     const sh = 64 + nRows * 84 + (more ? 40 : 0), sy = by - 20 - sh;
     vCredit(S, sy - 22);
