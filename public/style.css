@@ -345,3 +345,16 @@ html[data-theme=light] .th .fbtn.on{color:var(--acc)}
 .shb{display:flex;gap:10px}
 .shb .btn{flex:1;cursor:pointer;text-align:center}
 .shb .btn:not(.pri){background:rgba(255,255,255,.1);color:#fff;border:0}
+
+/* ===== Campeonatos favoritos ===== */
+.cstar{flex:none;background:none;border:0;padding:6px 8px;font-size:28px;line-height:1;color:#8b8fbf;cursor:pointer}
+.cstar:hover,.cstar.on{color:var(--acc)}
+html[data-theme=light] .cstar{color:#9aa0c4}
+html[data-theme=light] .cstar.on{color:var(--acc)}
+.ch .cstar{margin-left:auto;align-self:flex-start}
+.compw{position:relative}
+.cstar.abs{position:absolute;right:44px;top:50%;transform:translateY(-50%);font-size:24px}
+.sl .fav,.cchip .fav{font-style:normal;color:var(--acc);margin-left:auto;font-size:14px}
+.cchip .fav{margin-left:2px}
+.favc .t{display:flex;align-items:center;gap:8px}
+.favc .t .all{margin-left:auto;font-size:13px;font-weight:600;color:var(--acc)}

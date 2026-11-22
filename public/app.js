@@ -4,6 +4,13 @@ const FOLLOW_KEY = 'elas-follow';
 const getFollow = () => { try { return JSON.parse(localStorage.getItem(FOLLOW_KEY)) || []; } catch { return []; } };
 const setFollow = (a) => { try { localStorage.setItem(FOLLOW_KEY, JSON.stringify(a)); } catch {} };
 const fKey = (c, t) => c + ':' + t;
+// Campeonatos favoritos (guardados neste dispositivo, como as equipas seguidas)
+const FAVC_KEY = 'elas-fav-comps';
+const getFavC = () => { try { return JSON.parse(localStorage.getItem(FAVC_KEY)) || []; } catch { return []; } };
+const setFavC = (a) => { try { localStorage.setItem(FAVC_KEY, JSON.stringify(a)); } catch {} };
+const isFavC = (id) => getFavC().includes(id);
+const favOrder = (list) => { const f = getFavC(); return [...list].sort((a, b) => f.includes(b.id) - f.includes(a.id)); };
+const cstar = (id, cls = '') => `<button type="button" class="cstar ${isFavC(id) ? 'on' : ''} ${cls}" data-cstar="${id}" aria-pressed="${isFavC(id)}" aria-label="${isFavC(id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" title="Campeonato favorito">${isFavC(id) ? '★' : '☆'}</button>`;
 
 const fmtDate = (d) => d ? new Date(d + 'T12:00').toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'short' }).replace('.', '') : 'Data por definir';
 const todayStr = () => new Date().toISOString().slice(0, 10);
@@ -77,8 +84,8 @@ function home() {
   const c0 = DB.competitions.find((c) => c.matches.some(played));
   const head = (title, href, label) => `<div class="sh2"><h2>${title}</h2><a href="${href}">${label} ›</a></div>`;
   app.innerHTML = `${heroCard(all, t)}
-  <div class="compchips">${DB.competitions.map((c, i) => `<a class="cchip ${i === 0 ? 'on' : ''}" href="#/c/${c.id}">${EMB(26, c.id)}${esc(compShort(c))}</a>`).join('')}</div>
-  ${followBlock()}
+  <div class="compchips">${favOrder(DB.competitions).map((c, i) => `<a class="cchip ${i === 0 ? 'on' : ''}" href="#/c/${c.id}">${EMB(26, c.id)}${esc(compShort(c))}${isFavC(c.id) ? '<i class="fav">★</i>' : ''}</a>`).join('')}</div>
+  ${followBlock()}${favBlock()}
   <div class="cols"><div>${head(week.length ? 'Esta semana' : 'Próximos jogos', '#/jogos/proximos', 'Ver tudo')}${next.length ? byComp(next) : '<div class="empty">Ainda não há jogos marcados.</div>'}</div>
   <div>${head('Últimos resultados', '#/jogos/resultados', 'Ver tudo')}${last.length ? byComp(last) : '<div class="empty">Ainda não há resultados.</div>'}</div>
   ${c0 ? `<div class="stand-col home-tab">${head('Classificação', `#/c/${c0.id}/classificacao`, esc(compShort(c0)))}<div class="mini">${tabela(c0)}</div></div>` : ''}</div>`;
@@ -114,17 +121,27 @@ function followBlock() {
   return items.join('');
 }
 
+function favBlock() {
+  const t = todayStr();
+  return getFavC().map((id) => DB.competitions.find((c) => c.id === id)).filter(Boolean).map((c) => {
+    const nx = c.matches.filter((m) => !played(m) && (m.date || '9999') >= t).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time)).slice(0, 3);
+    const last = c.matches.filter(played).sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time)).slice(0, 3);
+    const sec = (title, l) => l.length ? `<div class="dh">${title}</div>${l.map((m) => matchCard(c, m)).join('')}` : '';
+    return `<div class="follow favc"><div class="t">★ ${esc(c.name)}<a class="all" href="#/c/${c.id}">Ver tudo ›</a></div>${sec('Últimos resultados', last)}${sec('Próximos jogos', nx)}${!last.length && !nx.length ? '<div class="empty sm">Ainda não há jogos.</div>' : ''}</div>`;
+  }).join('');
+}
+
 const EMB = (s, id) => id === "liga-bpi" ? `<span class="emb bpi" style="--s:${s}px"><img src="ligas/liga-bpi.png" alt=""></span>` : `<span class="emb" style="--s:${s}px"><img src="ligas/emblema-fpf-feminino.png" alt=""></span>`;
 
 function sideLeagues(active) {
-  return `<h2>Ligas</h2>${DB.competitions.map((c) => `<a class="sl ${c.id === active ? 'on' : ''}" href="#/c/${c.id}">${EMB(30, c.id)}<span>${esc(c.name)}</span></a>`).join('')}`;
+  return `<h2>Ligas</h2>${favOrder(DB.competitions).map((c) => `<a class="sl ${c.id === active ? 'on' : ''}" href="#/c/${c.id}">${EMB(30, c.id)}<span>${esc(c.name)}</span>${isFavC(c.id) ? '<i class="fav">★</i>' : ''}</a>`).join('')}`;
 }
 
 function compCards() {
-  return DB.competitions.map((c) => `<a class="comp" href="#/c/${c.id}">${EMB(52, c.id)}<div><div class="t">${esc(c.name)}</div><div class="s">Época ${esc(c.season)}</div></div><div class="go">›</div></a>`).join('');
+  return favOrder(DB.competitions).map((c) => `<div class="compw"><a class="comp" href="#/c/${c.id}">${EMB(52, c.id)}<div><div class="t">${esc(c.name)}</div><div class="s">Época ${esc(c.season)}</div></div><div class="go">›</div></a>${cstar(c.id, 'abs')}</div>`).join('');
 }
 
-function ligas() { app.innerHTML = `<h1>Competições</h1><p class="sub">Escolhe a liga.</p><div class="cards">${compCards()}</div>`; }
+function ligas() { app.innerHTML = `<h1>Competições</h1><p class="sub">Escolhe a liga. Toca na ☆ para a pôr nos teus favoritos.</p><div class="cards">${compCards()}</div>`; }
 
 function comp(id, tab, arg) {
   const c = DB.competitions.find((x) => x.id === id);
@@ -135,7 +152,7 @@ function comp(id, tab, arg) {
   if (tab === 'jogos') body = jogos(c, arg);
   else if (tab === 'classificacao') body = tabela(c);
   else body = equipas(c);
-  app.innerHTML = `<a class="back" href="#/ligas">‹ Competições</a><div class="ch">${EMB(64, c.id)}<div><h1>${esc(c.name)}</h1><p class="sub">Época ${esc(c.season)}</p></div></div>
+  app.innerHTML = `<a class="back" href="#/ligas">‹ Competições</a><div class="ch">${EMB(64, c.id)}<div><h1>${esc(c.name)}</h1><p class="sub">Época ${esc(c.season)}</p></div>${cstar(c.id)}</div>
   <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" data-go="#/c/${id}/${k}">${l}</button>`).join('')}</div>${body}`;
 }
 
@@ -192,8 +209,9 @@ function jogosAll(mode, cf) {
   const t = todayStr();
   const comps = DB.competitions.filter((c) => c.matches.length);
   const fol = getFollow();
-  if (!comps.some((c) => c.id === cf) && !(cf === 'minha' && fol.length)) cf = '';
-  const all = allMatches().filter(({ c, m }) => !cf || (cf === 'minha' ? fol.includes(fKey(c.id, m.home)) || fol.includes(fKey(c.id, m.away)) : c.id === cf));
+  const favc = getFavC().filter((id) => comps.some((c) => c.id === id));
+  if (!comps.some((c) => c.id === cf) && !(cf === 'minha' && fol.length) && !(cf === 'fav' && favc.length)) cf = '';
+  const all = allMatches().filter(({ c, m }) => !cf || (cf === 'minha' ? fol.includes(fKey(c.id, m.home)) || fol.includes(fKey(c.id, m.away)) : cf === 'fav' ? favc.includes(c.id) : c.id === cf));
   const list = mode === 'proximos'
     ? all.filter(({ m }) => !played(m) && (m.date || '9999') >= t).sort((a, b) => (a.m.date + a.m.time).localeCompare(b.m.date + b.m.time))
     : all.filter(({ m }) => played(m)).sort((a, b) => (b.m.date + b.m.time).localeCompare(a.m.date + a.m.time));
@@ -201,9 +219,9 @@ function jogosAll(mode, cf) {
   const body = list.length
     ? days.map((d) => `<div class="dh">${fmtDate(d)}</div>${byComp(list.filter(({ m }) => m.date === d), true)}`).join('')
     : `<div class="empty">${mode === 'proximos' ? 'Ainda não há jogos marcados.' : 'Ainda não há resultados.'}</div>`;
-  app.innerHTML = `<h1>Jogos</h1><p class="sub">${cf === 'minha' ? 'Jogos das equipas que segues' : cf ? esc(DB.competitions.find((c) => c.id === cf).name) : 'Todas as competições'}, por data.</p>
+  app.innerHTML = `<h1>Jogos</h1><p class="sub">${cf === 'minha' ? 'Jogos das equipas que segues' : cf === 'fav' ? 'Jogos dos teus campeonatos favoritos' : cf ? esc(DB.competitions.find((c) => c.id === cf).name) : 'Todas as competições'}, por data.</p>
   <div class="tabs" role="tablist"><button role="tab" aria-selected="${mode === 'proximos'}" data-go="#/jogos/proximos/${cf}">Próximos</button><button role="tab" aria-selected="${mode === 'resultados'}" data-go="#/jogos/resultados/${cf}">Resultados</button></div>
-  ${comps.length > 1 ? `<div class="filt">${[['', 'Todas'], ...(fol.length ? [['minha', '★ A minha equipa']] : []), ...comps.map((c) => [c.id, compShort(c)])].map(([id, l]) => `<button class="pill ${id === cf ? 'on' : ''}" data-go="#/jogos/${mode}/${id}">${esc(l)}</button>`).join('')}</div>` : ''}${body}`;
+  ${comps.length > 1 ? `<div class="filt">${[['', 'Todas'], ...(favc.length ? [['fav', '★ Favoritos']] : []), ...(fol.length ? [['minha', '★ A minha equipa']] : []), ...favOrder(comps).map((c) => [c.id, compShort(c)])].map(([id, l]) => `<button class="pill ${id === cf ? 'on' : ''}" data-go="#/jogos/${mode}/${id}">${esc(l)}</button>`).join('')}</div>` : ''}${body}`;
 }
 
 function noticias() {
@@ -222,6 +240,8 @@ function conta() {
   <div class="opt"><div><div>Aspeto</div><div class="s">${{ auto: 'Igual ao telemóvel', light: 'Sempre claro', dark: 'Sempre escuro' }[document.documentElement.dataset.pref || 'auto']}</div></div><div class="seg">${[['auto', 'Auto'], ['light', 'Claro'], ['dark', 'Escuro']].map(([k, l]) => `<button class="${(document.documentElement.dataset.pref || 'auto') === k ? 'on' : ''}" data-theme-set="${k}">${l}</button>`).join('')}</div></div>
   <h2>As minhas equipas</h2>
   ${followed.length ? '<div class="tgrid">' + followed.map(({ c, tid }) => `<div class="team go" data-go="${teamHref(c, tid)}">${CREST(c, tid, 38)}<div>${esc(tname(c, tid))}<div class="s" style="color:#5b5a86;font-size:13px">${esc(c.name)}</div></div><button class="star on" data-star="${fKey(c.id, tid)}" aria-label="Deixar de seguir">★</button></div>`).join('') + '</div>' : '<div class="empty">Clica na estrela numa equipa para a seguires.</div>'}
+  <h2>Campeonatos favoritos</h2>
+  <div class="cards">${compCards()}</div>
   <h2>Seguir equipas</h2>
   ${DB.competitions.filter((c) => c.teams.length).map((c) => `<div class="dh">${esc(c.name)}</div>${equipas(c)}`).join('')}`;
 }
@@ -365,6 +385,14 @@ document.addEventListener('click', (e) => {
   if (na && (location.hash || '#/') === na.getAttribute('href')) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   const ts = e.target.closest('[data-theme-set]');
   if (ts) { setPref(ts.dataset.themeSet); const y = scrollY; route(); scrollTo(0, y); return; }
+  const cs = e.target.closest('[data-cstar]');
+  if (cs) {
+    e.preventDefault(); e.stopPropagation();
+    const f = getFavC(), k = cs.dataset.cstar;
+    setFavC(f.includes(k) ? f.filter((x) => x !== k) : [...f, k]);
+    const y = scrollY; route(); scrollTo(0, y);
+    return;
+  }
   const s = e.target.closest('[data-star]');
   if (s) {
     const f = getFollow(), k = s.dataset.star;
