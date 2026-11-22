@@ -355,8 +355,8 @@
           "time": "15:00",
           "home": "racing-power-fc",
           "away": "maritimo",
-          "hg": null,
-          "ag": null
+          "hg": 3,
+          "ag": 0
         },
         {
           "id": "bpi32",
@@ -365,8 +365,8 @@
           "time": "15:00",
           "home": "valadares-gaia",
           "away": "torreense",
-          "hg": null,
-          "ag": null
+          "hg": 1,
+          "ag": 0
         },
         {
           "id": "bpi33",
@@ -375,8 +375,8 @@
           "time": "17:00",
           "home": "fc-porto",
           "away": "sporting-cp",
-          "hg": null,
-          "ag": null
+          "hg": 5,
+          "ag": 1
         },
         {
           "id": "bpi34",
