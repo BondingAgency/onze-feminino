@@ -596,8 +596,6 @@ function vBg(S, topY) {
   const { cx, W, H, ph, M, top } = S;
   if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.10)'; cx.fillRect(0, 0, W, H); return; }
   const g = cx.createLinearGradient(0, 0, W, H * .75); g.addColorStop(0, S.A); g.addColorStop(1, S.B); cx.fillStyle = g; cx.fillRect(0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.14)'; cx.fillRect(0, 0, W, H);
-  const y0 = top + 116 + 30, r = Math.min(170, (topY - y0) / 2 - 24);   // emblemas grandes no espaço livre entre a faixa e o painel
-  if (r >= 60) { const y = (y0 + topY) / 2; crestAt(S, S.ih, S.hf, W * .27, y, r); crestAt(S, S.ia, S.af, W * .73, y, r); }
 }
 function vHeader(S) {
   const { cx, W, M, top } = S;
@@ -631,10 +629,12 @@ function shareVidro(S) {
   const { cx, W, H, story, M, top, bot, m } = S, R = 92, row = 84, ink = '#fff';
   const maxRows = story ? 5 : 3, nRows = Math.min(maxRows, Math.max(S.hl.length, S.al.length)), more = Math.max(S.hl.length, S.al.length) > maxRows, hasG = S.hl.length + S.al.length > 0;
   const cyOff = 142 + R, pillOff = cyOff + R + 130, gyOff = cyOff + R + 268;
-  const baseEnd = hasG ? gyOff + 10 + (nRows - 1) * row + 50 + (more ? 44 : 0) : pillOff + 68, ph2 = baseEnd + 130, py = H - bot - ph2;
+  const baseEnd = hasG ? gyOff + 10 + (nRows - 1) * row + 50 + (more ? 44 : 0) : pillOff + 68, ph2 = baseEnd + 130;
+  let py = H - bot - ph2;
+  if (!S.ph) { const hb = top + 116 + 30; py = Math.round(hb + (H - bot - hb - ph2) / 2); }
   S.panel = { x: M, y: py, w: W - 2 * M, h: ph2 };
   vBg(S, py); S.rec = true; vHeader(S);
-  if (S.ph && m.foto) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${m.foto.fonte}`, M + 30, py - 22); }
+  if (S.ph && m.foto && !S.own) { cx.fillStyle = 'rgba(255,255,255,.88)'; cx.font = sFont(600, 21); cx.textAlign = 'left'; cx.fillText(`Foto: ${m.foto.fonte}`, M + 30, py - 22); }
   glass(S, M, py, W - 2 * M, ph2, 64, .36);
   datePill(S, py + 38);   // dia e hora, por cima dos emblemas, ao centro
   const cy = py + cyOff, xl = M + 160, xr = W - M - 160;
@@ -652,15 +652,15 @@ function shareVidro(S) {
   logoAt(S, S.lgW, W / 2, py + ph2 - 62, 150);
 }
 
-async function drawShare(c, m, fmt) {
+async function drawShare(c, m, fmt, own) {
   const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350, sz = SHARE_SAFE[story ? 'story' : 'post'];
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const cx = cv.getContext('2d');
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
-  const [ih, ia, ph, lgW, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), m.foto && m.foto.src ? loadImg(m.foto.src) : null, loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const [ih, ia, ph, lgW, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, em, M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, em, own: !!own, M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
@@ -704,9 +704,9 @@ function shareIssues(cv, fmt) {
 
 async function openShare(cid, mid) {
   const c = DB.competitions.find((x) => x.id === cid), m = c && c.matches.find((x) => x.id === mid); if (!m) return;
-  let fmt = 'story', cv = null, guide = false;
+  let fmt = 'story', cv = null, guide = false, own = null;
   const box = document.createElement('div'); box.className = 'shm';
-  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shn"></div><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
+  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shn"></div><button class="shph" data-ph type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Adicionar a minha foto</span></button><input class="shfile" type="file" accept="image/*" hidden><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div><button class="shg" data-g>Mostrar zona segura</button></div>`;
   document.body.appendChild(box); document.body.classList.add('shopen');
   const note = () => { box.querySelector('.shn').textContent = fmt === 'story' ? 'Story 9:16 para Instagram e Facebook: o texto fica dentro da zona segura, longe do perfil (topo) e da caixa de resposta (base).' : 'Publicação 4:5 para o feed: o texto fica afastado das margens, para não ser cortado na grelha do perfil.'; };
   const close = () => { box.remove(); document.body.classList.remove('shopen'); };
@@ -717,11 +717,13 @@ async function openShare(cid, mid) {
     pv.style.aspectRatio = `${cv.width} / ${cv.height}`;
     if (guide) { const z = SHARE_SAFE[fmt], W = cv.width, H = cv.height; x.fillStyle = 'rgba(255,40,90,.22)'; x.fillRect(0, 0, W, z.top); x.fillRect(0, H - z.bot, W, z.bot); x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = 'rgba(255,60,110,.95)'; x.beginPath(); x.moveTo(0, z.top); x.lineTo(W, z.top); x.moveTo(0, H - z.bot); x.lineTo(W, H - z.bot); x.stroke(); }
   };
-  const render = async () => { box.querySelector('.shl').style.display = ''; note(); cv = await drawShare(c, m, fmt); paint(); box.querySelector('.shl').style.display = 'none'; };
+  const render = async () => { box.querySelector('.shl').style.display = ''; note(); cv = await drawShare(c, m, fmt, own); paint(); box.querySelector('.shl').style.display = 'none'; };
   box.addEventListener('click', async (e) => {
     if (e.target === box || e.target.closest('.shx')) return close();
     const f = e.target.closest('[data-f]');
     if (f) { fmt = f.dataset.f; box.querySelectorAll('[data-f]').forEach((b) => b.classList.toggle('on', b === f)); return render(); }
+    const ph = e.target.closest('[data-ph]');
+    if (ph) { if (own) { own = null; box.querySelector('.shph span').textContent = 'Adicionar a minha foto'; return render(); } return box.querySelector('.shfile').click(); }
     const g = e.target.closest('[data-g]');
     if (g) { guide = !guide; g.textContent = guide ? 'Esconder zona segura' : 'Mostrar zona segura'; if (cv) paint(); return; }
     const a = e.target.closest('[data-a]'); if (!a || !cv) return;
@@ -731,6 +733,11 @@ async function openShare(cid, mid) {
       return;
     }
     const u = URL.createObjectURL(blob), l = document.createElement('a'); l.href = u; l.download = name(); document.body.appendChild(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
+  });
+  box.querySelector('.shfile').addEventListener('change', async (e) => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    const u = URL.createObjectURL(f), img = await loadImg(u); e.target.value = '';
+    if (!img) return; own = img; box.querySelector('.shph span').textContent = 'Remover a minha foto'; render();
   });
   render();
 }

@@ -369,3 +369,6 @@ html[data-theme=light] .cstar.on{color:var(--acc)}
 
 .shn{font-size:12.5px;line-height:1.35;color:#a9a8d6;text-align:center;padding:0 6px}
 .shg{align-self:center;border:0;background:none;color:#a9a8d6;font:600 13px 'ArchivoV',system-ui,sans-serif;text-decoration:underline;cursor:pointer;padding:2px 6px}
+
+.shph{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px dashed rgba(255,255,255,.38);background:rgba(255,255,255,.06);color:#fff;border-radius:14px;padding:12px;font:700 14px 'ArchivoV',system-ui,sans-serif;cursor:pointer}
+.shph:hover{background:rgba(255,255,255,.12)}
