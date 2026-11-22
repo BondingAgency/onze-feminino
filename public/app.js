@@ -597,17 +597,23 @@ function glass(S, x, y, w, h, r, tint) {
 
 // ===== Fundos com a identidade Onze Feminino (azul-marinho #15136B, laranja #FF7A0A, laranja-vermelho #FF3B0F) =====
 const BRAND_NAMES = ['Marca', 'Campo', 'Faixas', 'Campo degradê', 'Relvado'];
-function pitch(S, line, spot, corner) {   // linhas de um campo de futebol (vertical)
-  const { cx, W, H } = S, bx = W * .2, bw = W * .6, bh = H * .15, ar = W * .13;
-  cx.lineWidth = 6; cx.strokeStyle = line; cx.lineJoin = 'round';
-  cx.strokeRect(bx, -10, bw, bh + 10); cx.strokeRect(bx, H - bh, bw, bh + 10);                   // áreas
-  cx.beginPath(); cx.arc(W / 2, bh, ar, .2 * Math.PI, .8 * Math.PI); cx.stroke();                  // meia-lua de cima
-  cx.beginPath(); cx.arc(W / 2, H - bh, ar, 1.2 * Math.PI, 1.8 * Math.PI); cx.stroke();            // meia-lua de baixo
-  cx.beginPath(); cx.moveTo(0, H / 2); cx.lineTo(W, H / 2); cx.stroke();                          // meio-campo
-  cx.beginPath(); cx.arc(W / 2, H / 2, W * .27, 0, 7); cx.stroke();                                // círculo central
-  cx.fillStyle = spot; for (const y of [H * .095, H * .905]) { cx.beginPath(); cx.arc(W / 2, y, 14, 0, 7); cx.fill(); }
-  cx.lineWidth = 10; cx.strokeStyle = corner;                                                      // cantos
-  [[0, 0, 0], [W, 0, .5], [W, H, 1], [0, H, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, 96, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
+function pitch(S, line, spot, corner, lw) {   // campo de futebol vertical com todas as marcações
+  const { cx, W, H } = S, m = W * .047, Wi = W - 2 * m, Hi = H - 2 * m, k = Wi / 1018;
+  cx.lineWidth = lw || 7; cx.strokeStyle = line; cx.lineJoin = 'miter';
+  cx.strokeRect(m, m, Wi, Hi);                                                            // limite do campo
+  const pbW = 512 * k, pbH = 210 * k, gaW = 240 * k, gaH = 75 * k, sp = 150 * k, ar = 118 * k, th = Math.acos((pbH - sp) / ar);
+  for (const dir of [1, -1]) {                                                            // 1 = baliza de cima, -1 = de baixo
+    const y0 = dir === 1 ? m : H - m, x0 = W / 2, sy = y0 + dir * sp;
+    cx.strokeRect(x0 - pbW / 2, dir === 1 ? y0 : y0 - pbH, pbW, pbH);                    // grande área
+    cx.strokeRect(x0 - gaW / 2, dir === 1 ? y0 : y0 - gaH, gaW, gaH);                     // pequena área
+    cx.fillStyle = spot; cx.beginPath(); cx.arc(x0, sy, 9 * k, 0, 7); cx.fill();          // marca de penálti
+    cx.beginPath(); cx.arc(x0, sy, ar, dir * Math.PI / 2 - th, dir * Math.PI / 2 + th); cx.stroke();   // meia-lua
+  }
+  cx.beginPath(); cx.moveTo(m, H / 2); cx.lineTo(W - m, H / 2); cx.stroke();             // meio-campo
+  cx.beginPath(); cx.arc(W / 2, H / 2, 151 * k, 0, 7); cx.stroke();                       // círculo central
+  cx.fillStyle = spot; cx.beginPath(); cx.arc(W / 2, H / 2, 11 * k, 0, 7); cx.fill();
+  cx.strokeStyle = corner; const cr = 44 * k;                                             // cantos
+  [[m, m, 0], [W - m, m, .5], [W - m, H - m, 1], [m, H - m, 1.5]].forEach(([x, y, q]) => { cx.beginPath(); cx.arc(x, y, cr, q * Math.PI, (q + .5) * Math.PI); cx.stroke(); });
 }
 function brandBg(S) {
   const { cx, W, H } = S, NAVY = '#15136B', OR = '#FF7A0A', RED = '#FF3B0F', v = S.brand || 1;
@@ -618,11 +624,13 @@ function brandBg(S) {
     const g = cx.createLinearGradient(W * .15, 0, W * .85, H); g.addColorStop(0, NAVY); g.addColorStop(.45, '#3b1a7a'); g.addColorStop(1, RED);
     cx.fillStyle = g; cx.fillRect(0, 0, W, H); pitch(S, 'rgba(255,255,255,.30)', '#fff', '#fff'); return;
   }
-  if (v === 5) {   // Relvado: degradê verde com riscas de corte
-    const g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0a3d22'); g.addColorStop(1, '#1f9a4a');
+  if (v === 5) {   // Relvado: riscas de corte, degradê suave e as marcações do campo
+    const g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0e4a1c'); g.addColorStop(1, '#1d7a2b');
     cx.fillStyle = g; cx.fillRect(0, 0, W, H);
-    cx.fillStyle = 'rgba(255,255,255,.05)'; for (let i = 0; i < 12; i += 2) cx.fillRect(0, i * H / 12, W, H / 12);
-    pitch(S, 'rgba(255,255,255,.55)', '#fff', '#fff'); return;
+    const nb = 14, bh = H / nb; cx.fillStyle = 'rgba(255,255,255,.06)'; for (let i = 1; i < nb; i += 2) cx.fillRect(0, i * bh, W, bh);
+    const rg = cx.createRadialGradient(W / 2, H / 2, W * .3, W / 2, H / 2, H * .78); rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.36)');
+    cx.fillStyle = rg; cx.fillRect(0, 0, W, H);
+    pitch(S, 'rgba(255,255,255,.94)', '#fff', '#fff', 8); return;
   }
   if (v === 3) {   // Faixas: laranja com faixas inclinadas
     cx.fillStyle = OR; cx.fillRect(0, 0, W, H);
