@@ -365,6 +365,7 @@ function route() {
   if (a === 'ligas') ligas();
   else if (a === 'c' && c === 'equipa') equipa(b, d);
   else if (a === 'c' && c === 'jogo') jogo(b, d);
+  else if (a === 'estilos') estilos(b, c);
   else if (a === 'c') comp(b, c, d);
   else if (a === 'jogos') jogosAll(b, c);
   else if (a === 'noticias') noticias();
@@ -523,94 +524,198 @@ function goalLines(m, team) {
   });
   return [...by].map(([p, mins]) => ({ p, t: mins.join('  ') }));
 }
-async function drawShare(c, m, fmt) {
-  const W = 1080, H = fmt === 'story' ? 1920 : 1350, story = fmt === 'story';
+// ===== Imagem de partilha: 5 estilos =====
+const SHARE_STYLES = ['Foto e painel', 'Placar', 'Editorial', 'Marca', 'Vidro'];
+const sFont = (w, s) => `${w} ${s}px ArchivoV, system-ui, sans-serif`;
+function rr(cx, x, y, w, h, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
+function cover(cx, img, x, y, w, h) { const r = Math.max(w / img.width, h / img.height), iw = img.width * r, ih = img.height * r; cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); cx.restore(); }
+function crestAt(S, img, name, x, y, r, ring) {
+  const cx = S.cx;
+  cx.save(); cx.shadowColor = 'rgba(0,0,0,.28)'; cx.shadowBlur = 34; cx.shadowOffsetY = 12; cx.beginPath(); cx.arc(x, y, r, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
+  if (ring) { cx.beginPath(); cx.arc(x, y, r + 5, 0, 7); cx.lineWidth = 8; cx.strokeStyle = ring; cx.stroke(); }
+  if (img) { const s = (r * 2 * 0.72) / Math.max(img.width, img.height); cx.drawImage(img, x - img.width * s / 2, y - img.height * s / 2, img.width * s, img.height * s); }
+  else { const t = initials(name); cx.fillStyle = '#15136B'; fitText(cx, t, r * 1.3, r * .8, 800); cx.textAlign = 'center'; cx.fillText(t, x, y + r * .26); }
+}
+function scorersAt(S, list, x, y, w, o) {
+  const cx = S.cx; let yy = y; const more = list.length - o.max;
+  list.slice(0, o.max).forEach((l) => {
+    cx.textAlign = o.align; cx.fillStyle = o.nameC; fitText(cx, l.p, w, o.ns, 800); cx.fillText(l.p, x, yy);
+    cx.fillStyle = o.minC; fitText(cx, l.t, w, o.ms, 600); cx.fillText(l.t, x, yy + o.ms + 10);
+    yy += o.row;
+  });
+  if (more > 0) { cx.fillStyle = o.minC; cx.font = sFont(600, o.ms); cx.textAlign = o.align; cx.fillText(`+${more} mais`, x, yy); yy += o.row * .6; }
+  return yy;
+}
+function logoAt(S, lg, x, y, w) { if (!lg) return; const h = w / (288 / 68); S.cx.drawImage(lg, x - w / 2, y - h / 2, w, h); }
+function emblemChip(S, x, y, size) { const { cx, em } = S; if (!em) return; cx.beginPath(); cx.arc(x + size / 2, y, size / 2 + 4, 0, 7); cx.fillStyle = '#fff'; cx.fill(); const r = size * .78 / em.height; cx.drawImage(em, x + size / 2 - em.width * r / 2, y - size * .39, em.width * r, size * .78); }
+function noPhotoBg(S, x, y, w, h) {  // dois blocos lisos com as cores dos clubes (sem degradê)
+  const { cx } = S; cx.fillStyle = S.A; cx.fillRect(x, y, w, h); cx.fillStyle = S.B; cx.beginPath(); cx.moveTo(x + w, y); cx.lineTo(x + w, y + h); cx.lineTo(x + w * .34, y + h); cx.lineTo(x + w * .66, y); cx.closePath(); cx.fill();
+}
+const rowsFor = (avail, row, lo, hi) => Math.max(lo, Math.min(hi, Math.floor(avail / row)));
+
+// 1 · Foto em cima, painel escuro por baixo (tipo Strava)
+function shareS1(S) {
+  const { cx, W, H, story, ph } = S, M = 76, ph_h = Math.round(H * (story ? .47 : .44));
+  if (ph) { cover(cx, ph, 0, 0, W, ph_h + 80); cx.fillStyle = 'rgba(7,7,26,.22)'; cx.fillRect(0, 0, W, ph_h + 80); }
+  else { noPhotoBg(S, 0, 0, W, ph_h + 80); crestAt(S, S.ih, S.hf, W * .24, ph_h * .52, 150); crestAt(S, S.ia, S.af, W * .76, ph_h * .52, 150); }
+  // faixa da competição sobre a foto
+  cx.fillStyle = 'rgba(7,7,26,.55)'; rr(cx, M - 20, 70, W - 2 * M + 40, 104, 52); cx.fill();
+  emblemChip(S, M + 4, 122, 66); cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, S.c.name, W - M - 150 - M, 38, 800); cx.fillText(S.c.name, M + 96, 119);
+  cx.fillStyle = 'rgba(255,255,255,.8)'; fitText(cx, S.sub, W - M - 150 - M, 26, 600); cx.fillText(S.sub, M + 96, 154);
+  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.8)'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M, ph_h - 16); }
+  // painel
+  cx.fillStyle = '#0a0a24'; rr(cx, 0, ph_h, W, H - ph_h + 90, 70); cx.fill();
+  const cy = ph_h + 150, R = 82;
+  crestAt(S, S.ih, S.hf, 160, cy, R); crestAt(S, S.ia, S.af, W - 160, cy, R);
+  cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (160 + R) - 40, 220, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
+  for (const [n, x] of [[S.hn, 160], [S.an, W - 160]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 40, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 58); }
+  cx.fillStyle = 'rgba(255,255,255,.62)'; cx.font = sFont(700, 28); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 118);
+  const gy = cy + R + 190, avail = H - 190 - gy, row = 92, max = rowsFor(avail, row, 2, 8);
+  if (S.hl.length + S.al.length) {
+    cx.fillStyle = 'rgba(255,255,255,.14)'; cx.fillRect(M, gy - 52, W - 2 * M, 2);
+    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: '#ff7a0a' };
+    scorersAt(S, S.hl, M, gy + 6, W / 2 - M - 24, { ...o, align: 'left' }); scorersAt(S, S.al, W - M, gy + 6, W / 2 - M - 24, { ...o, align: 'right' });
+  }
+  logoAt(S, S.lgW, W / 2, H - 78, 150);
+}
+
+// 2 · Placar: dois blocos lisos, um por equipa
+function shareS2(S) {
+  const { cx, W, H, story } = S, M = 70, band = story ? 150 : 124, mid = story ? 130 : 108, bh = (H - band - mid) / 2;
+  cx.fillStyle = '#07071a'; cx.fillRect(0, 0, W, H);
+  logoAt(S, S.lgW, M + 80, band / 2, 160); cx.textAlign = 'right'; cx.fillStyle = 'rgba(255,255,255,.8)'; fitText(cx, S.c.name, W - 2 * M - 260, 30, 700); cx.fillText(S.c.name, W - M, band / 2 + 10);
+  const block = (y, col, img, full, short, team, goals, score) => {
+    cx.fillStyle = col; cx.fillRect(0, y, W, bh);
+    crestAt(S, img, full, M + 104, y + 150, 104);
+    cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, short.toUpperCase(), W - M - 104 * 2 - 70 - 300, 62, 800); cx.fillText(short.toUpperCase(), M + 238, y + 138);
+    const lines = goals.slice(0, story ? 6 : 4); let yy = y + 214;
+    lines.forEach((l) => { cx.fillStyle = 'rgba(255,255,255,.92)'; fitText(cx, `${l.p}   ${l.t}`, W - M - 238 - 330, 34, 600); cx.fillText(`${l.p}   ${l.t}`, M + 238, yy); yy += 52; });
+    if (goals.length > lines.length) { cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = sFont(600, 28); cx.fillText(`+${goals.length - lines.length} mais`, M + 238, yy); }
+    cx.fillStyle = '#fff'; cx.textAlign = 'right'; const fs = story ? 400 : 300; cx.font = sFont(800, fs); cx.fillText(String(score), W - M, y + bh - (story ? 70 : 52));
+  };
+  block(band, S.A, S.ih, S.hf, S.hn, 'home', S.hl, S.m.hg);
+  block(band + bh + mid, S.B, S.ia, S.af, S.an, 'away', S.al, S.m.ag);
+  cx.fillStyle = '#07071a'; cx.fillRect(0, band + bh, W, mid); cx.textAlign = 'center'; cx.fillStyle = '#fff'; fitText(cx, `${S.sub}`, W - 2 * M, 30, 700); cx.fillText(S.sub, W / 2, band + bh + mid / 2 - 6);
+  cx.fillStyle = '#ff7a0a'; cx.font = sFont(800, 28); cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, band + bh + mid / 2 + 38);
+}
+
+// 3 · Editorial claro
+function shareS3(S) {
+  const { cx, W, H, story } = S, M = 80, NAVY = '#15136B', OR = '#ff7a0a';
+  cx.fillStyle = '#f4f1ea'; cx.fillRect(0, 0, W, H);
+  cx.fillStyle = OR; cx.fillRect(0, 0, W, 16);
+  emblemChip(S, M, 118, 78); cx.textAlign = 'left'; cx.fillStyle = NAVY; fitText(cx, S.c.name, W - M - 120 - 260, 44, 800); cx.fillText(S.c.name, M + 108, 118);
+  cx.fillStyle = '#6a6a8a'; fitText(cx, S.sub, W - M - 120 - 260, 28, 600); cx.fillText(S.sub, M + 108, 156);
+  logoAt(S, S.lgK, W - M - 80, 120, 160);
+  cx.fillStyle = '#6a6a8a'; cx.textAlign = 'left'; cx.font = sFont(600, 28); cx.fillText(S.when, M, 232);
+  const cy = story ? 520 : 470, R = 112;
+  crestAt(S, S.ih, S.hf, W * .2, cy, R, OR); crestAt(S, S.ia, S.af, W * .8, cy, R, OR);
+  cx.fillStyle = NAVY; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W * .6 - 2 * R - 70, 230, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
+  cx.fillStyle = '#6a6a8a'; cx.font = sFont(800, 26); cx.fillText('TERMINADO', W / 2, cy + 112);
+  for (const [n, x] of [[S.hn, W * .2], [S.an, W * .8]]) { cx.fillStyle = NAVY; fitText(cx, n, 330, 44, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 64); }
+  let gy = cy + R + 150; let end = gy;
+  if (S.hl.length + S.al.length) {
+    cx.fillStyle = OR; cx.fillRect(M, gy, 90, 8); cx.fillStyle = NAVY; cx.font = sFont(800, 28); cx.textAlign = 'left'; cx.fillText('GOLOS', M + 112, gy + 12);
+    gy += 70; const o = { max: story ? 6 : 4, row: 88, ns: 38, ms: 29, nameC: NAVY, minC: OR };
+    const e1 = scorersAt(S, S.hl, M, gy, W / 2 - M - 20, { ...o, align: 'left' }), e2 = scorersAt(S, S.al, W - M, gy, W / 2 - M - 20, { ...o, align: 'right' });
+    end = Math.max(e1, e2);
+  }
+  if (S.ph) { const py = end + 10, ph_h = H - 130 - py; if (ph_h >= 240) { cx.save(); rr(cx, M, py, W - 2 * M, ph_h, 36); cx.clip(); cover(cx, S.ph, M, py, W - 2 * M, ph_h); cx.restore(); if (S.m.foto) { cx.fillStyle = '#6a6a8a'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, M, py + ph_h + 30); } } }
+  cx.fillStyle = '#6a6a8a'; cx.font = sFont(600, 24); cx.textAlign = 'center'; cx.fillText('onze-feminino.netlify.app', W / 2, H - 50);
+}
+
+// 4 · Marca: azul, laranja e corte inclinado
+function shareS4(S) {
+  const { cx, W, H, story, ph } = S, M = 76, NAVY = '#0f0e55', OR = '#ff7a0a', h = Math.round(H * (story ? .40 : .36)), sl = 120;
+  cx.fillStyle = NAVY; cx.fillRect(0, 0, W, H);
+  cx.save(); cx.beginPath(); cx.moveTo(0, 0); cx.lineTo(W, 0); cx.lineTo(W, h - sl); cx.lineTo(0, h); cx.closePath(); cx.clip();
+  if (ph) { cover(cx, ph, 0, 0, W, h); cx.fillStyle = 'rgba(15,14,85,.36)'; cx.fillRect(0, 0, W, h); } else noPhotoBg(S, 0, 0, W, h);
+  cx.restore();
+  cx.fillStyle = OR; cx.beginPath(); cx.moveTo(0, h); cx.lineTo(W, h - sl); cx.lineTo(W, h - sl + 30); cx.lineTo(0, h + 30); cx.closePath(); cx.fill();
+  cx.fillStyle = OR; rr(cx, M, 86, Math.min(W - 2 * M, 640), 66, 33); cx.fill(); cx.fillStyle = NAVY; cx.textAlign = 'left'; fitText(cx, S.c.name.toUpperCase(), 560, 32, 800); cx.fillText(S.c.name.toUpperCase(), M + 30, 130);
+  cx.fillStyle = '#fff'; fitText(cx, S.sub, W - 2 * M, 28, 700); cx.fillText(S.sub, M, 196);
+  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.75)'; cx.font = sFont(600, 20); cx.fillText(`Foto: ${S.m.foto.fonte}`, M, h - sl - 30); }
+  const cy = h + 190, R = 112;
+  crestAt(S, S.ih, S.hf, W * .17, cy - 40, R, '#fff'); crestAt(S, S.ia, S.af, W * .83, cy - 80, R, '#fff');
+  cx.save(); cx.translate(W / 2, cy + 40); cx.transform(1, 0, -.18, 1, 0, 0); cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W * .66 - 2 * R - 60, 270, 800); cx.fillText(S.sc, 0, ss * .2); cx.restore();
+  cx.fillStyle = OR; cx.textAlign = 'center'; cx.font = sFont(800, 28); cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + 205);
+  cx.fillStyle = '#fff'; fitText(cx, S.hn, 330, 44, 800); cx.textAlign = 'center'; cx.fillText(S.hn, W * .17, cy - 40 + R + 62);
+  fitText(cx, S.an, 330, 44, 800); cx.fillText(S.an, W * .83, cy - 80 + R + 62);
+  const gy = cy + R + 190, avail = H - 200 - gy, row = 90, max = rowsFor(avail, row, 2, 8);
+  if (S.hl.length + S.al.length) {
+    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: OR };
+    scorersAt(S, S.hl, M, gy, W / 2 - M - 20, { ...o, align: 'left' }); scorersAt(S, S.al, W - M, gy, W / 2 - M - 20, { ...o, align: 'right' });
+  }
+  logoAt(S, S.lgW, W - M - 70, H - 78, 150);
+  cx.fillStyle = 'rgba(255,255,255,.6)'; cx.font = sFont(600, 22); cx.textAlign = 'left'; cx.fillText('onze-feminino.netlify.app', M, H - 70);
+}
+
+// 5 · Vidro: foto a toda a largura e painel translúcido
+function shareS5(S) {
+  const { cx, W, H, story, ph } = S, M = 44, py = Math.round(H * (story ? .40 : .36));
+  if (ph) { cover(cx, ph, 0, 0, W, H); cx.fillStyle = 'rgba(7,7,26,.20)'; cx.fillRect(0, 0, W, H); } else { noPhotoBg(S, 0, 0, W, H); cx.fillStyle = 'rgba(0,0,0,.16)'; cx.fillRect(0, 0, W, H); }
+  emblemChip(S, 64, 120, 80); cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, S.c.name, W - 64 - 130 - 64, 44, 800); cx.fillText(S.c.name, 64 + 108, 118);
+  cx.fillStyle = 'rgba(255,255,255,.85)'; fitText(cx, S.sub, W - 64 - 130 - 64, 28, 600); cx.fillText(S.sub, 64 + 108, 158);
+  const ph2 = H - py - M;
+  cx.save(); rr(cx, M, py, W - 2 * M, ph2, 56); cx.clip();
+  if (ph && 'filter' in cx) { try { cx.filter = 'blur(26px)'; cover(cx, ph, M - 40, py - 40, W - 2 * M + 80, ph2 + 80); cx.filter = 'none'; } catch { cx.filter = 'none'; } }
+  cx.fillStyle = ph ? 'rgba(10,10,36,.52)' : 'rgba(10,10,36,.55)'; cx.fillRect(M, py, W - 2 * M, ph2); cx.restore();
+  rr(cx, M, py, W - 2 * M, ph2, 56); cx.lineWidth = 2; cx.strokeStyle = 'rgba(255,255,255,.34)'; cx.stroke();
+  const cy = py + 150, R = 84;
+  crestAt(S, S.ih, S.hf, 190, cy, R); crestAt(S, S.ia, S.af, W - 190, cy, R);
+  cx.fillStyle = '#fff'; cx.textAlign = 'center'; const ss = fitText(cx, S.sc, W - 2 * (190 + R) - 30, 210, 800); cx.fillText(S.sc, W / 2, cy + ss * .34);
+  for (const [n, x] of [[S.hn, 190], [S.an, W - 190]]) { cx.fillStyle = '#fff'; fitText(cx, n, 300, 40, 800); cx.textAlign = 'center'; cx.fillText(n, x, cy + R + 58); }
+  cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = sFont(700, 27); cx.textAlign = 'center'; cx.fillText(`TERMINADO  ·  ${S.when}`, W / 2, cy + R + 116);
+  const gy = cy + R + 196, avail = H - M - 190 - gy, row = 90, max = rowsFor(avail, row, 2, 8);
+  if (S.hl.length + S.al.length) {
+    const o = { max, row, ns: 38, ms: 29, nameC: '#fff', minC: '#ffb066' };
+    scorersAt(S, S.hl, M + 44, gy, W / 2 - M - 44 - 20, { ...o, align: 'left' }); scorersAt(S, S.al, W - M - 44, gy, W / 2 - M - 44 - 20, { ...o, align: 'right' });
+  }
+  logoAt(S, S.lgW, W / 2, H - M - 74, 150);
+  if (ph && S.m.foto) { cx.fillStyle = 'rgba(255,255,255,.75)'; cx.font = sFont(600, 20); cx.textAlign = 'left'; cx.fillText(`Foto: ${S.m.foto.fonte}`, 64, py - 22); }
+}
+
+async function drawShare(c, m, fmt, style = 1) {
+  const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350;
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const cx = cv.getContext('2d');
-  try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); } catch {}
-  const [ih, ia, ph, lg, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), m.foto && m.foto.src ? loadImg(m.foto.src) : null, loadImg(LOGO.dark), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
-  // fundo: foto do jogo com película escura, ou cores dos dois clubes (como o cartão do jogo)
-  if (ph) {
-    const r = Math.max(W / ph.width, H / ph.height), w = ph.width * r, h = ph.height * r;
-    cx.drawImage(ph, (W - w) / 2, (H - h) / 2, w, h);
-    cx.fillStyle = 'rgba(7,7,26,.66)'; cx.fillRect(0, 0, W, H);
-  } else {
-    const [A, B] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
-    const g = cx.createLinearGradient(0, 0, W, H);
-    g.addColorStop(0, A ? tone(A) : '#1b1a6b'); g.addColorStop(1, B ? tone(B) : '#2a2a55');
-    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
-    cx.fillStyle = 'rgba(0,0,0,.18)'; cx.fillRect(0, 0, W, H);
-  }
-  cx.fillStyle = '#fff'; cx.textBaseline = 'alphabetic';
-  const M = 80;
-  // cabeçalho
-  let y = story ? 150 : 120;
-  if (em) { const e = 96, r = e / em.height; cx.save(); cx.beginPath(); cx.arc(M + e / 2, y - 22, e / 2 + 6, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore(); const iw = em.width * r * 0.78, ih2 = e * 0.78; cx.drawImage(em, M + e / 2 - iw / 2, y - 22 - ih2 / 2, iw, ih2); }
-  const tx = M + 96 + 28;
-  cx.textAlign = 'left'; cx.fillStyle = '#fff'; fitText(cx, c.name, W - tx - M, 46, 800); cx.fillText(c.name, tx, y - 18);
-  const sub = [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, `Jornada ${m.round}`].filter(Boolean).join(' · ');
-  cx.fillStyle = 'rgba(255,255,255,.78)'; fitText(cx, sub, W - tx - M, 32, 600); cx.fillText(sub, tx, y + 28);
-  const when = [m.date ? fmtDate(m.date) : '', m.time].filter(Boolean).join(' · ');
-  cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.85)'; fitText(cx, when, W - 2 * M, 34, 600);
-  const cy = story ? 620 : 470, R = story ? 140 : 128;
-  cx.fillText(when, W / 2, story ? 300 : 250);
-  // emblemas
-  const crest = (img, x, id) => {
-    cx.save(); cx.shadowColor = 'rgba(0,0,0,.35)'; cx.shadowBlur = 40; cx.shadowOffsetY = 14; cx.beginPath(); cx.arc(x, cy, R, 0, 7); cx.fillStyle = '#fff'; cx.fill(); cx.restore();
-    if (img) { const s = (R * 2 * 0.72) / Math.max(img.width, img.height); cx.drawImage(img, x - img.width * s / 2, cy - img.height * s / 2, img.width * s, img.height * s); }
-    else { cx.fillStyle = '#15136B'; fitText(cx, initials(tname(c, id)), R * 1.3, 90, 800); cx.textAlign = 'center'; cx.fillText(initials(tname(c, id)), x, cy + 30); }
+  try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
+  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), m.foto && m.foto.src ? loadImg(m.foto.src) : null, loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
+  const S = {
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em,
+    A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
+    hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
+    sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, `Jornada ${m.round}`].filter(Boolean).join(' · '),
+    when: [m.date ? fmtDate(m.date) : '', m.time].filter(Boolean).join(' · '), sc: `${m.hg}–${m.ag}`,
   };
-  const xl = W * 0.19, xr = W * 0.81;
-  crest(ih, xl, m.home); crest(ia, xr, m.away);
-  cx.fillStyle = '#fff'; cx.textAlign = 'center';
-  const nw = W * 0.33;
-  for (const [id, x] of [[m.home, xl], [m.away, xr]]) { const n = sname(c, id); fitText(cx, n, nw, 50, 800); cx.fillText(n, x, cy + R + 78); }
-  // resultado
-  const sc = `${m.hg}–${m.ag}`; cx.fillStyle = '#fff'; cx.textAlign = 'center';
-  const ssz = fitText(cx, sc, xr - xl - 2 * R - 50, 210, 800);
-  cx.fillText(sc, W / 2, cy + ssz * 0.34);
-  const pill = 'TERMINADO'; cx.font = '800 30px ArchivoV, system-ui, sans-serif'; const pw = cx.measureText(pill).width + 56;
-  cx.fillStyle = 'rgba(255,255,255,.92)'; cx.beginPath(); cx.roundRect ? cx.roundRect(W / 2 - pw / 2, cy + 120, pw, 56, 28) : cx.rect(W / 2 - pw / 2, cy + 120, pw, 56); cx.fill();
-  cx.fillStyle = '#15136B'; cx.fillText(pill, W / 2, cy + 159);
-  // marcadoras
-  const hl = goalLines(m, 'home'), al = goalLines(m, 'away');
-  let gy = cy + R + (story ? 190 : 168);
-  if (hl.length + al.length) {
-    cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = '800 30px ArchivoV, system-ui, sans-serif'; cx.textAlign = 'center';
-    cx.fillText('GOLOS', W / 2, gy); gy += 22;
-    cx.fillStyle = 'rgba(255,255,255,.35)'; cx.fillRect(W / 2 - 40, gy, 80, 4); gy += 62;
-    const maxL = story ? 9 : 4, col = (arr, x, right) => {
-      let yy = gy; const shown = arr.slice(0, maxL);
-      shown.forEach((l) => {
-        cx.textAlign = right ? 'right' : 'left'; cx.fillStyle = '#fff'; const w = W / 2 - M - 20;
-        const nm = l.p; fitText(cx, nm, w - 8, 38, 800); const nsz = parseInt(cx.font.match(/(\d+)px/)[1]);
-        cx.fillText(nm, x, yy);
-        cx.fillStyle = 'rgba(255,255,255,.72)'; fitText(cx, l.t, w, 30, 600); cx.fillText(l.t, x, yy + 40);
-        yy += story ? 104 : 90;
-      });
-      if (arr.length > maxL) { cx.fillStyle = 'rgba(255,255,255,.7)'; cx.font = '600 28px ArchivoV, system-ui, sans-serif'; cx.textAlign = right ? 'right' : 'left'; cx.fillText(`+${arr.length - maxL} mais`, x, yy); }
-    };
-    col(hl, M, false); col(al, W - M, true);
-  } else if (m.hg + m.ag > 0) { /* sem marcadoras disponíveis: não escreve nada */ }
-  // rodapé
-  const fy = H - 100;
-  if (lg) { const vb = (() => { try { const s = atob(LOGO.dark.split(',')[1]); const v = s.match(/viewBox="([\d.\s-]+)"/); const a = v ? v[1].trim().split(/\s+/).map(Number) : null; return a ? a[2] / a[3] : lg.width / lg.height; } catch { return lg.width / lg.height; } })(); const lw = 330, lh = lw / vb; cx.drawImage(lg, W / 2 - lw / 2, fy - lh / 2 - 14, lw, lh); }
-  cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.62)'; cx.font = '600 26px ArchivoV, system-ui, sans-serif';
-  cx.fillText('onze-feminino.netlify.app', W / 2, fy + 52);
-  if (ph && m.foto) { cx.textAlign = 'left'; cx.font = '600 22px ArchivoV, system-ui, sans-serif'; cx.fillStyle = 'rgba(255,255,255,.6)'; cx.fillText(`Foto: ${m.foto.fonte}`, M, fy - 92); }
+  [shareS1, shareS2, shareS3, shareS4, shareS5][(style || 1) - 1](S);
   return cv;
 }
+const SHARE_STYLE_KEY = 'elas-share-style';
+const getShareStyle = () => { try { return Math.min(5, Math.max(1, +localStorage.getItem(SHARE_STYLE_KEY) || 1)); } catch { return 1; } };
+
+// Página para comparar os 5 estilos lado a lado: #/estilos/<competição>/<jogo>/<story|post>
+function estilos(cid, mid) {
+  const c = DB.competitions.find((x) => x.id === (cid || '2-liga')), m = c && c.matches.find((x) => x.id === (mid || 'l2-6-2'));
+  if (!m) return (app.innerHTML = '<div class="empty">Jogo não encontrado.</div>');
+  const fmt = location.hash.split('/')[4] === 'post' ? 'post' : 'story';
+  app.innerHTML = `<h1>Estilos de partilha</h1><p class="sub">${esc(tname(c, m.home))} ${m.hg}–${m.ag} ${esc(tname(c, m.away))}</p><div class="estg">${SHARE_STYLES.map((n, i) => `<div class="est"><div class="esl"><b>${i + 1}</b> ${n}</div><div class="esc" data-i="${i + 1}"></div></div>`).join('')}</div>`;
+  setTimeout(async () => { for (const box of document.querySelectorAll('.esc')) { const cv = await drawShare(c, m, fmt, +box.dataset.i); box.appendChild(cv); } }, 0);
+}
+
 async function openShare(cid, mid) {
   const c = DB.competitions.find((x) => x.id === cid), m = c && c.matches.find((x) => x.id === mid); if (!m) return;
-  let fmt = 'story', cv = null;
+  let fmt = 'story', cv = null, style = getShareStyle();
   const box = document.createElement('div'); box.className = 'shm';
-  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div></div>`;
+  box.innerHTML = `<div class="shc"><button class="shx" aria-label="Fechar">✕</button><div class="shseg"><button data-f="story" class="on">Story</button><button data-f="post">Publicação</button></div><div class="shsty">${SHARE_STYLES.map((n, i) => `<button data-s="${i + 1}" class="${i + 1 === style ? 'on' : ''}">${n}</button>`).join('')}</div><div class="shp"><canvas></canvas><span class="shl">A criar a imagem…</span></div><div class="shb"><button class="btn pri" data-a="share">Partilhar</button><button class="btn" data-a="save">Guardar imagem</button></div></div>`;
   document.body.appendChild(box); document.body.classList.add('shopen');
   const close = () => { box.remove(); document.body.classList.remove('shopen'); };
   const name = () => `onze-feminino-${sname(c, m.home)}-${m.hg}-${m.ag}-${sname(c, m.away)}-${fmt}.png`.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9.-]+/g, '-');
   const blobOf = () => new Promise((r) => cv.toBlob(r, 'image/png'));
   const render = async () => {
-    box.querySelector('.shl').style.display = ''; cv = await drawShare(c, m, fmt);
+    box.querySelector('.shl').style.display = ''; cv = await drawShare(c, m, fmt, style);
     const pv = box.querySelector('canvas'); pv.width = cv.width; pv.height = cv.height; pv.getContext('2d').drawImage(cv, 0, 0);
     pv.style.aspectRatio = `${cv.width} / ${cv.height}`; box.querySelector('.shl').style.display = 'none';
   };
@@ -618,6 +723,8 @@ async function openShare(cid, mid) {
     if (e.target === box || e.target.closest('.shx')) return close();
     const f = e.target.closest('[data-f]');
     if (f) { fmt = f.dataset.f; box.querySelectorAll('[data-f]').forEach((b) => b.classList.toggle('on', b === f)); return render(); }
+    const st = e.target.closest('[data-s]');
+    if (st) { style = +st.dataset.s; try { localStorage.setItem(SHARE_STYLE_KEY, style); } catch {} box.querySelectorAll('[data-s]').forEach((b) => b.classList.toggle('on', b === st)); return render(); }
     const a = e.target.closest('[data-a]'); if (!a || !cv) return;
     const blob = await blobOf(), file = new File([blob], name(), { type: 'image/png' });
     if (a.dataset.a === 'share' && navigator.canShare && navigator.canShare({ files: [file] })) {
