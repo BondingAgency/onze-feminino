@@ -381,3 +381,12 @@ html[data-theme=light] .cstar.on{color:var(--acc)}
 .sw-auto{background:linear-gradient(135deg,#2a6fd1,#c0392b)}
 .sw-custom{background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd5ff,#3b4bff,#d63bff,#ff3b3b)}
 .sw-photo{background:rgba(255,255,255,.1);color:#fff}
+
+.shfoto{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:0;border-radius:14px;padding:13px;background:rgba(255,255,255,.1);color:#fff;font:700 15px 'ArchivoV',system-ui,sans-serif;cursor:pointer}
+.shfoto.on{background:#fff;color:#15136B}
+.shdots{display:flex;justify-content:center;gap:12px}
+.shdots button{background:none;border:0;padding:4px;cursor:pointer;border-radius:50%}
+.dot{display:block;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.32);box-sizing:border-box}
+.shdots button.on .dot{border-color:#fff;box-shadow:0 0 0 2px #ff7a0a}
+.dot-auto{background:linear-gradient(135deg,#2a6fd1,#c0392b)}
+.dot-custom{background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd5ff,#3b4bff,#d63bff,#ff3b3b)}
