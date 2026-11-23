@@ -10223,7 +10223,202 @@
         {
           "id": "academica-oaf",
           "name": "Académica OAF",
-          "short": "Académica"
+          "short": "Académica",
+          "squad": [
+            {
+              "n": null,
+              "name": "Inês Almeida",
+              "pos": "Guarda-redes",
+              "age": 15,
+              "nat": "PT",
+              "id": "ac1"
+            },
+            {
+              "n": 1,
+              "name": "Ruana Macedo",
+              "pos": "Guarda-redes",
+              "age": 23,
+              "nat": "PT",
+              "id": "ac2"
+            },
+            {
+              "n": 77,
+              "name": "Lara Dias",
+              "pos": "Guarda-redes",
+              "age": 22,
+              "nat": "PT",
+              "id": "ac3"
+            },
+            {
+              "n": null,
+              "name": "Lúcia Mariz",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": "ac4"
+            },
+            {
+              "n": 3,
+              "name": "Maria Teixeira",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "ac5"
+            },
+            {
+              "n": 4,
+              "name": "Raquel Varajão",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "ac6"
+            },
+            {
+              "n": 2,
+              "name": "Valentina Bártolo",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": "ac7"
+            },
+            {
+              "n": 8,
+              "name": "Luana Barata",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "ac8"
+            },
+            {
+              "n": 19,
+              "name": "Anamar Marques",
+              "pos": "Médio",
+              "age": 16,
+              "nat": "PT",
+              "id": "ac9"
+            },
+            {
+              "n": 9,
+              "name": "Carolina Jesus",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": "ac10"
+            },
+            {
+              "n": 25,
+              "name": "Raquel Teixeira",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": "ac11"
+            },
+            {
+              "n": 14,
+              "name": "Beatriz Oliveira",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "ac12"
+            },
+            {
+              "n": 20,
+              "name": "Ana Malva",
+              "pos": "Médio",
+              "age": 25,
+              "nat": "PT",
+              "id": "ac13"
+            },
+            {
+              "n": 90,
+              "name": "Raquel Tomás",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": "ac14"
+            },
+            {
+              "n": null,
+              "name": "Daniela Pereira",
+              "pos": "Médio",
+              "age": 25,
+              "nat": "PT",
+              "id": "ac15"
+            },
+            {
+              "n": 10,
+              "name": "Mariana Jesus",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": "ac16"
+            },
+            {
+              "n": 27,
+              "name": "Laura Pereira",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "ac17"
+            },
+            {
+              "n": null,
+              "name": "Rita Montenegro",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "ac18"
+            },
+            {
+              "n": 23,
+              "name": "Beatriz Vaz",
+              "pos": "Avançado",
+              "age": 17,
+              "nat": "PT",
+              "id": "ac19"
+            },
+            {
+              "n": 7,
+              "name": "Sony Costa",
+              "pos": "Avançado",
+              "age": 25,
+              "nat": "PT",
+              "id": "ac20"
+            },
+            {
+              "n": 5,
+              "name": "Daniela Cruz",
+              "pos": "Avançado",
+              "age": 27,
+              "nat": "PT",
+              "id": "ac21"
+            },
+            {
+              "n": 18,
+              "name": "Filipa Fernandes",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "PT",
+              "id": "ac22"
+            },
+            {
+              "n": 16,
+              "name": "Bárbara Campos",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "ac23"
+            },
+            {
+              "n": 11,
+              "name": "Margarida Pimenta",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "ac24"
+            }
+          ],
+          "squadAt": "2026-11-23"
         },
         {
           "id": "ud-leiria",
