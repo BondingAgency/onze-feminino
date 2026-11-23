@@ -8,43 +8,2777 @@
       "teams": [
         {
           "id": "rio-ave",
-          "name": "Rio Ave"
+          "name": "Rio Ave",
+          "squad": [
+            {
+              "n": 14,
+              "name": "Genevieve Crens­haw",
+              "pos": "Guarda-redes",
+              "age": 24,
+              "nat": "US",
+              "id": 2537183,
+              "ph": "2537183.png"
+            },
+            {
+              "n": 66,
+              "name": "Catarina Fonseca",
+              "pos": "Guarda-redes",
+              "age": 16,
+              "nat": "PT",
+              "id": 1038896,
+              "ph": "1038896.jpg"
+            },
+            {
+              "n": 99,
+              "name": "Íris Esgueirão",
+              "pos": "Guarda-redes",
+              "age": 21,
+              "nat": "PT",
+              "id": 740256,
+              "ph": "740256.png"
+            },
+            {
+              "n": 5,
+              "name": "Bárbara Azevedo",
+              "pos": "Defesa",
+              "age": 29,
+              "nat": "PT",
+              "id": 278403,
+              "ph": "278403.png"
+            },
+            {
+              "n": 27,
+              "name": "Inês Barge",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "PT",
+              "id": 396394,
+              "ph": "396394.png"
+            },
+            {
+              "n": 55,
+              "name": "Filipa Ribeiro",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 911701,
+              "ph": "911701.jpg"
+            },
+            {
+              "n": 20,
+              "name": "Sofia Almeida",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 911677,
+              "ph": "911677.png"
+            },
+            {
+              "n": 4,
+              "name": "Itaf Alkisi",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "IL",
+              "id": 757460,
+              "ph": "757460.png"
+            },
+            {
+              "n": 6,
+              "name": "Madison Wolfbauer",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "US",
+              "id": 1017763,
+              "ph": "1017763.jpg"
+            },
+            {
+              "n": 23,
+              "name": "Rita Almeida",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": 684384,
+              "ph": "684384.png"
+            },
+            {
+              "n": 31,
+              "name": "Telma Pereira",
+              "pos": "Médio",
+              "age": 26,
+              "nat": "PT",
+              "id": 510216,
+              "ph": "510216.png"
+            },
+            {
+              "n": 2,
+              "name": "Rielee Fetty",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "US",
+              "id": 2755056,
+              "ph": "2755056.png"
+            },
+            {
+              "n": 12,
+              "name": "Regina Pereira",
+              "pos": "Médio",
+              "age": 34,
+              "nat": "PT",
+              "id": 249597,
+              "ph": "249597.png"
+            },
+            {
+              "n": 15,
+              "name": "Ana Assucena",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "PT",
+              "id": 636420,
+              "ph": "636420.jpg"
+            },
+            {
+              "n": 8,
+              "name": "Mafalda Nunes",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 837884,
+              "ph": "837884.jpg"
+            },
+            {
+              "n": 32,
+              "name": "Anamar Pereira",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": 947669,
+              "ph": "947669.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Maria Rodrigues",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "PT",
+              "id": 733059,
+              "ph": "733059.jpg"
+            },
+            {
+              "n": 10,
+              "name": "Beatriz Conduto",
+              "pos": "Médio",
+              "age": 26,
+              "nat": "PT",
+              "id": 516050,
+              "ph": "516050.png"
+            },
+            {
+              "n": 9,
+              "name": "Lauren Smith",
+              "pos": "Avançado",
+              "age": 22,
+              "id": 3561115,
+              "ph": "3561115.png"
+            },
+            {
+              "n": 11,
+              "name": "Kuki",
+              "pos": "Avançado",
+              "age": 32,
+              "nat": "ES",
+              "id": 151061,
+              "ph": "151061.png"
+            },
+            {
+              "n": 22,
+              "name": "Claudia Chiper",
+              "pos": "Avançado",
+              "age": 31,
+              "nat": "MD",
+              "id": 286021,
+              "ph": "286021.png"
+            },
+            {
+              "n": 24,
+              "name": "Mackenzie Anthony",
+              "pos": "Avançado",
+              "age": 24,
+              "nat": "US",
+              "id": 2738781,
+              "ph": "2738781.jpg"
+            },
+            {
+              "n": 16,
+              "name": "Zofia Gietkowska",
+              "pos": "Avançado",
+              "age": 24,
+              "nat": "PL",
+              "id": 881360,
+              "ph": "881360.png"
+            },
+            {
+              "n": 7,
+              "name": "Vitória Coelho",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "PT",
+              "id": 1029556,
+              "ph": "1029556.png"
+            },
+            {
+              "n": 21,
+              "name": "Noa Selimhodzic",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "IL",
+              "id": 809702,
+              "ph": "809702.png"
+            }
+          ],
+          "coach": "Tiago Ramos",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/rio-ave/251879"
         },
         {
           "id": "vitoria-sc",
-          "name": "Vitória SC"
+          "name": "Vitória SC",
+          "squad": [
+            {
+              "n": null,
+              "name": "Bárbara Ferreira",
+              "pos": "Guarda-redes",
+              "age": 17,
+              "nat": "PT",
+              "id": 1087379,
+              "ph": "1087379.jpg"
+            },
+            {
+              "n": 1,
+              "name": "Tiffany Sornpao",
+              "pos": "Guarda-redes",
+              "age": 28,
+              "nat": "US",
+              "id": 720552,
+              "ph": "720552.jpg"
+            },
+            {
+              "n": 18,
+              "name": "Inês Marques",
+              "pos": "Guarda-redes",
+              "age": 31,
+              "nat": "PT",
+              "id": 847350,
+              "ph": "847350.jpg"
+            },
+            {
+              "n": 30,
+              "name": "Bárbara Santos",
+              "pos": "Guarda-redes",
+              "age": 32,
+              "nat": "PT",
+              "id": 269758,
+              "ph": "269758.jpg"
+            },
+            {
+              "n": 31,
+              "name": "Andrea Neves",
+              "pos": "Guarda-redes",
+              "age": 28,
+              "nat": "PT",
+              "id": 490952,
+              "ph": "490952.jpg"
+            },
+            {
+              "n": 3,
+              "name": "Gabriela Zidoi",
+              "pos": "Defesa",
+              "age": 26,
+              "nat": "BR",
+              "id": 642529,
+              "ph": "642529.jpg"
+            },
+            {
+              "n": 4,
+              "name": "Débora Maciel",
+              "pos": "Defesa",
+              "age": 28,
+              "nat": "BR",
+              "id": 919544,
+              "ph": "919544.jpg"
+            },
+            {
+              "n": 6,
+              "name": "Paula Fernandes",
+              "pos": "Defesa",
+              "age": 29,
+              "nat": "PT",
+              "id": 662155,
+              "ph": "662155.jpg"
+            },
+            {
+              "n": 13,
+              "name": "Madeline Gravante",
+              "pos": "Defesa",
+              "nat": "US",
+              "id": 1702174,
+              "ph": "1702174.jpg",
+              "age": 27
+            },
+            {
+              "n": 15,
+              "name": "Jaime Turrentine",
+              "pos": "Defesa",
+              "age": 32,
+              "nat": "PH",
+              "id": 1013328,
+              "ph": "1013328.jpg"
+            },
+            {
+              "n": 16,
+              "name": "Filipa Manso-Preto",
+              "pos": "Defesa",
+              "age": 22,
+              "nat": "PT",
+              "id": 866960,
+              "ph": "866960.jpg"
+            },
+            {
+              "n": 22,
+              "name": "Luana Rafael",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 779777,
+              "ph": "779777.jpg"
+            },
+            {
+              "n": 24,
+              "name": "Inês Queiroga",
+              "pos": "Defesa",
+              "age": 26,
+              "nat": "PT",
+              "id": 591360,
+              "ph": "591360.jpg"
+            },
+            {
+              "n": 2,
+              "name": "Manuela Souto",
+              "pos": "Defesa",
+              "age": 16,
+              "nat": "PT",
+              "id": 1089287,
+              "ph": "1089287.jpg"
+            },
+            {
+              "n": 11,
+              "name": "Matilde Silva",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 451864,
+              "ph": "451864.jpg",
+              "age": 22
+            },
+            {
+              "n": 21,
+              "name": "Samara Lino",
+              "pos": "Médio",
+              "age": 27,
+              "nat": "PT",
+              "id": 900321,
+              "ph": "900321.jpg"
+            },
+            {
+              "n": 80,
+              "name": "Maria Salgado",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "PT",
+              "id": 757785,
+              "ph": "757785.jpg"
+            },
+            {
+              "n": 87,
+              "name": "Marta Gago",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": 779776,
+              "ph": "779776.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Lia Howard",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "US",
+              "id": 3558275,
+              "ph": "3558275.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Sam Wiehe",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "US",
+              "id": 3566054,
+              "ph": "3566054.jpg"
+            },
+            {
+              "n": 20,
+              "name": "Mafalda Mariano",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": 745391,
+              "ph": "745391.jpg"
+            },
+            {
+              "n": 8,
+              "name": "Joana Ribeiro",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 930637,
+              "ph": "930637.jpg"
+            },
+            {
+              "n": 10,
+              "name": "Betinha",
+              "pos": "Avançado",
+              "age": 36,
+              "nat": "PT",
+              "id": 305826,
+              "ph": "305826.jpg"
+            },
+            {
+              "n": 70,
+              "name": "Rita Dias",
+              "pos": "Avançado",
+              "age": 24,
+              "nat": "PT",
+              "id": 625825,
+              "ph": "625825.jpg"
+            },
+            {
+              "n": 19,
+              "name": "Maria Baleia",
+              "pos": "Avançado",
+              "age": 30,
+              "nat": "PT",
+              "id": 309337,
+              "ph": "309337.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Erin Hilbig",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "US",
+              "id": 3564218,
+              "ph": "3564218.jpg"
+            },
+            {
+              "n": null,
+              "name": "Nikolina Istocki",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "CA",
+              "id": 1314415,
+              "ph": "1314415.png"
+            },
+            {
+              "n": 32,
+              "name": "Jordyn Wickes",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "US",
+              "id": 3565831,
+              "ph": "3565831.jpg"
+            },
+            {
+              "n": 77,
+              "name": "Elene Errasti",
+              "pos": "Avançado",
+              "age": 26,
+              "nat": "ES",
+              "id": 899337,
+              "ph": "899337.jpg"
+            }
+          ],
+          "coach": "Marco Ramos",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/vitoria-sc/14396"
         },
         {
           "id": "torreense",
-          "name": "Torreense"
+          "name": "Torreense",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Janny Belém",
+              "pos": "Guarda-redes",
+              "age": 22,
+              "nat": "BR",
+              "id": 844110,
+              "ph": "844110.jpg"
+            },
+            {
+              "n": 55,
+              "name": "Carolina Jóia",
+              "pos": "Guarda-redes",
+              "age": 25,
+              "nat": "PT",
+              "id": 524947,
+              "ph": "524947.jpg"
+            },
+            {
+              "n": 66,
+              "name": "Rute Costa",
+              "pos": "Guarda-redes",
+              "nat": "PT",
+              "id": 164591,
+              "ph": "164591.jpg",
+              "age": 32
+            },
+            {
+              "n": 2,
+              "name": "Bruna Ramos",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": 727650,
+              "ph": "727650.jpg"
+            },
+            {
+              "n": 14,
+              "name": "Núria Mendoza",
+              "pos": "Defesa",
+              "nat": "ES",
+              "id": 232355,
+              "ph": "232355.jpg",
+              "age": 30
+            },
+            {
+              "n": 33,
+              "name": "Carolina Pimenta",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 529979,
+              "ph": "529979.jpg"
+            },
+            {
+              "n": 3,
+              "name": "Matilde Costa",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": 774031,
+              "ph": "774031.jpg"
+            },
+            {
+              "n": 4,
+              "name": "Ella Tonkin",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "AU",
+              "id": 786074,
+              "ph": "786074.jpg"
+            },
+            {
+              "n": 68,
+              "name": "Bárbara Lopes",
+              "pos": "Defesa",
+              "age": 24,
+              "nat": "PT",
+              "id": 660966,
+              "ph": "660966.jpg"
+            },
+            {
+              "n": 16,
+              "name": "Catarina Pereira",
+              "pos": "Defesa",
+              "age": 26,
+              "nat": "PT",
+              "id": 234660,
+              "ph": "234660.jpg"
+            },
+            {
+              "n": 8,
+              "name": "Rafaela Rufino",
+              "pos": "Médio",
+              "age": 33,
+              "nat": "BR",
+              "id": 557953,
+              "ph": "557953.jpg"
+            },
+            {
+              "n": 77,
+              "name": "Raquel Ferreira",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "PT",
+              "id": 660965,
+              "ph": "660965.jpg"
+            },
+            {
+              "n": 88,
+              "name": "Nicole Nunes",
+              "pos": "Médio",
+              "age": 27,
+              "nat": "PT",
+              "id": 597762,
+              "ph": "597762.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Daniuska Rodríguez",
+              "pos": "Médio",
+              "age": 27,
+              "nat": "VE",
+              "id": 531785,
+              "ph": "531785.jpg"
+            },
+            {
+              "n": 10,
+              "name": "Bárbara Latorre",
+              "pos": "Médio",
+              "nat": "ES",
+              "id": 507606,
+              "ph": "507606.jpg",
+              "age": 33
+            },
+            {
+              "n": 5,
+              "name": "Sophie Hoban",
+              "pos": "Médio",
+              "age": 25,
+              "nat": "AU",
+              "id": 1313835,
+              "ph": "1313835.jpg"
+            },
+            {
+              "n": 18,
+              "name": "Vera Cid",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "PT",
+              "id": 492630,
+              "ph": "492630.jpg"
+            },
+            {
+              "n": 21,
+              "name": "Gerda Konst",
+              "pos": "Médio",
+              "nat": "NL",
+              "id": 1390526,
+              "ph": "1390526.jpg"
+            },
+            {
+              "n": 12,
+              "name": "Shakirat Moshood",
+              "pos": "Médio",
+              "age": 18,
+              "nat": "NG",
+              "id": 2232666,
+              "ph": "2232666.jpg"
+            },
+            {
+              "n": 11,
+              "name": "Daniela Silva",
+              "pos": "Avançado",
+              "nat": "PT",
+              "id": 528247,
+              "ph": "528247.jpg",
+              "age": 27
+            },
+            {
+              "n": 19,
+              "name": "Margarida Guerreiro",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "PT",
+              "id": 773683,
+              "ph": "773683.jpg"
+            },
+            {
+              "n": null,
+              "name": "Kiki Meva",
+              "pos": "Avançado",
+              "age": 18,
+              "nat": "CM",
+              "id": 1826279,
+              "ph": "1826279.png"
+            },
+            {
+              "n": 6,
+              "name": "Maile Hayes",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "US",
+              "id": 2511737,
+              "ph": "2511737.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Tinaya Alexander",
+              "pos": "Avançado",
+              "age": 27,
+              "id": 512860,
+              "ph": "512860.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Janaina Weimer",
+              "pos": "Avançado",
+              "age": 27,
+              "nat": "BR",
+              "id": 668272,
+              "ph": "668272.jpg"
+            },
+            {
+              "n": 20,
+              "name": "Matilde Fortes",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 774044,
+              "ph": "774044.jpg"
+            },
+            {
+              "n": 22,
+              "name": "Jennie Lakip",
+              "pos": "Avançado",
+              "age": 36,
+              "nat": "US",
+              "id": 961910,
+              "ph": "961910.jpg"
+            }
+          ],
+          "coach": "Gonçalo Nunes",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/torreense/231443"
         },
         {
           "id": "benfica",
-          "name": "Benfica"
+          "name": "Benfica",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Lena Pauels",
+              "pos": "Guarda-redes",
+              "nat": "DE",
+              "id": 515422,
+              "ph": "515422.png",
+              "age": 28
+            },
+            {
+              "n": 12,
+              "name": "Thaís Lima",
+              "pos": "Guarda-redes",
+              "nat": "BR",
+              "id": 777458,
+              "ph": "777458.png",
+              "age": 18
+            },
+            {
+              "n": 46,
+              "name": "Michaely Bihina",
+              "pos": "Guarda-redes",
+              "age": 22,
+              "nat": "CM",
+              "id": 997271,
+              "ph": "997271.png"
+            },
+            {
+              "n": 3,
+              "name": "Inês Meninas",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 791473,
+              "ph": "791473.png"
+            },
+            {
+              "n": 4,
+              "name": "Demehin Blessing",
+              "pos": "Defesa",
+              "nat": "NG",
+              "id": 872647,
+              "ph": "872647.png",
+              "age": 24
+            },
+            {
+              "n": 5,
+              "name": "Marit Lund",
+              "pos": "Defesa",
+              "nat": "NO",
+              "id": 456717,
+              "ph": "456717.png",
+              "age": 29
+            },
+            {
+              "n": 11,
+              "name": "Ana Borges",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 109448,
+              "ph": "109448.png",
+              "age": 36
+            },
+            {
+              "n": 19,
+              "name": "Catarina Amado",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 509424,
+              "ph": "509424.png",
+              "age": 27
+            },
+            {
+              "n": 22,
+              "name": "Diana Gomes",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 296172,
+              "ph": "296172.png",
+              "age": 28
+            },
+            {
+              "n": 31,
+              "name": "Tinkara Testen",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "SI",
+              "id": 953450,
+              "ph": "953450.png"
+            },
+            {
+              "n": 40,
+              "name": "Raquel Vitorino",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": 981116,
+              "ph": "981116.png"
+            },
+            {
+              "n": 42,
+              "name": "Cristina Fernandes",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": 1082671,
+              "ph": "1082671.png"
+            },
+            {
+              "n": 55,
+              "name": "Laura Rilhó",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": 1082668,
+              "ph": "1082668.png"
+            },
+            {
+              "n": 56,
+              "name": "Carolina Simões",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": 873296,
+              "ph": "873296.png"
+            },
+            {
+              "n": 8,
+              "name": "Andreia Norton",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 269763,
+              "ph": "269763.png",
+              "age": 30
+            },
+            {
+              "n": 14,
+              "name": "Anna Csiki",
+              "pos": "Médio",
+              "nat": "HU",
+              "id": 711512,
+              "ph": "711512.png",
+              "age": 27
+            },
+            {
+              "n": 21,
+              "name": "Pauleta",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 521709,
+              "ph": "521709.png",
+              "age": 29
+            },
+            {
+              "n": 23,
+              "name": "Carolina Tristão",
+              "pos": "Médio",
+              "age": 18,
+              "nat": "PT",
+              "id": 947602,
+              "ph": "947602.png"
+            },
+            {
+              "n": 44,
+              "name": "Madalena Loução",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 873272,
+              "ph": "873272.png"
+            },
+            {
+              "n": 52,
+              "name": "Matilde Matos",
+              "pos": "Médio",
+              "age": 16,
+              "nat": "PT",
+              "id": 981115,
+              "ph": "981115.png"
+            },
+            {
+              "n": 16,
+              "name": "Clarinha",
+              "pos": "Médio",
+              "nat": "BR",
+              "id": 680659,
+              "ph": "680659.png",
+              "age": 20
+            },
+            {
+              "n": 57,
+              "name": "Ariana Schafer",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 1082672,
+              "ph": "1082672.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Nycole Raysla",
+              "pos": "Avançado",
+              "nat": "BR",
+              "id": 532664,
+              "ph": "532664.png",
+              "age": 26
+            },
+            {
+              "n": 10,
+              "name": "Caroline Møller",
+              "pos": "Avançado",
+              "nat": "DK",
+              "id": 507541,
+              "ph": "507541.png",
+              "age": 27
+            },
+            {
+              "n": 13,
+              "name": "Lúcia Alves",
+              "pos": "Avançado",
+              "nat": "PT",
+              "id": 537389,
+              "ph": "537389.png",
+              "age": 29
+            },
+            {
+              "n": 17,
+              "name": "Diana Silva",
+              "pos": "Avançado",
+              "nat": "PT",
+              "id": 183577,
+              "ph": "183577.png",
+              "age": 31
+            },
+            {
+              "n": 20,
+              "name": "Lara Martins",
+              "pos": "Avançado",
+              "nat": "PT",
+              "id": 868673,
+              "ph": "868673.png",
+              "age": 20
+            },
+            {
+              "n": 26,
+              "name": "Ziqin Shao",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "CN",
+              "id": 1094653,
+              "ph": "1094653.png"
+            },
+            {
+              "n": 59,
+              "name": "Matilde Rucha",
+              "pos": "Avançado",
+              "age": 18,
+              "nat": "PT",
+              "id": 1082666,
+              "ph": "1082666.jpg"
+            },
+            {
+              "n": 25,
+              "name": "Chandra Davidson",
+              "pos": "Avançado",
+              "nat": "CA",
+              "id": 836868,
+              "ph": "836868.png",
+              "age": 28
+            },
+            {
+              "n": 77,
+              "name": "Neide Guedes",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 959281,
+              "ph": "959281.png"
+            },
+            {
+              "n": 24,
+              "name": "Janet Akekoromowei",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "NG",
+              "id": 1826318,
+              "ph": "1826318.png"
+            },
+            {
+              "n": 7,
+              "name": "Frøya Dorsin",
+              "pos": "Avançado",
+              "nat": "NO",
+              "id": 1031653,
+              "ph": "1031653.png",
+              "age": 19
+            },
+            {
+              "n": 27,
+              "name": "Diana Costa",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 867320,
+              "ph": "867320.png"
+            },
+            {
+              "n": 18,
+              "name": "Flourish Sabastine",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "NG",
+              "id": 1004059,
+              "ph": "1004059.png"
+            }
+          ],
+          "coach": "Ivan Baptista",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/benfica/224225"
         },
         {
           "id": "sporting-cp",
-          "name": "Sporting CP"
+          "name": "Sporting CP",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Carol Alves",
+              "pos": "Guarda-redes",
+              "age": 20,
+              "nat": "PT",
+              "id": 765037,
+              "ph": "765037.jpg"
+            },
+            {
+              "n": 33,
+              "name": "Julia Wozniak",
+              "pos": "Guarda-redes",
+              "age": 19,
+              "nat": "PL",
+              "id": 1058846,
+              "ph": "1058846.jpg"
+            },
+            {
+              "n": 99,
+              "name": "Cassie Coster",
+              "pos": "Guarda-redes",
+              "age": 22,
+              "nat": "US",
+              "id": 2779534,
+              "ph": "2779534.jpg"
+            },
+            {
+              "n": 16,
+              "name": "Ágata Filipa",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 164865,
+              "ph": "164865.jpg",
+              "age": 31
+            },
+            {
+              "n": 26,
+              "name": "Mackenzie Cherry",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "US",
+              "id": 1240718,
+              "ph": "1240718.jpg"
+            },
+            {
+              "n": 28,
+              "name": "Madalena Marau",
+              "pos": "Defesa",
+              "age": 29,
+              "nat": "PT",
+              "id": 290446,
+              "ph": "290446.jpg"
+            },
+            {
+              "n": 41,
+              "name": "Ashley Barron",
+              "pos": "Defesa",
+              "nat": "US",
+              "id": 1551048,
+              "ph": "1551048.jpg",
+              "age": 25
+            },
+            {
+              "n": 77,
+              "name": "Tânia Rodrigues",
+              "pos": "Defesa",
+              "age": 28,
+              "nat": "PT",
+              "id": 492644,
+              "ph": "492644.jpg"
+            },
+            {
+              "n": 23,
+              "name": "Emma Ramírez",
+              "pos": "Defesa",
+              "nat": "ES",
+              "id": 613133,
+              "ph": "613133.jpg",
+              "age": 24
+            },
+            {
+              "n": null,
+              "name": "Dária Kaminska",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 788526,
+              "ph": "788526.jpg"
+            },
+            {
+              "n": 4,
+              "name": "Érica Cancelinha",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": 723075,
+              "ph": "723075.jpg"
+            },
+            {
+              "n": 6,
+              "name": "Georgia Eaton-Collins",
+              "pos": "Defesa",
+              "id": 675223,
+              "ph": "675223.jpg",
+              "age": 26
+            },
+            {
+              "n": null,
+              "name": "Iara Gonçalves",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 661013,
+              "ph": "661013.jpg"
+            },
+            {
+              "n": 11,
+              "name": "Brenda Pérez",
+              "pos": "Médio",
+              "age": 33,
+              "nat": "ES",
+              "id": 232388,
+              "ph": "232388.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Cláudia Neto",
+              "pos": "Médio",
+              "age": 38,
+              "nat": "PT",
+              "id": 109450,
+              "ph": "109450.jpg"
+            },
+            {
+              "n": 39,
+              "name": "Andreia Bravo",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 661034,
+              "ph": "661034.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Joana Martins",
+              "pos": "Médio",
+              "age": 26,
+              "nat": "PT",
+              "id": 573436,
+              "ph": "573436.jpg"
+            },
+            {
+              "n": 8,
+              "name": "Ruby Grant",
+              "pos": "Médio",
+              "age": 24,
+              "id": 707215,
+              "ph": "707215.png"
+            },
+            {
+              "n": 15,
+              "name": "Beatriz Cameirão",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 564617,
+              "ph": "564617.png",
+              "age": 25
+            },
+            {
+              "n": 2,
+              "name": "Jeneva Hernandez-Gray",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "CA",
+              "id": 1028733,
+              "ph": "1028733.jpg"
+            },
+            {
+              "n": 10,
+              "name": "Neuza Besugo",
+              "pos": "Avançado",
+              "age": 27,
+              "nat": "PT",
+              "id": 580626,
+              "ph": "580626.jpg"
+            },
+            {
+              "n": 19,
+              "name": "Flor Bonsegundo",
+              "pos": "Avançado",
+              "nat": "AR",
+              "id": 283039,
+              "ph": "283039.jpg",
+              "age": 33
+            },
+            {
+              "n": 20,
+              "name": "Carla Armengol",
+              "pos": "Avançado",
+              "nat": "ES",
+              "id": 685207,
+              "ph": "685207.jpg",
+              "age": 28
+            },
+            {
+              "n": 52,
+              "name": "Ana Dias",
+              "pos": "Avançado",
+              "age": 29,
+              "nat": "PT",
+              "id": 509425,
+              "ph": "509425.jpg"
+            },
+            {
+              "n": 13,
+              "name": "Carolina Santiago",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 672652,
+              "ph": "672652.jpg"
+            },
+            {
+              "n": 42,
+              "name": "Maísa Correia",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 662084,
+              "ph": "662084.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Telma Encarnação",
+              "pos": "Avançado",
+              "nat": "PT",
+              "id": 617156,
+              "ph": "617156.jpg",
+              "age": 25
+            },
+            {
+              "n": 78,
+              "name": "Miri O’Donnell",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "US",
+              "id": 1820607,
+              "ph": "1820607.jpg"
+            }
+          ],
+          "coach": "Micael Sequeira",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/sporting/110534"
         },
         {
           "id": "valadares-gaia",
-          "name": "Valadares Gaia"
+          "name": "Valadares Gaia",
+          "squad": [
+            {
+              "n": 12,
+              "name": "Catarina Potra",
+              "pos": "Guarda-redes",
+              "age": 21,
+              "nat": "PT",
+              "id": 661014,
+              "ph": "661014.png"
+            },
+            {
+              "n": 31,
+              "name": "Erin Seppi",
+              "pos": "Guarda-redes",
+              "age": 28,
+              "nat": "US",
+              "id": 835232,
+              "ph": "835232.jpg"
+            },
+            {
+              "n": 1,
+              "name": "Inês Agra",
+              "pos": "Guarda-redes",
+              "age": 19,
+              "nat": "PT",
+              "id": 913863,
+              "ph": "913863.png"
+            },
+            {
+              "n": 2,
+              "name": "Sara Monteiro",
+              "pos": "Defesa",
+              "age": 29,
+              "nat": "PT",
+              "id": 278401,
+              "ph": "278401.jpg"
+            },
+            {
+              "n": 3,
+              "name": "Joana Silva",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": 731150,
+              "ph": "731150.png"
+            },
+            {
+              "n": 7,
+              "name": "Carolina Ferreira",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": 774026,
+              "ph": "774026.jpg"
+            },
+            {
+              "n": 15,
+              "name": "Matilde Sousa",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": 873289,
+              "ph": "873289.png"
+            },
+            {
+              "n": 43,
+              "name": "Nivea Bombarda",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "BR",
+              "id": 1185774,
+              "ph": "1185774.png"
+            },
+            {
+              "n": 71,
+              "name": "Constança Maia",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": 873267,
+              "ph": "873267.png"
+            },
+            {
+              "n": 4,
+              "name": "Marie Mulot",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "FR",
+              "id": 976183,
+              "ph": "976183.jpg"
+            },
+            {
+              "n": 5,
+              "name": "Ana Cruz",
+              "pos": "Defesa",
+              "age": 22,
+              "nat": "PT",
+              "id": 763761,
+              "ph": "763761.jpg"
+            },
+            {
+              "n": 6,
+              "name": "Joana Valente",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 873257,
+              "ph": "873257.png"
+            },
+            {
+              "n": 14,
+              "name": "Gesa Marashi",
+              "pos": "Médio",
+              "age": 20,
+              "id": 951261,
+              "ph": "951261.png"
+            },
+            {
+              "n": 16,
+              "name": "Margaux Chauvet",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "AU",
+              "id": 993090,
+              "ph": "993090.png"
+            },
+            {
+              "n": 17,
+              "name": "Vanessa Marques",
+              "pos": "Médio",
+              "age": 30,
+              "nat": "PT",
+              "id": 269769,
+              "ph": "269769.png"
+            },
+            {
+              "n": 20,
+              "name": "Maria Cruz",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 993163,
+              "ph": "993163.jpg"
+            },
+            {
+              "n": 88,
+              "name": "Érica Ventura",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "PT",
+              "id": 727634,
+              "ph": "727634.jpg"
+            },
+            {
+              "n": 18,
+              "name": "Lara Carvalho",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 1039679,
+              "ph": "1039679.png"
+            },
+            {
+              "n": 25,
+              "name": "Mariana Roxo",
+              "pos": "Médio",
+              "age": 16,
+              "nat": "PT",
+              "id": 977210,
+              "ph": "977210.jpg"
+            },
+            {
+              "n": 23,
+              "name": "Marcie O'Meara",
+              "pos": "Médio",
+              "age": 18,
+              "id": 2756764,
+              "ph": "2756764.png"
+            },
+            {
+              "n": 10,
+              "name": "Cristina Ferreira",
+              "pos": "Avançado",
+              "age": 33,
+              "nat": "PT",
+              "id": 295511,
+              "ph": "295511.png"
+            },
+            {
+              "n": 11,
+              "name": "Marta Gestera",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "ES",
+              "id": 1251937,
+              "ph": "1251937.png"
+            },
+            {
+              "n": 19,
+              "name": "Melanie Florentino",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "PT",
+              "id": 873260,
+              "ph": "873260.png"
+            },
+            {
+              "n": 27,
+              "name": "Matilde Nave",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "PT",
+              "id": 873288,
+              "ph": "873288.png"
+            },
+            {
+              "n": 8,
+              "name": "Charlotte Schmit",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "LU",
+              "id": 934150,
+              "ph": "934150.png"
+            },
+            {
+              "n": 9,
+              "name": "Kelly Bullock",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "US",
+              "id": 3568956,
+              "ph": "3568956.jpg"
+            },
+            {
+              "n": 77,
+              "name": "Inês Silva",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "PT",
+              "id": 768519,
+              "ph": "768519.jpg"
+            }
+          ],
+          "coach": "Neide Simões",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/valadares-gaia/73683"
         },
         {
           "id": "maritimo",
-          "name": "Marítimo"
+          "name": "Marítimo",
+          "squad": [
+            {
+              "n": null,
+              "name": "Margarida Nóbrega",
+              "pos": "Guarda-redes",
+              "age": 19,
+              "nat": "PT",
+              "id": 911932,
+              "ph": "911932.jpg"
+            },
+            {
+              "n": 1,
+              "name": "Carolina Rodrigues",
+              "pos": "Guarda-redes",
+              "age": 19,
+              "nat": "PT",
+              "id": 994431,
+              "ph": "994431.jpg"
+            },
+            {
+              "n": 24,
+              "name": "Laia Roch",
+              "pos": "Guarda-redes",
+              "age": 23,
+              "nat": "ES",
+              "id": 3589635,
+              "ph": "3589635.png"
+            },
+            {
+              "n": null,
+              "name": "Madalena Contente",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "PT",
+              "id": 618059,
+              "ph": "618059.png"
+            },
+            {
+              "n": 2,
+              "name": "Jenna Holtz",
+              "pos": "Defesa",
+              "age": 31,
+              "nat": "US",
+              "id": 817760,
+              "ph": "817760.png"
+            },
+            {
+              "n": null,
+              "name": "Sara Jardim",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": 994442,
+              "ph": "994442.jpg"
+            },
+            {
+              "n": 8,
+              "name": "Schuyler Riese",
+              "pos": "Defesa",
+              "age": 24,
+              "nat": "US",
+              "id": 2816111,
+              "ph": "2816111.png"
+            },
+            {
+              "n": 13,
+              "name": "Duda Nascimento",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "BR",
+              "id": 1177044,
+              "ph": "1177044.png"
+            },
+            {
+              "n": 15,
+              "name": "Diana Freitas",
+              "pos": "Defesa",
+              "age": 22,
+              "nat": "PT",
+              "id": 721548,
+              "ph": "721548.png"
+            },
+            {
+              "n": 14,
+              "name": "Catarina Abreu",
+              "pos": "Defesa",
+              "age": 24,
+              "nat": "PT",
+              "id": 747328,
+              "ph": "747328.png"
+            },
+            {
+              "n": 25,
+              "name": "Samanta Freitas",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": 973965,
+              "ph": "973965.jpg"
+            },
+            {
+              "n": 5,
+              "name": "Jessie Hunt",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "US",
+              "id": 3588983,
+              "ph": "3588983.png"
+            },
+            {
+              "n": 6,
+              "name": "Carolina Nunes",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 911919,
+              "ph": "911919.png"
+            },
+            {
+              "n": 9,
+              "name": "Mia Foster",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "US",
+              "id": 2748020,
+              "ph": "2748020.png"
+            },
+            {
+              "n": 10,
+              "name": "Rita Coutinho",
+              "pos": "Médio",
+              "age": 28,
+              "nat": "PT",
+              "id": 507223,
+              "ph": "507223.png"
+            },
+            {
+              "n": 17,
+              "name": "Ana Silva",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 911917,
+              "ph": "911917.png"
+            },
+            {
+              "n": 23,
+              "name": "Diana Gonçalves",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "PT",
+              "id": 714607,
+              "ph": "714607.png"
+            },
+            {
+              "n": 22,
+              "name": "Simone Freitas",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 976417,
+              "ph": "976417.jpg"
+            },
+            {
+              "n": 28,
+              "name": "Débora Jesus",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 994432,
+              "ph": "994432.jpg"
+            },
+            {
+              "n": 18,
+              "name": "Bruna Aguiar",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 994448,
+              "ph": "994448.png"
+            },
+            {
+              "n": 7,
+              "name": "Leah de Oliveira",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "AU",
+              "id": 1937955,
+              "ph": "1937955.png"
+            },
+            {
+              "n": null,
+              "name": "Laura Gomes",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "PT",
+              "id": 994436,
+              "ph": "994436.jpg"
+            },
+            {
+              "n": 12,
+              "name": "Érica Costa",
+              "pos": "Avançado",
+              "age": 31,
+              "nat": "PT",
+              "id": 662123,
+              "ph": "662123.png"
+            },
+            {
+              "n": 20,
+              "name": "Sulamyta Moreira",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "BR",
+              "id": 1174778,
+              "ph": "1174778.png"
+            },
+            {
+              "n": 21,
+              "name": "Érica Silva",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 882517,
+              "ph": "882517.png"
+            },
+            {
+              "n": 11,
+              "name": "Sara Ferreira",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": 758145,
+              "ph": "758145.png"
+            },
+            {
+              "n": 7,
+              "name": "Bruninha",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "BR",
+              "id": 1271574,
+              "ph": "1271574.png"
+            }
+          ],
+          "coach": "Carlos Graça",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/maritimo/14383"
         },
         {
           "id": "fc-porto",
-          "name": "FC Porto"
+          "name": "FC Porto",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Cora Brendle",
+              "pos": "Guarda-redes",
+              "age": 24,
+              "nat": "US",
+              "id": 2769173,
+              "ph": "2769173.jpg"
+            },
+            {
+              "n": 33,
+              "name": "Bárbara Marques",
+              "pos": "Guarda-redes",
+              "age": 26,
+              "nat": "PT",
+              "id": 539207,
+              "ph": "539207.jpg"
+            },
+            {
+              "n": 25,
+              "name": "Beatriz Carvalho",
+              "pos": "Guarda-redes",
+              "age": 18,
+              "nat": "PT",
+              "id": 997416,
+              "ph": "997416.jpg"
+            },
+            {
+              "n": 99,
+              "name": "Raquel Cunha",
+              "pos": "Guarda-redes",
+              "age": 16,
+              "nat": "PT",
+              "id": 1101587,
+              "ph": "1101587.jpg"
+            },
+            {
+              "n": 4,
+              "name": "Lana Golob",
+              "pos": "Defesa",
+              "nat": "SI",
+              "id": 756556,
+              "ph": "756556.jpg",
+              "age": 27
+            },
+            {
+              "n": 17,
+              "name": "Mariana Azevedo",
+              "pos": "Defesa",
+              "age": 31,
+              "nat": "PT",
+              "id": 300421,
+              "ph": "300421.jpg"
+            },
+            {
+              "n": 20,
+              "name": "Inês Nogueira",
+              "pos": "Defesa",
+              "age": 22,
+              "nat": "PT",
+              "id": 600373,
+              "ph": "600373.jpg"
+            },
+            {
+              "n": 24,
+              "name": "Vânia Duarte",
+              "pos": "Defesa",
+              "age": 26,
+              "nat": "PT",
+              "id": 679172,
+              "ph": "679172.jpg"
+            },
+            {
+              "n": 2,
+              "name": "Ema Gonçalves",
+              "pos": "Defesa",
+              "age": 24,
+              "nat": "PT",
+              "id": 732939,
+              "ph": "732939.jpg"
+            },
+            {
+              "n": null,
+              "name": "Sofia Silva",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 544443,
+              "ph": "544443.jpg",
+              "age": 24
+            },
+            {
+              "n": 3,
+              "name": "Mariana Queirós",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": 665529,
+              "ph": "665529.jpg"
+            },
+            {
+              "n": 30,
+              "name": "Daniela Areia Santos",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 727664,
+              "ph": "727664.jpg",
+              "age": 22
+            },
+            {
+              "n": 22,
+              "name": "Joana Ferreira",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": 727638,
+              "ph": "727638.jpg"
+            },
+            {
+              "n": 24,
+              "name": "Marta Rodrigues",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 866833,
+              "ph": "866833.jpg"
+            },
+            {
+              "n": 5,
+              "name": "Alice Reto",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 951244,
+              "ph": "951244.jpg"
+            },
+            {
+              "n": null,
+              "name": "Lara Filipe",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": 742685,
+              "ph": "742685.jpg"
+            },
+            {
+              "n": 6,
+              "name": "Letícia Almeida",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 765183,
+              "ph": "765183.jpg",
+              "age": 21
+            },
+            {
+              "n": 8,
+              "name": "Morgan Stone",
+              "pos": "Médio",
+              "age": 25,
+              "nat": "US",
+              "id": 1934849,
+              "ph": "1934849.jpg"
+            },
+            {
+              "n": 11,
+              "name": "Ana Teles",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 537327,
+              "ph": "537327.jpg",
+              "age": 25
+            },
+            {
+              "n": 12,
+              "name": "Eliza Turner",
+              "pos": "Médio",
+              "age": 24,
+              "nat": "US",
+              "id": 2755733,
+              "ph": "2755733.jpg"
+            },
+            {
+              "n": 16,
+              "name": "Matilde Vaz",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 866981,
+              "ph": "866981.jpg"
+            },
+            {
+              "n": 18,
+              "name": "Fátima Pinto",
+              "pos": "Médio",
+              "nat": "PT",
+              "id": 269764,
+              "ph": "269764.jpg",
+              "age": 30
+            },
+            {
+              "n": null,
+              "name": "Leonor Silva",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": 977229,
+              "ph": "977229.png"
+            },
+            {
+              "n": 10,
+              "name": "Maria Negrão",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "PT",
+              "id": 715129,
+              "ph": "715129.jpg"
+            },
+            {
+              "n": 14,
+              "name": "Angeline da Costa",
+              "pos": "Médio",
+              "age": 27,
+              "nat": "PT",
+              "id": 533669,
+              "ph": "533669.jpg"
+            },
+            {
+              "n": 15,
+              "name": "Soraya França",
+              "pos": "Avançado",
+              "age": 30,
+              "nat": "BR",
+              "id": 423968,
+              "ph": "423968.png"
+            },
+            {
+              "n": 19,
+              "name": "Lina Jamaï",
+              "pos": "Avançado",
+              "age": 18,
+              "nat": "MA",
+              "id": 1936821,
+              "ph": "1936821.png"
+            },
+            {
+              "n": 21,
+              "name": "Lara Perruca",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": 870093,
+              "ph": "870093.jpg"
+            },
+            {
+              "n": 29,
+              "name": "Mylena Freitas",
+              "pos": "Avançado",
+              "age": 25,
+              "nat": "BR",
+              "id": 706315,
+              "ph": "706315.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Maria Ferreira",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "PT",
+              "id": 661017,
+              "ph": "661017.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Alex Kerr",
+              "pos": "Avançado",
+              "nat": "US",
+              "id": 1532165,
+              "ph": "1532165.jpg",
+              "age": 25
+            },
+            {
+              "n": 13,
+              "name": "Lily Bryant",
+              "pos": "Avançado",
+              "age": 24,
+              "nat": "US",
+              "id": 2770863,
+              "ph": "2770863.jpg"
+            },
+            {
+              "n": 23,
+              "name": "Fatumata Sissé",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "GW",
+              "id": 970966,
+              "ph": "970966.jpg"
+            },
+            {
+              "n": 39,
+              "name": "Rosa Fontes",
+              "pos": "Avançado",
+              "age": 17,
+              "nat": "PT",
+              "id": 1119778,
+              "ph": "1119778.jpg"
+            }
+          ],
+          "coach": "Daniel Chaves",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/fc-porto/325350"
         },
         {
           "id": "braga",
-          "name": "Braga"
+          "name": "Braga",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Aline Lima",
+              "pos": "Guarda-redes",
+              "age": 26,
+              "nat": "BR",
+              "id": 677339,
+              "ph": "677339.jpg"
+            },
+            {
+              "n": 11,
+              "name": "Sam Murphy",
+              "pos": "Guarda-redes",
+              "nat": "US",
+              "id": 713946,
+              "ph": "713946.jpg",
+              "age": 29
+            },
+            {
+              "n": 81,
+              "name": "Ana Ristovski",
+              "pos": "Guarda-redes",
+              "age": 18,
+              "nat": "HR",
+              "id": 1523028,
+              "ph": "1523028.jpg"
+            },
+            {
+              "n": 99,
+              "name": "Nair Pina",
+              "pos": "Guarda-redes",
+              "age": 19,
+              "nat": "PT",
+              "id": 853945,
+              "ph": "853945.png"
+            },
+            {
+              "n": 5,
+              "name": "Leah Lewis",
+              "pos": "Defesa",
+              "age": 28,
+              "nat": "US",
+              "id": 997861,
+              "ph": "997861.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Emilia Hirche",
+              "pos": "Defesa",
+              "nat": "DE",
+              "id": 888132,
+              "ph": "888132.jpg",
+              "age": 23
+            },
+            {
+              "n": 20,
+              "name": "Inês Maia",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "PT",
+              "id": 411696,
+              "ph": "411696.jpg"
+            },
+            {
+              "n": 21,
+              "name": "Ashley Moon",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "US",
+              "id": 2742755,
+              "ph": "2742755.jpg"
+            },
+            {
+              "n": 78,
+              "name": "Beatriz Barbosa",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "PT",
+              "id": 646054,
+              "ph": "646054.jpg"
+            },
+            {
+              "n": 26,
+              "name": "Sofia Machado",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": 775589,
+              "ph": "775589.png"
+            },
+            {
+              "n": 2,
+              "name": "Maria Miller",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": 715131,
+              "ph": "715131.jpg"
+            },
+            {
+              "n": 19,
+              "name": "Alícia Correia",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": 600372,
+              "ph": "600372.jpg"
+            },
+            {
+              "n": 42,
+              "name": "Francisca Castro",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": 946911,
+              "ph": "946911.png"
+            },
+            {
+              "n": 8,
+              "name": "Maria Alagoa",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "PT",
+              "id": 677108,
+              "ph": "677108.jpg"
+            },
+            {
+              "n": 25,
+              "name": "Cristiana Vieira",
+              "pos": "Médio",
+              "age": 26,
+              "nat": "PT",
+              "id": 395948,
+              "ph": "395948.jpg"
+            },
+            {
+              "n": null,
+              "name": "Margarida Pinto",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 774240,
+              "ph": "774240.jpg"
+            },
+            {
+              "n": null,
+              "name": "Rita Cunha",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": 810503,
+              "ph": "810503.jpg"
+            },
+            {
+              "n": 23,
+              "name": "Ana Rute",
+              "pos": "Médio",
+              "age": 28,
+              "nat": "PT",
+              "id": 509421,
+              "ph": "509421.jpg"
+            },
+            {
+              "n": 86,
+              "name": "Nádia Bravo",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 600375,
+              "ph": "600375.jpg"
+            },
+            {
+              "n": null,
+              "name": "Rita Melo",
+              "pos": "Médio",
+              "age": 18,
+              "nat": "PT",
+              "id": 949576,
+              "ph": "949576.jpg"
+            },
+            {
+              "n": 79,
+              "name": "Maria João Silva",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": 826387,
+              "ph": "826387.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Maribel Flores",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "MX",
+              "id": 1028696,
+              "ph": "1028696.jpg"
+            },
+            {
+              "n": 10,
+              "name": "Lidiane Antunes",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "BR",
+              "id": 851187,
+              "ph": "851187.jpg"
+            },
+            {
+              "n": 14,
+              "name": "Margie Detrizio-Parrett",
+              "pos": "Avançado",
+              "nat": "US",
+              "id": 1814788,
+              "ph": "1814788.jpg",
+              "age": 25
+            },
+            {
+              "n": 22,
+              "name": "McKenna Martinez",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "US",
+              "id": 2508631,
+              "ph": "2508631.jpg"
+            },
+            {
+              "n": 57,
+              "name": "Inês Gonçalves",
+              "pos": "Avançado",
+              "age": 25,
+              "nat": "PT",
+              "id": 675442,
+              "ph": "675442.jpg"
+            },
+            {
+              "n": 28,
+              "name": "Matilde Almeida",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 1021043,
+              "ph": "1021043.jpg"
+            },
+            {
+              "n": 38,
+              "name": "Marta Ferreira",
+              "pos": "Avançado",
+              "age": 24,
+              "nat": "PT",
+              "id": 297907,
+              "ph": "297907.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Malu Schmidt",
+              "pos": "Avançado",
+              "age": 25,
+              "nat": "BR",
+              "id": 668906,
+              "ph": "668906.jpg"
+            },
+            {
+              "n": 13,
+              "name": "Melany Fortes",
+              "pos": "Avançado",
+              "age": 26,
+              "nat": "CV",
+              "id": 850452,
+              "ph": "850452.jpg"
+            },
+            {
+              "n": 30,
+              "name": "Marie Blommaert",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "BE",
+              "id": 910159,
+              "ph": "910159.png"
+            },
+            {
+              "n": 27,
+              "name": "Francisca Vieira",
+              "pos": "Avançado",
+              "age": 18,
+              "nat": "PT",
+              "id": 947604,
+              "ph": "947604.jpg"
+            }
+          ],
+          "coach": "Marwin Bolz",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/sc-braga/90961"
         },
         {
           "id": "racing-power-fc",
-          "name": "Racing Power FC"
+          "name": "Racing Power FC",
+          "squad": [
+            {
+              "n": null,
+              "name": "Rita Bento",
+              "pos": "Guarda-redes",
+              "age": 16,
+              "nat": "PT",
+              "id": 1091282,
+              "ph": "1091282.jpg"
+            },
+            {
+              "n": 1,
+              "name": "Taylor Rath",
+              "pos": "Guarda-redes",
+              "age": 24,
+              "nat": "US",
+              "id": 3561837,
+              "ph": "3561837.png"
+            },
+            {
+              "n": 71,
+              "name": "Adriana Rocha",
+              "pos": "Guarda-redes",
+              "age": 23,
+              "nat": "PT",
+              "id": 672906,
+              "ph": "672906.png"
+            },
+            {
+              "n": 13,
+              "name": "Natalia Expósito",
+              "pos": "Guarda-redes",
+              "age": 29,
+              "nat": "ES",
+              "id": 507650,
+              "ph": "507650.jpg"
+            },
+            {
+              "n": null,
+              "name": "Bianca Barros",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": 1082650,
+              "ph": "1082650.jpg"
+            },
+            {
+              "n": 3,
+              "name": "Joana Madalena Silva",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": 721550,
+              "ph": "721550.png"
+            },
+            {
+              "n": 4,
+              "name": "Alexis Legowski",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "PL",
+              "id": 799281,
+              "ph": "799281.png"
+            },
+            {
+              "n": 16,
+              "name": "Brennan Cole",
+              "pos": "Defesa",
+              "age": 22,
+              "nat": "US",
+              "id": 3565096,
+              "ph": "3565096.png"
+            },
+            {
+              "n": 26,
+              "name": "Ana Nogueira",
+              "pos": "Defesa",
+              "age": 23,
+              "nat": "PT",
+              "id": 677110,
+              "ph": "677110.jpg"
+            },
+            {
+              "n": 33,
+              "name": "Matilda McNamara",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "AU",
+              "id": 777470,
+              "ph": "777470.jpg"
+            },
+            {
+              "n": 4,
+              "name": "Leidina Semedo",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "CV",
+              "id": 1934955,
+              "ph": "1934955.png"
+            },
+            {
+              "n": 5,
+              "name": "Caetana Vicente",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": 873279,
+              "ph": "873279.png"
+            },
+            {
+              "n": 79,
+              "name": "Marta Salvador",
+              "pos": "Defesa",
+              "nat": "PT",
+              "id": 608121,
+              "ph": "608121.png",
+              "age": 22
+            },
+            {
+              "n": null,
+              "name": "Carolina Coelho",
+              "pos": "Defesa",
+              "age": 16,
+              "nat": "PT",
+              "id": 1049225,
+              "ph": "1049225.jpg"
+            },
+            {
+              "n": 2,
+              "name": "Aryssa Mahrt",
+              "pos": "Médio",
+              "nat": "US",
+              "id": 2524658,
+              "ph": "2524658.jpg",
+              "age": 24
+            },
+            {
+              "n": 10,
+              "name": "Suzuka Yosue",
+              "pos": "Médio",
+              "age": 26,
+              "nat": "JP",
+              "id": 2539326,
+              "ph": "2539326.jpg"
+            },
+            {
+              "n": 17,
+              "name": "Rieke Dieckmann",
+              "pos": "Médio",
+              "nat": "DE",
+              "id": 295852,
+              "ph": "295852.png",
+              "age": 30
+            },
+            {
+              "n": 22,
+              "name": "Daniela Santos",
+              "pos": "Médio",
+              "age": 25,
+              "nat": "PT",
+              "id": 486450,
+              "ph": "486450.png"
+            },
+            {
+              "n": null,
+              "name": "Iris Silva",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": 867046,
+              "ph": "867046.jpg"
+            },
+            {
+              "n": 6,
+              "name": "Pamela González",
+              "pos": "Médio",
+              "nat": "UY",
+              "id": 625034,
+              "ph": "625034.png",
+              "age": 31
+            },
+            {
+              "n": 8,
+              "name": "Catarina Realista",
+              "pos": "Médio",
+              "age": 31,
+              "nat": "PT",
+              "id": 289989,
+              "ph": "289989.jpg"
+            },
+            {
+              "n": 27,
+              "name": "Margarida Quadros",
+              "pos": "Médio",
+              "age": 16,
+              "nat": "PT",
+              "id": 1091731,
+              "ph": "1091731.jpg"
+            },
+            {
+              "n": 20,
+              "name": "Inês Oliveira",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "PT",
+              "id": 715121,
+              "ph": "715121.jpg"
+            },
+            {
+              "n": null,
+              "name": "Inês Horta",
+              "pos": "Avançado",
+              "age": 17,
+              "nat": "PT",
+              "id": 1059415,
+              "ph": "1059415.jpg"
+            },
+            {
+              "n": 7,
+              "name": "Carolina Rocha",
+              "pos": "Avançado",
+              "age": 27,
+              "nat": "PT",
+              "id": 539857,
+              "ph": "539857.png"
+            },
+            {
+              "n": 14,
+              "name": "Meredith Haakenson",
+              "pos": "Avançado",
+              "age": 27,
+              "nat": "US",
+              "id": 1257276,
+              "ph": "1257276.png"
+            },
+            {
+              "n": 18,
+              "name": "Alexandra Monteiro",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 1025414,
+              "ph": "1025414.png"
+            },
+            {
+              "n": 25,
+              "name": "Jessie Halladay",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "US",
+              "id": 3561384,
+              "ph": "3561384.png"
+            },
+            {
+              "n": 28,
+              "name": "Laura Luís",
+              "pos": "Avançado",
+              "age": 34,
+              "nat": "PT",
+              "id": 152331,
+              "ph": "152331.png"
+            },
+            {
+              "n": 99,
+              "name": "Gabi Gonçalves",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "PT",
+              "id": 660005,
+              "ph": "660005.png"
+            },
+            {
+              "n": 11,
+              "name": "Luriane Tavares",
+              "pos": "Avançado",
+              "age": 19,
+              "nat": "CV",
+              "id": 2522407,
+              "ph": "2522407.png"
+            },
+            {
+              "n": 19,
+              "name": "Ana Tomaz",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": 775611,
+              "ph": "775611.png"
+            },
+            {
+              "n": 18,
+              "name": "Kat Parris",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "PA",
+              "id": 1430302,
+              "ph": "1430302.png"
+            },
+            {
+              "n": 23,
+              "name": "Motunrayo Ezekiel",
+              "pos": "Avançado",
+              "age": 23,
+              "nat": "NG",
+              "id": 1004067,
+              "ph": "1004067.jpg"
+            },
+            {
+              "n": 9,
+              "name": "Liz Worden",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "US",
+              "id": 3511364,
+              "ph": "3511364.png"
+            }
+          ],
+          "coach": "Albano Oliveira",
+          "squadAt": "2026-11-23",
+          "zz": "/equipa/racing-power-fc/254416"
         }
       ],
       "matches": [
@@ -1502,7 +4236,7 @@
               "age": 20,
               "nat": "PT",
               "id": 757838,
-              "ph": "757838.png"
+              "ph": "757838.jpg"
             },
             {
               "n": 77,
@@ -2034,7 +4768,8 @@
               "pos": "Avançado",
               "nat": "PT",
               "id": 1011139,
-              "ph": "1011139.png"
+              "ph": "1011139.png",
+              "age": 21
             },
             {
               "n": 27,
@@ -2269,7 +5004,7 @@
               "age": 18,
               "nat": "PT",
               "id": 602795,
-              "ph": "602795.png"
+              "ph": "602795.jpg"
             },
             {
               "n": 19,
@@ -2821,7 +5556,7 @@
               "age": 24,
               "nat": "US",
               "id": 1815780,
-              "ph": "1815780.png"
+              "ph": "1815780.jpg"
             },
             {
               "n": 12,
@@ -2830,7 +5565,7 @@
               "age": 22,
               "nat": "DE",
               "id": 3563378,
-              "ph": "3563378.png"
+              "ph": "3563378.jpg"
             },
             {
               "n": 25,
@@ -2938,7 +5673,7 @@
               "age": 19,
               "nat": "PT",
               "id": 965543,
-              "ph": "965543.png"
+              "ph": "965543.jpg"
             },
             {
               "n": null,
@@ -2956,7 +5691,7 @@
               "age": 23,
               "nat": "US",
               "id": 3566703,
-              "ph": "3566703.png"
+              "ph": "3566703.jpg"
             },
             {
               "n": 5,
@@ -3109,7 +5844,8 @@
               "pos": "Defesa",
               "nat": "PT",
               "id": 109448,
-              "ph": "109448.png"
+              "ph": "109448.png",
+              "age": 36
             },
             {
               "n": 17,
@@ -3244,7 +5980,7 @@
               "age": 17,
               "nat": "PT",
               "id": 981106,
-              "ph": "981106.png"
+              "ph": "981106.jpg"
             },
             {
               "n": 19,
@@ -3886,7 +6622,7 @@
               "age": 20,
               "nat": "PT",
               "id": 971168,
-              "ph": "971168.png"
+              "ph": "971168.jpg"
             },
             {
               "n": 16,
@@ -3931,7 +6667,7 @@
               "age": 20,
               "nat": "PT",
               "id": 911728,
-              "ph": "911728.png"
+              "ph": "911728.jpg"
             },
             {
               "n": 10,
@@ -3940,7 +6676,7 @@
               "age": 23,
               "nat": "PT",
               "id": 724008,
-              "ph": "724008.png"
+              "ph": "724008.jpg"
             },
             {
               "n": 18,
@@ -3958,7 +6694,7 @@
               "age": 18,
               "nat": "PT",
               "id": 1131728,
-              "ph": "1131728.png"
+              "ph": "1131728.jpg"
             },
             {
               "n": 11,
@@ -3976,7 +6712,7 @@
               "age": 18,
               "nat": "PT",
               "id": 1042795,
-              "ph": "1042795.png"
+              "ph": "1042795.jpg"
             },
             {
               "n": null,
@@ -4003,7 +6739,7 @@
               "age": 36,
               "nat": "PT",
               "id": 300761,
-              "ph": "300761.png"
+              "ph": "300761.jpg"
             },
             {
               "n": 19,
@@ -4139,7 +6875,7 @@
               "age": 28,
               "nat": "PT",
               "id": 665640,
-              "ph": "665640.png"
+              "ph": "665640.jpg"
             },
             {
               "n": 8,
@@ -4202,7 +6938,7 @@
               "age": 26,
               "nat": "PT",
               "id": 757843,
-              "ph": "757843.png"
+              "ph": "757843.jpg"
             },
             {
               "n": 21,
@@ -4211,7 +6947,7 @@
               "age": 22,
               "nat": "PT",
               "id": 746332,
-              "ph": "746332.png"
+              "ph": "746332.jpg"
             },
             {
               "n": 22,
@@ -4220,7 +6956,7 @@
               "age": 21,
               "nat": "PT",
               "id": 1937983,
-              "ph": "1937983.png"
+              "ph": "1937983.jpg"
             },
             {
               "n": 7,
