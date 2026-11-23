@@ -321,7 +321,7 @@ function equipa(cid, tid, tab) {
   const gb = goalsBy(c, t.id), scorers = Object.entries(gb).sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0], 'pt'));
   const tabs = [['resumo', 'Resumo'], ['calendario', 'Calendário']];
   if (t.squad && t.squad.length) tabs.push(['plantel', 'Plantel']);
-  if (scorers.length) tabs.push(['marcadoras', 'Marcadoras']);
+  if (scorers.length) tabs.push(['golos', 'Golos']);
   if (!tabs.some(([k]) => k === tab)) tab = 'resumo';
   const card = (m) => matchCard(c, { ...m, serie: undefined });
   let body = '';
@@ -335,7 +335,7 @@ function equipa(cid, tid, tab) {
     body = plantel(c, t);
   } else {
     const byName = Object.fromEntries((t.squad || []).map((x) => [x.name, x]));
-    body = `<h2>Marcadoras</h2><div class="plist">${scorers.map(([nm, n], i) => { const x = byName[nm] || { name: nm }; return `<div class="pl"><span class="pn">${i + 1}</span><span class="pph"><b>${esc(pinit(nm))}</b>${x.ph ? `<img src="jogadoras/${esc(x.ph)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ''}</span><span class="pnb"><span class="pnm">${esc(shortName(nm))}</span>${x.nat ? `<span class="psub">${flag(x.nat)}</span>` : ''}</span><span class="pgl" style="font-size:15px">⚽ ${n}</span></div>`; }).join('')}</div>`;
+    body = `<h2>Golos</h2><div class="plist">${scorers.map(([nm, n], i) => { const x = byName[nm] || { name: nm }; return `<div class="pl"><span class="pn">${i + 1}</span><span class="pph"><b>${esc(pinit(nm))}</b>${x.ph ? `<img src="jogadoras/${esc(x.ph)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ''}</span><span class="pnb"><span class="pnm">${esc(shortName(nm))}</span>${x.nat ? `<span class="psub">${flag(x.nat)}</span>` : ''}</span><span class="pgl" style="font-size:15px">⚽ ${n}</span></div>`; }).join('')}</div>`;
   }
   app.innerHTML = `<a class="back" href="#/c/${c.id}/classificacao">‹ ${esc(c.name)}</a>
   <div class="th">${CREST(c, t.id, 72)}<div class="thn"><h1>${esc(t.name)}</h1><p class="sub">${esc(c.name)}${r && r.grp ? ' · ' + esc(r.grp) : ''}</p></div>
