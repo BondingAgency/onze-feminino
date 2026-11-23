@@ -94,19 +94,44 @@ function home() {
   ${c0 ? `<div class="stand-col home-tab">${head('Classificação', `#/c/${c0.id}/classificacao`, esc(compShort(c0)))}<div class="mini">${tabela(c0)}</div></div>` : ''}</div>`;
 }
 
-function heroCard(all, t) {
-  const byDate = [...all].sort((a, b) => (a.m.date + a.m.time).localeCompare(b.m.date + b.m.time));
-  const nx = byDate.find(({ m }) => !played(m) && (m.date || '9999') >= t);
-  const last = [...byDate].reverse().find(({ m }) => played(m));
-  const h = nx || last;
-  if (!h) return '';
-  const { c, m } = h, done = played(m);
+// Jogo em destaque de cada favorito (equipas seguidas e campeonatos favoritos): o próximo jogo, ou o último se não houver próximo
+function featured(list, t) {
+  const byDate = [...list].sort((x, y) => (x.m.date + x.m.time).localeCompare(y.m.date + y.m.time));
+  return byDate.find(({ m }) => !played(m) && (m.date || '9999') >= t) || [...byDate].reverse().find(({ m }) => played(m)) || null;
+}
+function heroItems(all, t) {
+  const out = [], seen = new Set(), add = (it, tag) => { if (!it) return; const k = it.c.id + '|' + it.m.id; if (seen.has(k)) return; seen.add(k); out.push({ ...it, tag }); };
+  for (const k of getFollow()) {                                   // equipas que segue
+    const [cid, tid] = k.split(':'), c = DB.competitions.find((x) => x.id === cid); if (!c) continue;
+    add(featured(c.matches.filter((m) => m.home === tid || m.away === tid).map((m) => ({ c, m })), t), tname(c, tid));
+  }
+  for (const id of getFavC()) {                                    // campeonatos favoritos
+    const c = DB.competitions.find((x) => x.id === id); if (!c) continue;
+    add(featured(c.matches.map((m) => ({ c, m })), t), compShort(c));
+  }
+  if (!out.length) add(featured(all, t), '');                      // sem favoritos: o jogo mais próximo de todos
+  return out.slice(0, 8);
+}
+function heroOne({ c, m, tag }, fav) {
+  const done = played(m);
   const side = (id) => { const r = teamRow(c, id); return `<a class="ht" href="${teamHref(c, id)}">${CREST(c, id, 78)}<span>${esc(sname(c, id))}</span><small>${r ? r.pos + '.º lugar' : '&nbsp;'}</small></a>`; };
   const day = m.date ? new Date(m.date + 'T12:00').toLocaleDateString('pt-PT', { weekday: 'long', day: 'numeric', month: 'short' }).replace('.', '').replace(/^./, (x) => x.toUpperCase()) : 'Data por definir';
-  return `<section class="hero"><div class="hk">${EMB(24, c.id)}<span>${esc(compShort(c))}</span><span class="dot"></span><span>${esc(roundName(c, m.round))}</span><span class="cd">${untilLabel(m)}</span></div>
+  return `<section class="hero">${fav && tag ? `<div class="hfav">★ ${esc(tag)}</div>` : ''}<div class="hk">${EMB(24, c.id)}<span>${esc(compShort(c))}</span><span class="dot"></span><span>${esc(roundName(c, m.round))}</span><span class="cd">${untilLabel(m)}</span></div>
   <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd">${day}</div></div>${side(m.away)}</div>
   <div class="hb"><a class="b1" href="#/c/${c.id}/jogo/${m.id}">Ver jogo</a><a class="b2" href="#/c/${c.id}/jogos/${m.round}">${esc(roundName(c, m.round))}</a></div></section>`;
 }
+function heroCard(all, t) {
+  const items = heroItems(all, t); if (!items.length) return '';
+  const fav = getFollow().length || getFavC().length;
+  if (items.length === 1) return heroOne(items[0], fav);
+  return `<div class="herow" role="region" aria-label="Jogos dos teus favoritos">${items.map((it) => `<div class="hslide">${heroOne(it, true)}</div>`).join('')}</div><div class="hdots" aria-hidden="true">${items.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('')}</div>`;
+}
+// pontos do carrossel acompanham o scroll (o scroll não borbulha, por isso ouve em captura)
+document.addEventListener('scroll', (e) => {
+  const r = e.target; if (!r || !r.classList || !r.classList.contains('herow')) return;
+  const i = Math.round(r.scrollLeft / Math.max(1, r.clientWidth)), d = r.nextElementSibling;
+  if (d && d.classList.contains('hdots')) [...d.children].forEach((x, j) => x.classList.toggle('on', j === i));
+}, true);
 
 function followBlock() {
   const f = getFollow();

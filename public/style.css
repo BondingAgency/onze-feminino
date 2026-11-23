@@ -400,3 +400,14 @@ html[data-theme=light] .cstar.on{color:var(--acc)}
 .shico{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .shico:hover{background:rgba(255,255,255,.3)}
 .hero.mh .hk{padding-right:46px}
+
+/* ===== Banner do início: jogos dos favoritos, com scroll ===== */
+.herow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:12px;margin-top:8px}
+.herow::-webkit-scrollbar{display:none}
+.hslide{flex:0 0 100%;min-width:0;scroll-snap-align:center}
+.hslide .hero{margin:0}
+.hdots{display:flex;justify-content:center;gap:7px;margin:10px 0 0}
+.hdots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);transition:all .2s}
+.hdots i.on{width:20px;border-radius:4px;background:#ff7a0a}
+html[data-theme=light] .hdots i{background:rgba(21,19,107,.25)}
+.hfav{position:relative;z-index:2;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#ffd9b0;margin:0 0 6px}
