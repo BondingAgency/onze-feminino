@@ -294,12 +294,10 @@ function jogo(cid, mid) {
   const meta = [c.name, c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).map(esc).join(' · ');
   const when = [m.date ? fmtDate(m.date) : 'Data por definir', m.time, m.venue].filter(Boolean).map(esc).join(' · ');
   let h = `<a class="back" href="#/c/${c.id}/jogos/${m.round}">‹ ${esc(roundName(c, m.round))}</a>
-  <div class="hero mh"><div class="hk">${meta}</div>
+  <div class="hero mh">${done ? `<button class="shico" data-share="${esc(c.id)}|${esc(m.id)}" type="button" aria-label="Partilhar jogo" title="Partilhar"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>` : ''}<div class="hk">${meta}</div>
   <div class="hm">${side(m.home)}<div class="hc"><div class="hs">${done ? `${m.hg}–${m.ag}` : esc(m.time || '--:--')}</div><div class="hd"><span class="stt ${done ? 'fin' : ''}">${done ? 'Terminado' : 'Por jogar'}</span></div>${m.pen ? `<div class="hd" style="margin-top:6px">g.p. ${m.pen[0]}–${m.pen[1]}</div>` : ''}</div>${side(m.away)}</div>
   <div class="hd mw">${when}</div></div>`;
-  if (m.foto && m.foto.src) h += `<figure class="foto"><img src="${esc(m.foto.src)}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(m.foto.url)}" target="_blank" rel="noopener">${esc(m.foto.fonte)}</a></figcaption></figure>`;
 
-  if (done) h += `<button class="btn pri sharebtn" data-share="${esc(c.id)}|${esc(m.id)}" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg> Partilhar jogo</button>`;
 
   // Mulher do jogo (Liga BPI)
   if (MOTM_COMPS.includes(c.id)) {
@@ -316,6 +314,7 @@ function jogo(cid, mid) {
       ? `<div class="goals">${g.map((x) => `<div class="gl ${x.team === 'away' ? 'aw' : ''}"><span class="gm">${esc(x.min)}'</span><span class="gp">${esc(x.player || '')}${x.note ? ` <i>(${esc(x.note)})</i>` : ''}</span></div>`).join('')}</div>`
       : `<div class="empty sm">${+m.hg + +m.ag === 0 ? 'Sem golos.' : 'As marcadoras ainda não estão disponíveis.'}</div>`);
   }
+  if (m.foto && m.foto.src) h += `<figure class="foto"><img src="${esc(m.foto.src)}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(m.foto.url)}" target="_blank" rel="noopener">${esc(m.foto.fonte)}</a></figcaption></figure>`;
 
   // Resumo / antevisão
   if (done) {
