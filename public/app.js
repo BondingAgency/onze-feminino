@@ -308,24 +308,41 @@ function plantel(c, t) {
     .map(({ p, l }) => `<div class="dh">${p === 'Guarda-redes' ? 'Guarda-redes' : p + 's'}</div><div class="plist">${l.map((x) => `<div class="pl">${ph(x)}<span class="pn">${x.n ?? '·'}</span><span class="pnb"><span class="pnm">${esc(shortName(x.name))}</span><span class="psub">${flag(x.nat)}${x.age ? '<span>' + x.age + ' anos</span>' : ''}</span></span><span class="pgl">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`).join('');
   return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras</p>${body}`;
 }
-function equipa(cid, tid) {
+function equipa(cid, tid, tab) {
   const c = DB.competitions.find((x) => x.id === cid);
   const t = c && c.teams.find((x) => x.id === tid);
   if (!t) return (app.innerHTML = '<div class="empty">Equipa não encontrada.</div>');
   const on = getFollow().includes(fKey(c.id, t.id));
   const r = teamRow(c, t.id);
   const ms = c.matches.filter((m) => m.home === t.id || m.away === t.id);
-  const tt = todayStr();
   const next = ms.filter((m) => !played(m)).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
   const res = ms.filter(played).sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
   const stat = (k, v) => `<div class="st"><b>${v}</b><span>${k}</span></div>`;
+  const gb = goalsBy(c, t.id), scorers = Object.entries(gb).sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0], 'pt'));
+  const tabs = [['resumo', 'Resumo'], ['calendario', 'Calendário']];
+  if (t.squad && t.squad.length) tabs.push(['plantel', 'Plantel']);
+  if (scorers.length) tabs.push(['marcadoras', 'Marcadoras']);
+  if (!tabs.some(([k]) => k === tab)) tab = 'resumo';
+  const card = (m) => matchCard(c, { ...m, serie: undefined });
+  let body = '';
+  if (tab === 'resumo') {
+    body = `<div class="cols"><div><h2>Próximos jogos</h2>${next.length ? next.slice(0, 6).map(card).join('') : '<div class="empty">Sem jogos marcados.</div>'}</div>
+    <div><h2>Resultados</h2>${res.length ? res.slice(0, 6).map(card).join('') : '<div class="empty">Ainda sem resultados.</div>'}</div></div>`;
+  } else if (tab === 'calendario') {
+    const all = [...ms].sort((x, y) => (x.date + x.time).localeCompare(y.date + y.time)), days = [...new Set(all.map((m) => m.date))];
+    body = all.length ? days.map((d) => `<div class="dh">${fmtDate(d)}</div>${all.filter((m) => m.date === d).map((m) => matchCard(c, { ...m, serie: undefined }, false, true)).join('')}`).join('') : '<div class="empty">Sem jogos.</div>';
+  } else if (tab === 'plantel') {
+    body = plantel(c, t);
+  } else {
+    const byName = Object.fromEntries((t.squad || []).map((x) => [x.name, x]));
+    body = `<h2>Marcadoras</h2><div class="plist">${scorers.map(([nm, n], i) => { const x = byName[nm] || { name: nm }; return `<div class="pl"><span class="pn">${i + 1}</span><span class="pph"><b>${esc(pinit(nm))}</b>${x.ph ? `<img src="jogadoras/${esc(x.ph)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ''}</span><span class="pnb"><span class="pnm">${esc(shortName(nm))}</span>${x.nat ? `<span class="psub">${flag(x.nat)}</span>` : ''}</span><span class="pgl" style="font-size:15px">⚽ ${n}</span></div>`; }).join('')}</div>`;
+  }
   app.innerHTML = `<a class="back" href="#/c/${c.id}/classificacao">‹ ${esc(c.name)}</a>
   <div class="th">${CREST(c, t.id, 72)}<div class="thn"><h1>${esc(t.name)}</h1><p class="sub">${esc(c.name)}${r && r.grp ? ' · ' + esc(r.grp) : ''}</p></div>
   <button class="fbtn ${on ? 'on' : ''}" data-star="${fKey(c.id, t.id)}" aria-pressed="${on}" aria-label="Seguir equipa" title="Seguir">${on ? '★' : '☆'}</button></div>
-  ${fotoClube(t.id)}
+  ${tab === 'resumo' ? fotoClube(t.id) : ''}
   ${r ? `<div class="stats">${stat('Posição', r.pos + '.º')}${stat('Pontos', r.pts)}${stat('Jogos', r.j)}${stat('V-E-D', `${r.v}-${r.e}-${r.d}`)}${stat('Golos', `${r.gm}:${r.gs}`)}</div>` : ''}
-  <div class="cols"><div><h2>Próximos jogos</h2>${next.length ? next.slice(0, 6).map((m) => matchCard(c, { ...m, serie: undefined })).join('') : '<div class="empty">Sem jogos marcados.</div>'}</div>
-  <div><h2>Resultados</h2>${res.length ? res.map((m) => matchCard(c, { ...m, serie: undefined })).join('') : '<div class="empty">Ainda sem resultados.</div>'}</div></div>${plantel(c, t)}`;
+  <div class="tabs tabs-eq" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" data-go="#/c/${c.id}/equipa/${t.id}/${k}">${l}</button>`).join('')}</div>${body}`;
 }
 
 const MOTM_COMPS = ['liga-bpi'];
@@ -404,11 +421,11 @@ function groupMatches(root) {
 }
 
 function route() {
-  const [, a, b, c, d] = location.hash.split('/');
+  const [, a, b, c, d, e5] = location.hash.split('/');
   const sec = a === 'ligas' || a === 'c' ? 'ligas' : a === 'jogos' ? 'jogos' : a === 'noticias' ? 'noticias' : a === 'conta' || a === 'seguir' ? 'conta' : a === 'procurar' ? '' : 'home';
   document.querySelectorAll('nav a[data-n]').forEach((x) => x.classList.toggle('on', x.dataset.n === sec));
   if (a === 'ligas') ligas();
-  else if (a === 'c' && c === 'equipa') equipa(b, d);
+  else if (a === 'c' && c === 'equipa') equipa(b, d, e5);
   else if (a === 'c' && c === 'jogo') jogo(b, d);
   else if (a === 'fundos') fundos(b, c);
   else if (a === 'c') comp(b, c, d);
