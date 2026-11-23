@@ -3644,7 +3644,7 @@
           "home": "braga",
           "away": "benfica",
           "hg": 1,
-          "ag": 1,
+          "ag": 2,
           "goals": [
             {
               "team": "away",
@@ -3655,6 +3655,11 @@
               "team": "home",
               "min": "18",
               "player": "Malu Schmidt"
+            },
+            {
+              "team": "away",
+              "min": "56",
+              "player": "F. Brennskag-Dorsin"
             }
           ]
         },
