@@ -10218,7 +10218,242 @@
         {
           "id": "amora-fc",
           "name": "Amora FC",
-          "short": "Amora"
+          "short": "Amora",
+          "squad": [
+            {
+              "n": null,
+              "name": "Matilde Quintela",
+              "pos": "Guarda-redes",
+              "age": 16,
+              "nat": "PT",
+              "id": "am1"
+            },
+            {
+              "n": 1,
+              "name": "Beatriz Painço",
+              "pos": "Guarda-redes",
+              "age": 22,
+              "nat": "PT",
+              "id": "am2"
+            },
+            {
+              "n": 12,
+              "name": "Isabel Silva",
+              "pos": "Guarda-redes",
+              "age": 18,
+              "nat": "PT",
+              "id": "am3"
+            },
+            {
+              "n": null,
+              "name": "Francisca Fonseca",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": "am4"
+            },
+            {
+              "n": null,
+              "name": "Sara Henriques",
+              "pos": "Defesa",
+              "age": 18,
+              "nat": "PT",
+              "id": "am5"
+            },
+            {
+              "n": null,
+              "name": "Maria Teixeira",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": "am6"
+            },
+            {
+              "n": null,
+              "name": "Jeny",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "CV",
+              "id": "am7"
+            },
+            {
+              "n": 3,
+              "name": "Sara Pinto",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "am8"
+            },
+            {
+              "n": 4,
+              "name": "Carolina Chrystello",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "am9"
+            },
+            {
+              "n": 5,
+              "name": "Catarina Mota",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": "am10"
+            },
+            {
+              "n": 18,
+              "name": "Leonor Capelo",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": "am11"
+            },
+            {
+              "n": 29,
+              "name": "Carolina Ribeiro",
+              "pos": "Defesa",
+              "age": 27,
+              "nat": "PT",
+              "id": "am12"
+            },
+            {
+              "n": 30,
+              "name": "Rita Simão",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "am13"
+            },
+            {
+              "n": 38,
+              "name": "Inês Silva",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "PT",
+              "id": "am14"
+            },
+            {
+              "n": 57,
+              "name": "Daniela Silva",
+              "pos": "Defesa",
+              "age": 17,
+              "nat": "PT",
+              "id": "am15"
+            },
+            {
+              "n": null,
+              "name": "Carlita Fernandes",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "CV",
+              "id": "am16"
+            },
+            {
+              "n": 6,
+              "name": "Rita Proença",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": "am17"
+            },
+            {
+              "n": 8,
+              "name": "Margarida Cruz",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "am18"
+            },
+            {
+              "n": 13,
+              "name": "Margarida Gaspar",
+              "pos": "Médio",
+              "age": 17,
+              "nat": "PT",
+              "id": "am19"
+            },
+            {
+              "n": 13,
+              "name": "Leonor Romero",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": "am20"
+            },
+            {
+              "n": 14,
+              "name": "Olivia Tehrani",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "CA",
+              "id": "am21"
+            },
+            {
+              "n": 16,
+              "name": "Fanta Mendes",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "GW",
+              "id": "am22"
+            },
+            {
+              "n": 7,
+              "name": "Alexandra Crudu",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "RO",
+              "id": "am23"
+            },
+            {
+              "n": 9,
+              "name": "Daniela Azevedo",
+              "pos": "Avançado",
+              "age": 26,
+              "nat": "PT",
+              "id": "am24"
+            },
+            {
+              "n": 10,
+              "name": "Maria Pinto",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "PT",
+              "id": "am25"
+            },
+            {
+              "n": 11,
+              "name": "Débora Santos",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "am26"
+            },
+            {
+              "n": 18,
+              "name": "Ana Rocha",
+              "pos": "Avançado",
+              "age": 33,
+              "nat": "PT",
+              "id": "am27"
+            },
+            {
+              "n": 20,
+              "name": "Carolina Chainho",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": "am28"
+            },
+            {
+              "n": 57,
+              "name": "Carolina Duque",
+              "pos": "Avançado",
+              "age": 25,
+              "nat": "PT",
+              "id": "am29"
+            }
+          ],
+          "squadAt": "2026-11-23"
         },
         {
           "id": "academica-oaf",
