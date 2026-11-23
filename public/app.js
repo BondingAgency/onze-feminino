@@ -510,7 +510,7 @@ function tone([r, g, b]) {  // escurece/satura para o texto branco ler bem
   const mx = Math.max(r, g, b) / 255, mn = Math.min(r, g, b) / 255; let l = (mx + mn) / 2;
   const d = mx - mn; let s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1)); let h = 0;
   if (d) { h = mx * 255 === r ? ((g - b) / 255 / d) % 6 : mx * 255 === g ? (b - r) / 255 / d + 2 : (r - g) / 255 / d + 4; h = (h * 60 + 360) % 360; }
-  l = Math.min(0.40, Math.max(0.24, l)); s = Math.max(0.5, Math.min(0.85, s));
+  l = Math.min(0.46, Math.max(0.32, l + .04)); s = Math.max(0.72, Math.min(0.98, s + .1));
   return `hsl(${h.toFixed(0)} ${(s * 100).toFixed(0)}% ${(l * 100).toFixed(0)}%)`;
 }
 async function paintHeroes() {
@@ -519,7 +519,8 @@ async function paintHeroes() {
     if (imgs.length < 2) continue;
     const [A, B] = await Promise.all([crestColor(imgs[0]), crestColor(imgs[1])]);
     const ca = A ? tone(A) : '#1b1a6b', cb = B ? tone(B) : '#2a2a55';
-    hero.style.background = `linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.22)),linear-gradient(100deg,${ca} 0%,${cb} 100%)`;
+    hero.style.background = `linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.14)),linear-gradient(100deg,${ca} 0%,${cb} 100%)`;
+    if (window.CSS && CSS.supports('background', 'linear-gradient(100deg in oklch, red, blue)')) hero.style.background = `linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.14)),linear-gradient(100deg in oklch,${ca} 0%,${cb} 100%)`;   // mistura viva, sem passar por cinzento
   }
 }
 
