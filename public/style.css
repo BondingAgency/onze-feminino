@@ -189,7 +189,7 @@ a.follow .t{color:var(--acc)}
 a.follow div:last-child{color:var(--mu);font-size:14px}
 .follow .list{margin:10px 0 0;box-shadow:none;background:var(--card2)}
 .th{display:flex;align-items:center;gap:14px;margin:12px 0 6px}
-.th .cr{--s:72px!important}
+.th .cr{--s:84px!important}
 .thn{flex:1;min-width:0}.thn h1{margin:0;font-size:26px}.thn .sub{margin:4px 0 0}
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:12px 0 4px}
 .st{border-radius:16px;padding:10px 4px;text-align:center;background:var(--card);box-shadow:var(--shadow)}
@@ -301,7 +301,7 @@ a.follow div:last-child{color:var(--mu);font-size:14px}
 /* ===== Página da equipa: anel na cor do clube + Seguir minimalista ===== */
 .th .cr{--ring:#ff7a0a;box-shadow:0 0 0 3px var(--bg,#07071a),0 0 0 6px var(--ring)!important;margin:6px}
 .th .cr:has(img){background:#fff!important}
-.th .cr img{mix-blend-mode:multiply;background:transparent;padding:15%}
+.th .cr img{mix-blend-mode:multiply;background:transparent;padding:0;inset:8%;width:84%;height:84%}
 .fbtn{flex:none;background:none;border:0;padding:6px 2px;font-weight:600;font-size:14px;color:#a9a8d6;letter-spacing:.01em;cursor:pointer}
 .fbtn:hover{color:var(--acc)}
 .fbtn.on{background:none;color:var(--acc)}
