@@ -423,8 +423,8 @@ html[data-theme=light] .hdots i{background:rgba(21,19,107,.25)}
 .pn{flex:none;min-width:30px;height:30px;padding:0 6px;box-sizing:border-box;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:14px;background:rgba(255,107,0,.16);color:var(--acc)}
 .pnm{font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pfl{font-size:18px;line-height:1;min-width:28px;text-align:center}
-.pag{font-size:12.5px;color:var(--mu);min-width:58px;text-align:right}
-.pgl{font-size:12.5px;font-weight:800;color:var(--acc);min-width:40px;text-align:right}
+.pag{font-size:13px;color:var(--mu);min-width:26px;text-align:right}
+.pgl{font-size:12.5px;font-weight:800;color:var(--acc);min-width:36px;text-align:right}
 
 .pph{position:relative;flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#2a1d8c,#8a2a5a);color:#fff;font-weight:800;font-size:15px}
 .pph b{font-weight:800}
@@ -432,5 +432,48 @@ html[data-theme=light] .hdots i{background:rgba(21,19,107,.25)}
 .pl{gap:12px}
 .fl{display:block;width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
 .pfl{display:grid;place-items:center}
-.fonte{font-size:12px;color:var(--mu);margin:10px 4px 0}
-.fonte a{color:var(--acc);text-decoration:underline}
+
+/* ===== Plantel: 5 formas de mostrar ===== */
+.pvsw{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:10px 0 4px;padding:2px 0}
+.pvsw::-webkit-scrollbar{display:none}
+.pvsw button{flex:none;border:0;border-radius:999px;padding:8px 14px;background:var(--chip);color:var(--chiptx);box-shadow:var(--shadow);font:700 13px inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.pvsw button b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,107,0,.2);color:var(--acc);font-size:12px;margin-right:4px}
+.pvsw button.on{background:var(--chipon);color:#fff}
+.pvsw button.on b{background:#fff;color:var(--acc)}
+.pcn{position:absolute;font-style:normal;font-weight:800;font-size:12px;min-width:22px;height:22px;padding:0 5px;box-sizing:border-box;border-radius:11px;display:grid;place-items:center;background:var(--acc);color:#fff;box-shadow:0 0 0 2px var(--card)}
+/* 2 · Cartões */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.pc{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px;border-radius:20px;background:var(--card);box-shadow:var(--shadow);text-align:center}
+.pc .pph{width:72px;height:72px;font-size:22px}
+.pc .pcn{top:10px;left:10px}
+.pcname{font-weight:800;font-size:14px;line-height:1.15}
+.pcm{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mu)}
+.pcm small{font-size:12px}.pcm small.g,.pf small.g{color:var(--acc);font-weight:800}
+/* 3 · Fila (deslizar) */
+.pfila{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:2px 2px 6px;margin:0 -2px}
+.pfila::-webkit-scrollbar{display:none}
+.pf{position:relative;flex:0 0 118px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px 12px;border-radius:22px;background:var(--card);box-shadow:var(--shadow);text-align:center}
+.pf .pph{width:84px;height:84px;font-size:26px}
+.pf .pcn{top:10px;left:10px}
+.pf small{font-size:12px;color:var(--mu)}
+/* 4 · Campo */
+.pitch{margin-top:10px;border-radius:24px;padding:18px 8px 14px;background:linear-gradient(180deg,#0c4a1a,#1f7f2d);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.pitch::before{content:"";position:absolute;inset:8px;border:2px solid rgba(255,255,255,.55);border-radius:12px;pointer-events:none}
+.prow{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 6px;position:relative;z-index:1}
+.pt{position:relative;display:flex;flex-direction:column;align-items:center;width:62px;gap:3px}
+.pt .pph{width:46px;height:46px;font-size:15px;box-shadow:0 0 0 2px #fff}
+.pt .pcn{top:-5px;right:2px;min-width:19px;height:19px;font-size:11px;box-shadow:0 0 0 2px #14602a}
+.ptn{font-size:11px;font-weight:800;color:#fff;text-align:center;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+/* 5 · Compacta */
+.pcomp{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 14px}
+.pcg{margin-bottom:6px}
+.pq{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:14px;background:var(--card);box-shadow:var(--shadow);margin-bottom:6px}
+.pq .pph{width:34px;height:34px;font-size:12px}
+.pq .pn{min-width:26px;height:26px;font-size:12px}
+.pq .pnm{font-size:14px}
+.pq .fl{width:20px;height:13px}
+
+.pnb{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.pnb .pnm{flex:none}
+.psub{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mu)}
+.psub .fl{width:22px;height:15px}
