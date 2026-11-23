@@ -765,7 +765,7 @@ async function drawShare(c, m, fmt, opt) {
   const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 5, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 4, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
