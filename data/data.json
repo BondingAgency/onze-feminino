@@ -3649,7 +3649,7 @@
             {
               "team": "away",
               "min": "7",
-              "player": "F. Brennskag-Dorsin"
+              "player": "Froya Dorsin"
             },
             {
               "team": "home",
@@ -3659,9 +3659,14 @@
             {
               "team": "away",
               "min": "56",
-              "player": "F. Brennskag-Dorsin"
+              "player": "Froya Dorsin"
             }
-          ]
+          ],
+          "foto": {
+            "src": "fotos/bpi34.jpg",
+            "fonte": "Instagram @slbenficafeminino",
+            "url": "https://www.instagram.com/p/DgGOIsmhk_q/"
+          }
         },
         {
           "id": "bpi35",
