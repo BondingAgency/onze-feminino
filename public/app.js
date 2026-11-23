@@ -318,9 +318,7 @@ function jogo(cid, mid) {
 
   // Resumo / antevisão
   if (done) {
-    h += `<h2>Resumo</h2>` + (m.summary
-      ? `<div class="sum">${String(m.summary).split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</div>`
-      : `<div class="empty sm">O resumo deste jogo ainda não está disponível.</div>`);
+    if (m.summary) h += `<h2>Resumo</h2><div class="sum">${String(m.summary).split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</div>`;   // sem resumo, não mostra nada
   } else {
     const rh = teamRow(c, m.home), ra = teamRow(c, m.away);
     const fm = c.cup ? {} : Object.fromEntries(standings(c).map((t) => [t.id, t.form]));
