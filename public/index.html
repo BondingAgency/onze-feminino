@@ -16,21 +16,19 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="stylesheet" href="style.css">
 <style id="splash-css">
-#splash{position:fixed;inset:0;z-index:9999;overflow:hidden;display:grid;place-items:center;background:linear-gradient(170deg,#070622 0%,#0e0c46 34%,#170f4f 55%,#2a0f3c 78%,#3c0e1c 100%);transition:opacity .35s ease}
+#splash{position:fixed;inset:0;z-index:9999;overflow:hidden;display:grid;place-items:center;background:linear-gradient(170deg,#070622 0%,#0e0c46 36%,#170f4f 58%,#2a0f3c 80%,#3c0e1c 100%);transition:opacity .3s ease}
 #splash.out{opacity:0;pointer-events:none}
-#splash i{position:absolute;display:block;border-radius:50%;pointer-events:none;will-change:transform,opacity;opacity:0}
-/* manchas de cor: duas em cima e duas em baixo, a derivar devagar */
-#splash .m1{width:95vmax;height:95vmax;left:-38vmax;top:-48vmax;background:radial-gradient(circle,rgba(91,59,240,.95) 0%,rgba(91,59,240,.45) 34%,rgba(91,59,240,0) 66%);animation:spA 2s ease-in-out .05s forwards}
-#splash .m2{width:70vmax;height:70vmax;right:-30vmax;top:-34vmax;background:radial-gradient(circle,rgba(255,59,15,.85) 0%,rgba(255,59,15,.4) 34%,rgba(255,59,15,0) 66%);animation:spB 2s ease-in-out .2s forwards}
-#splash .m3{width:100vmax;height:100vmax;right:-42vmax;bottom:-54vmax;background:radial-gradient(circle,rgba(255,122,10,.98) 0%,rgba(255,122,10,.5) 34%,rgba(255,122,10,0) 66%);animation:spC 2s ease-in-out .1s forwards}
-#splash .m4{width:75vmax;height:75vmax;left:-34vmax;bottom:-38vmax;background:radial-gradient(circle,rgba(150,40,200,.9) 0%,rgba(150,40,200,.42) 34%,rgba(150,40,200,0) 66%);animation:spD 2s ease-in-out .25s forwards}
-@keyframes spA{0%{opacity:0;transform:translate(-18vmax,-14vmax) scale(.7)}35%{opacity:.95}100%{opacity:.55;transform:translate(14vmax,10vmax) scale(1.1)}}
-@keyframes spB{0%{opacity:0;transform:translate(16vmax,-10vmax) scale(.7)}35%{opacity:.9}100%{opacity:.5;transform:translate(-18vmax,12vmax) scale(1.15)}}
-@keyframes spC{0%{opacity:0;transform:translate(16vmax,18vmax) scale(.7)}35%{opacity:.95}100%{opacity:.6;transform:translate(-16vmax,-12vmax) scale(1.1)}}
-@keyframes spD{0%{opacity:0;transform:translate(-16vmax,16vmax) scale(.7)}35%{opacity:.9}100%{opacity:.5;transform:translate(18vmax,-12vmax) scale(1.15)}}
-#splash .lg{position:relative;width:min(62vw,300px);opacity:0;transform:scale(.9);animation:spLogo .6s cubic-bezier(.2,.8,.2,1) .35s forwards}
+#splash i{position:absolute;display:block;border-radius:50%;pointer-events:none;will-change:transform,opacity;opacity:0;animation:spFade .4s ease-out var(--d,0s) forwards,spSway var(--t,.8s) ease-in-out var(--d,0s) infinite alternate}
+@keyframes spFade{to{opacity:var(--o,.9)}}
+@keyframes spSway{from{transform:translate(0,0) scale(.92)}to{transform:translate(var(--x),var(--y)) scale(1.18)}}
+/* manchas: três laranjas bem vivas (duas em cima, uma em baixo grande) e uma violeta */
+#splash .m1{--o:.9;--d:0s;--t:.7s;--x:22vmax;--y:16vmax;width:90vmax;height:90vmax;left:-36vmax;top:-44vmax;background:radial-gradient(circle,rgba(255,122,10,1) 0%,rgba(255,122,10,.6) 30%,rgba(255,122,10,0) 64%)}
+#splash .m2{--o:.85;--d:.05s;--t:.6s;--x:-24vmax;--y:14vmax;width:80vmax;height:80vmax;right:-34vmax;top:-38vmax;background:radial-gradient(circle,rgba(110,60,255,1) 0%,rgba(110,60,255,.5) 32%,rgba(110,60,255,0) 64%)}
+#splash .m3{--o:1;--d:.1s;--t:.75s;--x:-22vmax;--y:-16vmax;width:105vmax;height:105vmax;right:-44vmax;bottom:-56vmax;background:radial-gradient(circle,rgba(255,138,20,1) 0%,rgba(255,110,10,.65) 30%,rgba(255,90,10,0) 64%)}
+#splash .m4{--o:.95;--d:.15s;--t:.65s;--x:24vmax;--y:-14vmax;width:80vmax;height:80vmax;left:-34vmax;bottom:-38vmax;background:radial-gradient(circle,rgba(255,70,15,1) 0%,rgba(255,70,15,.55) 32%,rgba(255,70,15,0) 64%)}
+#splash .lg{position:relative;width:min(62vw,300px);opacity:0;transform:scale(.9);animation:spLogo .5s cubic-bezier(.2,.8,.2,1) .3s forwards}
 @keyframes spLogo{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){#splash i,#splash .lg{animation-duration:.01s;animation-delay:0s}}
+@media (prefers-reduced-motion:reduce){#splash i,#splash .lg{animation-duration:.01s;animation-delay:0s;animation-iteration-count:1}}
 </style>
 </head>
 <body>
