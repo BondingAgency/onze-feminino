@@ -9793,7 +9793,226 @@
         {
           "id": "estoril-praia",
           "name": "Estoril Praia",
-          "short": "Estoril"
+          "short": "Estoril",
+          "squad": [
+            {
+              "n": 1,
+              "name": "Diana Silva",
+              "pos": "Guarda-redes",
+              "age": 20,
+              "nat": "PT",
+              "id": "es1"
+            },
+            {
+              "n": 12,
+              "name": "Margarida Costa",
+              "pos": "Guarda-redes",
+              "age": 28,
+              "nat": "PT",
+              "id": "es2"
+            },
+            {
+              "n": 14,
+              "name": "Iara Rosa",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": "es3"
+            },
+            {
+              "n": 16,
+              "name": "Bárbara Santos",
+              "pos": "Defesa",
+              "age": 21,
+              "nat": "PT",
+              "id": "es4"
+            },
+            {
+              "n": 2,
+              "name": "Lara Tomás",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": "es5"
+            },
+            {
+              "n": 8,
+              "name": "Madalena Ventura",
+              "pos": "Defesa",
+              "age": 29,
+              "nat": "PT",
+              "id": "es6"
+            },
+            {
+              "n": 3,
+              "name": "Gaby Pombo",
+              "pos": "Defesa",
+              "age": 19,
+              "nat": "PT",
+              "id": "es7"
+            },
+            {
+              "n": 13,
+              "name": "Matilde Varanda",
+              "pos": "Defesa",
+              "age": 20,
+              "nat": "PT",
+              "id": "es8"
+            },
+            {
+              "n": null,
+              "name": "Sofia Nunes",
+              "pos": "Defesa",
+              "age": 25,
+              "nat": "PT",
+              "id": "es9"
+            },
+            {
+              "n": null,
+              "name": "Patrícia Galrito",
+              "pos": "Médio",
+              "age": 29,
+              "nat": "PT",
+              "id": "es10"
+            },
+            {
+              "n": 4,
+              "name": "Geiza Gomes",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": "es11"
+            },
+            {
+              "n": 5,
+              "name": "Inês Correia",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "PT",
+              "id": "es12"
+            },
+            {
+              "n": 17,
+              "name": "Cristiana Olivença",
+              "pos": "Médio",
+              "age": 28,
+              "nat": "PT",
+              "id": "es13"
+            },
+            {
+              "n": 17,
+              "name": "Fatema Urfani",
+              "pos": "Médio",
+              "age": 21,
+              "nat": "AF",
+              "id": "es14"
+            },
+            {
+              "n": 6,
+              "name": "Luana Borges",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "es15"
+            },
+            {
+              "n": 8,
+              "name": "Carolina Teixeira",
+              "pos": "Médio",
+              "age": 19,
+              "nat": "PT",
+              "id": "es16"
+            },
+            {
+              "n": 9,
+              "name": "Filipa Rodrigues",
+              "pos": "Médio",
+              "age": 20,
+              "nat": "PT",
+              "id": "es17"
+            },
+            {
+              "n": 7,
+              "name": "Maria Ferreira",
+              "pos": "Médio",
+              "age": 18,
+              "nat": "PT",
+              "id": "es18"
+            },
+            {
+              "n": 4,
+              "name": "Catarina Soares",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "PT",
+              "id": "es19"
+            },
+            {
+              "n": null,
+              "name": "Olivia Pina Vricella",
+              "pos": "Médio",
+              "age": 23,
+              "nat": "US",
+              "id": "es20"
+            },
+            {
+              "n": null,
+              "name": "Luísa Machado",
+              "pos": "Médio",
+              "age": 22,
+              "nat": "PT",
+              "id": "es21"
+            },
+            {
+              "n": 10,
+              "name": "Maria Brás",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": "es22"
+            },
+            {
+              "n": null,
+              "name": "Leonor Portela",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "es23"
+            },
+            {
+              "n": 11,
+              "name": "Sofia Correia",
+              "pos": "Avançado",
+              "age": 22,
+              "nat": "PT",
+              "id": "es24"
+            },
+            {
+              "n": 15,
+              "name": "Mariana Basílio",
+              "pos": "Avançado",
+              "age": 20,
+              "nat": "PT",
+              "id": "es25"
+            },
+            {
+              "n": 16,
+              "name": "Ana Exposto",
+              "pos": "Avançado",
+              "age": 33,
+              "nat": "PT",
+              "id": "es26"
+            },
+            {
+              "n": 7,
+              "name": "Fereshta Qasemi",
+              "pos": "Avançado",
+              "age": 21,
+              "nat": "AF",
+              "id": "es27"
+            }
+          ],
+          "squadAt": "2026-11-23"
         },
         {
           "id": "guia-fc",
