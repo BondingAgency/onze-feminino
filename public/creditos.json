@@ -547,5 +547,17 @@
   "nome": "Emblemas em alta definição (400 px), usados só na imagem de partilha",
   "fonte": "zerozero.pt (emblemas das equipas)",
   "url": "https://www.zerozero.pt"
+ },
+ {
+  "img": "jogadoras/",
+  "nome": "Fotos das jogadoras (plantéis)",
+  "fonte": "zerozero.pt (perfis das jogadoras; direitos das imagens dos respetivos titulares)",
+  "url": "https://www.zerozero.pt"
+ },
+ {
+  "img": "bandeiras/",
+  "nome": "Bandeiras dos países",
+  "fonte": "flagcdn.com",
+  "url": "https://flagcdn.com"
  }
 ]

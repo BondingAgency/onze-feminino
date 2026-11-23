@@ -290,7 +290,8 @@ const FOTOS = {
 const fotoClube = (id) => { const f = FOTOS[id]; return f ? `<figure class="foto"><img src="${f.src}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.fonte)}</a></figcaption></figure>` : ''; };
 
 // bandeira (emoji) a partir do código de país de 2 letras
-const flag = (cc) => /^[A-Z]{2}$/.test(cc || '') ? String.fromCodePoint(...[...cc].map((ch) => 127397 + ch.charCodeAt(0))) : '';
+const flag = (cc) => /^[A-Z]{2}$/.test(cc || '') ? `<img class="fl" src="bandeiras/${cc.toLowerCase()}.svg" alt="${cc}" title="${cc}" loading="lazy" onerror="this.remove()">` : '';
+const pinit = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 // golos de cada jogadora nesta competição (as marcadoras vêm das fichas dos jogos)
 function goalsBy(c, tid) {
   const g = {};
@@ -303,10 +304,10 @@ function plantel(c, t) {
   const sec = order.map((p) => {
     const l = t.squad.filter((x) => x.pos === p).sort((a, b) => (a.n ?? 999) - (b.n ?? 999));
     if (!l.length) return '';
-    return `<div class="dh">${p === 'Guarda-redes' ? 'Guarda-redes' : p + 's'}</div><div class="plist">${l.map((x) => `<div class="pl"><span class="pn">${x.n ?? '·'}</span><span class="pnm">${esc(x.name)}</span><span class="pfl">${flag(x.nat)}</span><span class="pag">${x.age ? x.age + ' anos' : ''}</span><span class="pgl" title="Golos nesta competição">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`;
+    return `<div class="dh">${p === 'Guarda-redes' ? 'Guarda-redes' : p + 's'}</div><div class="plist">${l.map((x) => `<div class="pl"><span class="pph"><b>${esc(pinit(x.name))}</b>${x.ph ? `<img src="jogadoras/${esc(x.ph)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ''}</span><span class="pn">${x.n ?? '·'}</span><span class="pnm">${esc(x.name)}</span><span class="pfl">${flag(x.nat)}</span><span class="pag">${x.age ? x.age + ' anos' : ''}</span><span class="pgl" title="Golos nesta competição">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`;
   }).join('');
   const dt = t.squadAt ? new Date(t.squadAt + 'T12:00').toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' }) : '';
-  return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras${dt ? ' · atualizado a ' + dt : ''}</p>${sec}`;
+  return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras${dt ? ' · atualizado a ' + dt : ''}</p>${sec}<p class="fonte">Fotos e dados: <a href="https://www.zerozero.pt${esc(t.zz || '')}" target="_blank" rel="noopener">zerozero.pt</a> · Bandeiras: flagcdn.com</p>`;
 }
 function equipa(cid, tid) {
   const c = DB.competitions.find((x) => x.id === cid);

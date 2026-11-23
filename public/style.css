@@ -425,3 +425,12 @@ html[data-theme=light] .hdots i{background:rgba(21,19,107,.25)}
 .pfl{font-size:18px;line-height:1;min-width:28px;text-align:center}
 .pag{font-size:12.5px;color:var(--mu);min-width:58px;text-align:right}
 .pgl{font-size:12.5px;font-weight:800;color:var(--acc);min-width:40px;text-align:right}
+
+.pph{position:relative;flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#2a1d8c,#8a2a5a);color:#fff;font-weight:800;font-size:15px}
+.pph b{font-weight:800}
+.pph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;background:var(--card2)}
+.pl{gap:12px}
+.fl{display:block;width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.pfl{display:grid;place-items:center}
+.fonte{font-size:12px;color:var(--mu);margin:10px 4px 0}
+.fonte a{color:var(--acc);text-decoration:underline}
