@@ -300,24 +300,13 @@ function goalsBy(c, tid) {
 }
 // primeiro e último nome (Manu Baptista Filipe → Manu Filipe)
 const shortName = (n) => { const p = String(n).trim().split(/\s+/); return p.length > 2 ? p[0] + ' ' + p[p.length - 1] : p.join(' '); };
-const PV_KEY = 'onze-plantel-view';
-const getPV = () => { try { return Math.min(5, Math.max(1, +localStorage.getItem(PV_KEY) || 1)); } catch { return 1; } };
-const PV_NAMES = ['Lista', 'Cartões', 'Fila', 'Campo', 'Compacta'];
 function plantel(c, t) {
   if (!t.squad || !t.squad.length) return '';
-  const v = getPV(), g = goalsBy(c, t.id), order = ['Guarda-redes', 'Defesa', 'Médio', 'Avançado'];
+  const g = goalsBy(c, t.id), order = ['Guarda-redes', 'Defesa', 'Médio', 'Avançado'];
   const ph = (x) => `<span class="pph"><b>${esc(pinit(x.name))}</b>${x.ph ? `<img src="jogadoras/${esc(x.ph)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ''}</span>`;
-  const gl = (x) => g[x.name] ? `<span class="pgl" title="Golos nesta competição">⚽ ${g[x.name]}</span>` : '';
-  const groups = order.map((p) => ({ p, l: t.squad.filter((x) => x.pos === p).sort((a, b) => (a.n ?? 999) - (b.n ?? 999)) })).filter((o) => o.l.length);
-  const title = (p) => (p === 'Guarda-redes' ? 'Guarda-redes' : p + 's');
-  let body = '';
-  if (v === 1) body = groups.map(({ p, l }) => `<div class="dh">${title(p)}</div><div class="plist">${l.map((x) => `<div class="pl">${ph(x)}<span class="pn">${x.n ?? '·'}</span><span class="pnb"><span class="pnm">${esc(shortName(x.name))}</span><span class="psub">${flag(x.nat)}${x.age ? '<span>' + x.age + ' anos</span>' : ''}</span></span><span class="pgl">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`).join('');
-  else if (v === 2) body = groups.map(({ p, l }) => `<div class="dh">${title(p)}</div><div class="pgrid">${l.map((x) => `<div class="pc">${ph(x)}<i class="pcn">${x.n ?? '·'}</i><span class="pcname">${esc(shortName(x.name))}</span><span class="pcm">${flag(x.nat)}${x.age ? '<small>' + x.age + '</small>' : ''}${g[x.name] ? '<small class="g">⚽ ' + g[x.name] + '</small>' : ''}</span></div>`).join('')}</div>`).join('');
-  else if (v === 3) body = groups.map(({ p, l }) => `<div class="dh">${title(p)}</div><div class="pfila">${l.map((x) => `<div class="pf">${ph(x)}<i class="pcn">${x.n ?? '·'}</i><span class="pcname">${esc(shortName(x.name))}</span>${g[x.name] ? '<small class="g">⚽ ' + g[x.name] + '</small>' : '<small>&nbsp;</small>'}</div>`).join('')}</div>`).join('');
-  else if (v === 4) body = `<div class="pitch">${[...groups].reverse().map(({ p, l }) => `<div class="prow">${l.map((x) => `<div class="pt">${ph(x)}<i class="pcn">${x.n ?? '·'}</i><span class="ptn">${esc(shortName(x.name))}</span></div>`).join('')}</div>`).join('')}</div>`;
-  else body = `<div class="pcomp">${groups.map(({ p, l }) => `<div class="pcg"><div class="dh">${title(p)}</div>${l.map((x) => `<div class="pq">${ph(x)}<span class="pn">${x.n ?? '·'}</span><span class="pnm">${esc(shortName(x.name))}</span>${flag(x.nat)}${gl(x)}</div>`).join('')}</div>`).join('')}</div>`;
-  const sw = `<div class="pvsw" role="group" aria-label="Forma de mostrar o plantel">${PV_NAMES.map((n, i) => `<button type="button" data-pv="${i + 1}" class="${i + 1 === v ? 'on' : ''}"><b>${i + 1}</b> ${n}</button>`).join('')}</div>`;
-  return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras</p>${sw}${body}`;
+  const body = order.map((p) => ({ p, l: t.squad.filter((x) => x.pos === p).sort((a, b) => (a.n ?? 999) - (b.n ?? 999)) })).filter((o) => o.l.length)
+    .map(({ p, l }) => `<div class="dh">${p === 'Guarda-redes' ? 'Guarda-redes' : p + 's'}</div><div class="plist">${l.map((x) => `<div class="pl">${ph(x)}<span class="pn">${x.n ?? '·'}</span><span class="pnb"><span class="pnm">${esc(shortName(x.name))}</span><span class="psub">${flag(x.nat)}${x.age ? '<span>' + x.age + ' anos</span>' : ''}</span></span><span class="pgl">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`).join('');
+  return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras</p>${body}`;
 }
 function equipa(cid, tid) {
   const c = DB.competitions.find((x) => x.id === cid);
@@ -442,8 +431,6 @@ document.addEventListener('click', (e) => {
   if (na && (location.hash || '#/') === na.getAttribute('href')) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   const ts = e.target.closest('[data-theme-set]');
   if (ts) { setPref(ts.dataset.themeSet); const y = scrollY; route(); scrollTo(0, y); return; }
-  const pv = e.target.closest('[data-pv]');
-  if (pv) { try { localStorage.setItem(PV_KEY, pv.dataset.pv); } catch {} const y = scrollY; route(); scrollTo(0, y); return; }
   const cs = e.target.closest('[data-cstar]');
   if (cs) {
     e.preventDefault(); e.stopPropagation();
