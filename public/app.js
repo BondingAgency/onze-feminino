@@ -289,6 +289,25 @@ const FOTOS = {
 };
 const fotoClube = (id) => { const f = FOTOS[id]; return f ? `<figure class="foto"><img src="${f.src}" alt="" loading="lazy"><figcaption>Foto: <a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.fonte)}</a></figcaption></figure>` : ''; };
 
+// bandeira (emoji) a partir do código de país de 2 letras
+const flag = (cc) => /^[A-Z]{2}$/.test(cc || '') ? String.fromCodePoint(...[...cc].map((ch) => 127397 + ch.charCodeAt(0))) : '';
+// golos de cada jogadora nesta competição (as marcadoras vêm das fichas dos jogos)
+function goalsBy(c, tid) {
+  const g = {};
+  for (const m of c.matches) for (const x of m.goals || []) { const side = x.team === 'home' ? m.home : m.away; if (side !== tid || x.note === 'autogolo') continue; g[x.player] = (g[x.player] || 0) + 1; }
+  return g;
+}
+function plantel(c, t) {
+  if (!t.squad || !t.squad.length) return '';
+  const g = goalsBy(c, t.id), order = ['Guarda-redes', 'Defesa', 'Médio', 'Avançado'];
+  const sec = order.map((p) => {
+    const l = t.squad.filter((x) => x.pos === p).sort((a, b) => (a.n ?? 999) - (b.n ?? 999));
+    if (!l.length) return '';
+    return `<div class="dh">${p === 'Guarda-redes' ? 'Guarda-redes' : p + 's'}</div><div class="plist">${l.map((x) => `<div class="pl"><span class="pn">${x.n ?? '·'}</span><span class="pnm">${esc(x.name)}</span><span class="pfl">${flag(x.nat)}</span><span class="pag">${x.age ? x.age + ' anos' : ''}</span><span class="pgl" title="Golos nesta competição">${g[x.name] ? '⚽ ' + g[x.name] : ''}</span></div>`).join('')}</div>`;
+  }).join('');
+  const dt = t.squadAt ? new Date(t.squadAt + 'T12:00').toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' }) : '';
+  return `<h2>Plantel</h2><p class="sub">${t.coach ? 'Treinador: <b>' + esc(t.coach) + '</b> · ' : ''}${t.squad.length} jogadoras${dt ? ' · atualizado a ' + dt : ''}</p>${sec}`;
+}
 function equipa(cid, tid) {
   const c = DB.competitions.find((x) => x.id === cid);
   const t = c && c.teams.find((x) => x.id === tid);
@@ -306,7 +325,7 @@ function equipa(cid, tid) {
   ${fotoClube(t.id)}
   ${r ? `<div class="stats">${stat('Posição', r.pos + '.º')}${stat('Pontos', r.pts)}${stat('Jogos', r.j)}${stat('V-E-D', `${r.v}-${r.e}-${r.d}`)}${stat('Golos', `${r.gm}:${r.gs}`)}</div>` : ''}
   <div class="cols"><div><h2>Próximos jogos</h2>${next.length ? next.slice(0, 6).map((m) => matchCard(c, { ...m, serie: undefined })).join('') : '<div class="empty">Sem jogos marcados.</div>'}</div>
-  <div><h2>Resultados</h2>${res.length ? res.map((m) => matchCard(c, { ...m, serie: undefined })).join('') : '<div class="empty">Ainda sem resultados.</div>'}</div></div>`;
+  <div><h2>Resultados</h2>${res.length ? res.map((m) => matchCard(c, { ...m, serie: undefined })).join('') : '<div class="empty">Ainda sem resultados.</div>'}</div></div>${plantel(c, t)}`;
 }
 
 const MOTM_COMPS = ['liga-bpi'];
