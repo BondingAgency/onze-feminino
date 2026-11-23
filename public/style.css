@@ -441,3 +441,8 @@ html[data-theme=light] .hdots i{background:rgba(21,19,107,.25)}
 .tabs-eq{overflow-x:auto;scrollbar-width:none}
 .tabs-eq::-webkit-scrollbar{display:none}
 .tabs-eq button{flex:1 0 auto;padding:9px 8px;font-size:13px}
+
+.nart img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:22px;margin:12px 0 16px}
+.nart .nk{font-size:12px;font-weight:600;color:var(--mu);margin-bottom:6px}
+.nart h1{margin:0 0 12px}
+.nart .ns{color:var(--mu);font-size:15px;line-height:1.5;margin:0}

@@ -252,9 +252,15 @@ function jogosAll(mode, cf) {
   ${comps.length > 1 ? `<div class="filt">${[['', 'Todas'], ...(favc.length ? [['fav', '★ Favoritos']] : []), ...(fol.length ? [['minha', '★ A minha equipa']] : []), ...favOrder(comps).map((c) => [c.id, compShort(c)])].map(([id, l]) => `<button class="pill ${id === cf ? 'on' : ''}" data-go="#/jogos/${mode}/${id}">${esc(l)}</button>`).join('')}</div>` : ''}${body}`;
 }
 
+function noticia(id) {
+  const x = (DB.news || []).find((n) => n.id === id);
+  if (!x) { noticias(); return; }
+  app.innerHTML = `<a class="back" href="#/noticias">‹ Notícias</a><article class="nart">${x.img ? `<img src="${esc(x.img)}" alt="">` : ''}<div class="nk">${esc([x.date ? fmtDate(x.date) : '', x.tag || ''].filter(Boolean).join(' · '))}</div><h1>${esc(x.title || '')}</h1><p class="ns">${esc(x.summary || '')}</p></article>`;
+}
+
 function noticias() {
   const n = [...(DB.news || [])].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  const card = (x) => `<a class="news" ${x.url ? `href="${esc(x.url)}" target="_blank" rel="noopener"` : ''}>${x.img ? `<img src="${esc(x.img)}" alt="" loading="lazy">` : ''}<div class="nk">${esc([x.date ? fmtDate(x.date) : '', x.tag || ''].filter(Boolean).join(' · '))}</div><div class="nt">${esc(x.title || '')}</div>${x.summary ? `<div class="ns">${esc(x.summary)}</div>` : ''}</a>`;
+  const card = (x) => `<a class="news" ${x.url ? `href="${esc(x.url)}" target="_blank" rel="noopener"` : `href="#/noticias/${esc(x.id)}"`}>${x.img ? `<img src="${esc(x.img)}" alt="" loading="lazy">` : ''}<div class="nk">${esc(x.date ? fmtDate(x.date) : '')}</div><div class="nt">${esc(x.title || '')}</div></a>`;
   app.innerHTML = `<h1>Notícias</h1><p class="sub">O que se passa no futebol feminino.</p>${n.length ? `<div class="cols">${n.map(card).join('')}</div>` : '<div class="empty">Ainda não há notícias.</div>'}`;
 }
 
@@ -430,7 +436,7 @@ function route() {
   else if (a === 'fundos') fundos(b, c);
   else if (a === 'c') comp(b, c, d);
   else if (a === 'jogos') jogosAll(b, c);
-  else if (a === 'noticias') noticias();
+  else if (a === 'noticias') (b ? noticia(b) : noticias());
   else if (a === 'procurar') procurar();
   else if (a === 'conta' || a === 'seguir') conta();
   else home();
