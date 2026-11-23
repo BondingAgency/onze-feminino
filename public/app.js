@@ -613,7 +613,7 @@ const SHARE_SAFE = { story: { top: 250, bot: 340 }, post: { top: 90, bot: 90 } }
 function glass(S, x, y, w, h, r, tint) {
   const { cx } = S, k = 20, mk = (cw, ch) => { const c2 = document.createElement('canvas'); c2.width = cw; c2.height = ch; const g2 = c2.getContext('2d'); g2.imageSmoothingEnabled = true; g2.imageSmoothingQuality = 'high'; return c2; };
   // desfoque: copia a zona e reduz-a por metades (média correta, sem degraus) antes de a ampliar
-  let t = mk(Math.round(w), Math.round(h)); t.getContext('2d').drawImage(cx.canvas, x, y, w, h, 0, 0, t.width, t.height);
+  const K = S.k || 1; let t = mk(Math.round(w * K), Math.round(h * K)); t.getContext('2d').drawImage(cx.canvas, x * K, y * K, w * K, h * K, 0, 0, t.width, t.height);
   while (t.width > w / k && t.width > 4) { const n2 = mk(Math.max(2, Math.ceil(t.width / 2)), Math.max(2, Math.ceil(t.height / 2))); n2.getContext('2d').drawImage(t, 0, 0, t.width, t.height, 0, 0, n2.width, n2.height); t = n2; }
   cx.save(); rr(cx, x, y, w, h, r); cx.clip();
   cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.drawImage(t, 0, 0, t.width, t.height, x - 6, y - 6, w + 12, h + 12);
@@ -766,13 +766,14 @@ function lumOf(hex) {
 async function drawShare(c, m, fmt, opt) {
   opt = opt || {}; const bgm = opt.bg || { mode: 'auto' }, solid = bgm.mode === 'color', own = !solid && bgm.mode === 'own' ? opt.own : null;
   const W = 1080, story = fmt === 'story', H = story ? 1920 : 1350, sz = SHARE_SAFE[story ? 'story' : 'post'];
-  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-  const cx = cv.getContext('2d');
+  const K = 2, cv = document.createElement('canvas'); cv.width = W * K; cv.height = H * K; cv.__k = K; cv.__W = W; cv.__H = H;   // exporta a 2160 de largura: mais nítida quando o Instagram volta a comprimir
+  const cx = cv.getContext('2d'); cx.scale(K, K); cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
-  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' || bgm.mode === 'grass' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
+  const hd = async (id) => (await loadImg(crestSrc(id).replace('clubes/', 'clubes/hd/'))) || loadImg(crestSrc(id));
+  const [ih, ia, ph, lgW, lgK, em] = await Promise.all([hd(m.home), hd(m.away), solid || bgm.mode === 'clubs' || bgm.mode === 'grass' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
   const [CA, CB] = await Promise.all([clubTone(ih, '#1b1a6b'), clubTone(ia, '#6b1d1d')]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 4, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: CA, B: CB,
+    cx, W, H, k: K, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 4, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: CA, B: CB,
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
@@ -798,7 +799,7 @@ async function drawShare(c, m, fmt, opt) {
 }
 // Regras de design: dentro da zona segura, folga das margens e do painel, e nada a tocar em nada
 function shareIssues(cv, fmt) {
-  const R = cv.__rects || [], z = SHARE_SAFE[fmt], W = cv.width, H = cv.height, M = 56, P = cv.__panel, out = [], gap = 6;
+  const R = cv.__rects || [], z = SHARE_SAFE[fmt], W = cv.__W || cv.width, H = cv.__H || cv.height, M = 56, P = cv.__panel, out = [], gap = 6;
   const id = (a) => a.t === 'imagem' ? 'emblema/logo' : a.t;
   R.forEach((a) => {
     if (a.y0 < z.top - 1 || a.y1 > H - z.bot + 1) out.push('fora da zona segura: ' + id(a));
@@ -830,7 +831,7 @@ async function openShare(cid, mid) {
   const paint = () => {   // pré-visualização; as linhas da zona segura só aparecem aqui, nunca na imagem final
     const pv = box.querySelector('canvas'), x = pv.getContext('2d'); pv.width = cv.width; pv.height = cv.height; x.drawImage(cv, 0, 0);
     pv.style.aspectRatio = `${cv.width} / ${cv.height}`;
-    if (guide) { const z = SHARE_SAFE[fmt], W = cv.width, H = cv.height; x.fillStyle = 'rgba(255,40,90,.22)'; x.fillRect(0, 0, W, z.top); x.fillRect(0, H - z.bot, W, z.bot); x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = 'rgba(255,60,110,.95)'; x.beginPath(); x.moveTo(0, z.top); x.lineTo(W, z.top); x.moveTo(0, H - z.bot); x.lineTo(W, H - z.bot); x.stroke(); }
+    if (guide) { const kk = cv.__k || 1, z0 = SHARE_SAFE[fmt], z = { top: z0.top * kk, bot: z0.bot * kk }, W = cv.width, H = cv.height; x.fillStyle = 'rgba(255,40,90,.22)'; x.fillRect(0, 0, W, z.top); x.fillRect(0, H - z.bot, W, z.bot); x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = 'rgba(255,60,110,.95)'; x.beginPath(); x.moveTo(0, z.top); x.lineTo(W, z.top); x.moveTo(0, H - z.bot); x.lineTo(W, H - z.bot); x.stroke(); }
   };
   const render = async () => { box.querySelector('.shl').style.display = ''; note(); cv = await drawShare(c, m, fmt, opts()); paint(); box.querySelector('.shl').style.display = 'none'; };
   box.addEventListener('click', async (e) => {
