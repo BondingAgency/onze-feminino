@@ -513,12 +513,18 @@ function tone([r, g, b]) {  // escurece/satura para o texto branco ler bem
   l = Math.min(0.46, Math.max(0.32, l + .04)); s = Math.max(0.72, Math.min(0.98, s + .1));
   return `hsl(${h.toFixed(0)} ${(s * 100).toFixed(0)}% ${(l * 100).toFixed(0)}%)`;
 }
+// cores fixas de clubes cujo emblema não dá a cor certa (o vermelho do Benfica é um pouco mais escuro que o do Braga)
+const CLUB_TONE = { benfica: 'hsl(356 88% 33%)', braga: 'hsl(356 84% 46%)' };
+async function clubTone(img, fb) {
+  const m = ((img && (img.currentSrc || img.src)) || '').match(/clubes\/([^/.?]+)\.png/);
+  if (m && CLUB_TONE[m[1]]) return CLUB_TONE[m[1]];
+  const c = img ? await crestColor(img) : null; return c ? tone(c) : fb;
+}
 async function paintHeroes() {
   for (const hero of document.querySelectorAll('.hero')) {
     const imgs = hero.querySelectorAll('.cr img');
     if (imgs.length < 2) continue;
-    const [A, B] = await Promise.all([crestColor(imgs[0]), crestColor(imgs[1])]);
-    const ca = A ? tone(A) : '#1b1a6b', cb = B ? tone(B) : '#2a2a55';
+    const [ca, cb] = await Promise.all([clubTone(imgs[0], '#1b1a6b'), clubTone(imgs[1], '#2a2a55')]);
     hero.style.background = `linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.14)),linear-gradient(100deg,${ca} 0%,${cb} 100%)`;
     if (window.CSS && CSS.supports('background', 'linear-gradient(100deg in oklch, red, blue)')) hero.style.background = `linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.14)),linear-gradient(100deg in oklch,${ca} 0%,${cb} 100%)`;   // mistura viva, sem passar por cinzento
   }
@@ -764,9 +770,9 @@ async function drawShare(c, m, fmt, opt) {
   const cx = cv.getContext('2d');
   try { await document.fonts.load('800 100px ArchivoV'); await document.fonts.load('600 40px ArchivoV'); await document.fonts.load('700 40px ArchivoV'); } catch {}
   const [ih, ia, ph, lgW, lgK, em] = await Promise.all([loadImg(crestSrc(m.home)), loadImg(crestSrc(m.away)), solid || bgm.mode === 'clubs' || bgm.mode === 'grass' ? null : own || (m.foto && m.foto.src ? loadImg(m.foto.src) : null), loadImg(LOGO.dark), loadImg(LOGO.light), loadImg(c.id === 'liga-bpi' ? 'ligas/liga-bpi.png' : 'ligas/emblema-fpf-feminino.png')]);
-  const [A0, B0] = await Promise.all([ih ? crestColor(ih) : null, ia ? crestColor(ia) : null]);
+  const [CA, CB] = await Promise.all([clubTone(ih, '#1b1a6b'), clubTone(ia, '#6b1d1d')]);
   const S = {
-    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 4, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: A0 ? tone(A0) : '#1b1a6b', B: B0 ? tone(B0) : '#6b1d1d',
+    cx, W, H, story, c, m, ih, ia, ph, lgW, lgK, em, brand: opt.brand || 4, own: !!own, bg: bgm, light: solid && lumOf(bgm.color) > .22, mc: solid && lumOf(bgm.color) > .22 ? (lumOf(bgm.color) > .6 ? '#c2570a' : 'rgba(21,19,107,.74)') : '#ffb066', M: 56, top: sz.top, bot: sz.bot, A: CA, B: CB,
     hl: goalLines(m, 'home'), al: goalLines(m, 'away'),
     hn: sname(c, m.home), an: sname(c, m.away), hf: tname(c, m.home), af: tname(c, m.away),
     sub: [c.phase && m.serie ? `${c.phase} · ${m.serie}` : m.serie, roundName(c, m.round)].filter(Boolean).join(' · '),
